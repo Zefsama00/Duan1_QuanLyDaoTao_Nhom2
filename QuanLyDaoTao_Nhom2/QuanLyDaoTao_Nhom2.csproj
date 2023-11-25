@@ -242,5 +242,26 @@
   <ItemGroup>
     <None Include="Resources\Search.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\debut.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\textbox_user_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\if_quit_37278.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hien.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\an.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Businessman_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Forgot Password_48px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
