@@ -38,13 +38,35 @@ namespace QuanLyDaoTao_Nhom2
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
+            // btnLichDay
+            // 
+            this.btnLichDay.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLichDay.Location = new System.Drawing.Point(170, 414);
+            this.btnLichDay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLichDay.Name = "btnLichDay";
+            this.btnLichDay.Size = new System.Drawing.Size(148, 66);
+            this.btnLichDay.TabIndex = 12;
+            this.btnLichDay.Text = "LỊCH DẠY";
+            this.btnLichDay.UseVisualStyleBackColor = true;
+            // 
+            // btnLenDiem
+            // 
+            this.btnLenDiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLenDiem.Location = new System.Drawing.Point(170, 274);
+            this.btnLenDiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLenDiem.Name = "btnLenDiem";
+            this.btnLenDiem.Size = new System.Drawing.Size(148, 66);
+            this.btnLenDiem.TabIndex = 13;
+            this.btnLenDiem.Text = "LÊN ĐIỂM";
+            this.btnLenDiem.UseVisualStyleBackColor = true;
+            this.btnLenDiem.Click += new System.EventHandler(this.btnLenDiem_Click);
+            // 
             // lblGiangvien
             // 
             this.lblGiangvien.Font = new System.Drawing.Font("Times New Roman", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGiangvien.Location = new System.Drawing.Point(277, 71);
-            this.lblGiangvien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGiangvien.Location = new System.Drawing.Point(373, 131);
             this.lblGiangvien.Name = "lblGiangvien";
-            this.lblGiangvien.Size = new System.Drawing.Size(311, 36);
+            this.lblGiangvien.Size = new System.Drawing.Size(414, 45);
             this.lblGiangvien.TabIndex = 10;
             this.lblGiangvien.Text = "GIẢNG VIÊN";
             // 
@@ -76,49 +98,49 @@ namespace QuanLyDaoTao_Nhom2
             // btnDanhSachSV
             // 
             this.btnDanhSachSV.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDanhSachSV.Location = new System.Drawing.Point(620, 238);
-            this.btnDanhSachSV.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDanhSachSV.Location = new System.Drawing.Point(876, 330);
+            this.btnDanhSachSV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnDanhSachSV.Name = "btnDanhSachSV";
-            this.btnDanhSachSV.Size = new System.Drawing.Size(111, 53);
+            this.btnDanhSachSV.Size = new System.Drawing.Size(148, 66);
             this.btnDanhSachSV.TabIndex = 13;
             this.btnDanhSachSV.Text = "DANH SÁCH SINH VIÊN";
             this.btnDanhSachSV.UseVisualStyleBackColor = true;
+            this.btnDanhSachSV.Click += new System.EventHandler(this.btnDanhSachSV_Click);
             // 
             // btnLichDay
             // 
-            this.btnLichDay.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLichDay.Location = new System.Drawing.Point(72, 321);
-            this.btnLichDay.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLichDay.Name = "btnLichDay";
-            this.btnLichDay.Size = new System.Drawing.Size(111, 53);
-            this.btnLichDay.TabIndex = 12;
-            this.btnLichDay.Text = "LỊCH DẠY";
-            this.btnLichDay.UseVisualStyleBackColor = true;
+            this.pictureBox2.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.download;
+            this.pictureBox2.Location = new System.Drawing.Point(449, 248);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(292, 282);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 11;
+            this.pictureBox2.TabStop = false;
             // 
             // btnLenDiem
             // 
-            this.btnLenDiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLenDiem.Location = new System.Drawing.Point(72, 201);
-            this.btnLenDiem.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLenDiem.Name = "btnLenDiem";
-            this.btnLenDiem.Size = new System.Drawing.Size(111, 53);
-            this.btnLenDiem.TabIndex = 13;
-            this.btnLenDiem.Text = "LÊN ĐIỂM";
-            this.btnLenDiem.UseVisualStyleBackColor = true;
+            this.pictureBox1.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.FPT_Polytechnic1;
+            this.pictureBox1.Location = new System.Drawing.Point(11, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(294, 93);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // GiangVien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SkyBlue;
-            this.ClientSize = new System.Drawing.Size(795, 454);
-            this.Controls.Add(this.btThoat);
+            this.ClientSize = new System.Drawing.Size(1060, 559);
             this.Controls.Add(this.btnLichDay);
             this.Controls.Add(this.btnDanhSachSV);
             this.Controls.Add(this.btnLenDiem);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblGiangvien);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Controls.Add(this.pictureBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GiangVien";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);

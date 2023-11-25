@@ -17,12 +17,22 @@ namespace QuanLyDaoTao_Nhom2
             InitializeComponent();
         }
 
-        private void btThoat_Click(object sender, EventArgs e)
+        private void btnLenDiem_Click(object sender, EventArgs e)
+        {
+            Diem formLuuDiem = new Diem();
+            formLuuDiem.Show();  // Hiển thị form mới
+            this.Hide();
+        }
+
+        private void btnDanhSachSV_Click(object sender, EventArgs e)
         {
             this.Hide();
-            DangNhap form = new DangNhap();
-            form.ShowDialog();
-            this.Close();
+
+            // Tạo một instance của Form 2
+            QuanLySinhVien form2 = new QuanLySinhVien();
+
+            // Hiển thị Form 2
+            form2.Show();
         }
     }
 }
