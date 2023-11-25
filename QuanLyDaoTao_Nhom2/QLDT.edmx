@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NHOM2_QUANLY_DAOTAOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLDTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="QLChuyenNganh">
           <Key>
             <PropertyRef Name="MaCN" />
@@ -31,7 +31,7 @@
           <Property Name="HoTenGV" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GioiTinhGV" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="NgaySinhGV" Type="date" />
-          <Property Name="DiaChiGV" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DiaChiGV" Type="nvarchar" MaxLength="100" />
           <Property Name="SoDienThoaiGV" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="EmailGV" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -76,7 +76,7 @@
             <PropertyRef Name="MaMonHoc" />
           </Key>
           <Property Name="MaMonHoc" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="TenMonHoc" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenMonHoc" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="QLNganh">
           <Key>
@@ -93,7 +93,7 @@
             <PropertyRef Name="MaPhong" />
           </Key>
           <Property Name="MaPhong" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="TenPhong" Type="nvarchar" MaxLength="50" />
+          <Property Name="TenPhong" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="QLSinhVien">
           <Key>
@@ -102,7 +102,7 @@
           <Property Name="MaSV" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="HoTenSV" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="GioiTinhSV" Type="nvarchar" MaxLength="5" Nullable="false" />
-          <Property Name="NgaySinhSV" Type="date" />
+          <Property Name="NgaySinhSV" Type="date" Nullable="false" />
           <Property Name="DiaChiSV" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="SoDienThoaiSV" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="EmailSV" Type="varchar" MaxLength="50" Nullable="false" />
@@ -247,7 +247,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NHOM2_QUANLY_DAOTAOModelStoreContainer">
+        <EntityContainer Name="QLDTModelStoreContainer">
           <EntitySet Name="QLChuyenNganh" EntityType="Self.QLChuyenNganh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QLDiem" EntityType="Self.QLDiem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QLGiangVien" EntityType="Self.QLGiangVien" Schema="dbo" store:Type="Tables" />
@@ -309,7 +309,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="NHOM2_QUANLY_DAOTAOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="QLDTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="QLChuyenNganh">
           <Key>
             <PropertyRef Name="MaCN" />
@@ -339,7 +339,7 @@
           <Property Name="HoTenGV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GioiTinhGV" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="NgaySinhGV" Type="DateTime" Precision="0" />
-          <Property Name="DiaChiGV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DiaChiGV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SoDienThoaiGV" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailGV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_GV" FromRole="QLGiangVien" ToRole="QLLopMon" />
@@ -395,7 +395,7 @@
             <PropertyRef Name="MaMonHoc" />
           </Key>
           <Property Name="MaMonHoc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TenMonHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenMonHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="QLDiems" Relationship="Self.FK_Diem_MonHoc" FromRole="QLMonHoc" ToRole="QLDiem" />
           <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_MH" FromRole="QLMonHoc" ToRole="QLLopMon" />
         </EntityType>
@@ -417,7 +417,7 @@
             <PropertyRef Name="MaPhong" />
           </Key>
           <Property Name="MaPhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TenPhong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenPhong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_Phong" FromRole="QLPhong" ToRole="QLLopMon" />
         </EntityType>
         <EntityType Name="QLSinhVien">
@@ -427,7 +427,7 @@
           <Property Name="MaSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HoTenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="GioiTinhSV" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NgaySinhSV" Type="DateTime" Precision="0" />
+          <Property Name="NgaySinhSV" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DiaChiSV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="SoDienThoaiSV" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EmailSV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
@@ -637,9 +637,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NHOM2_QUANLY_DAOTAOModelStoreContainer" CdmEntityContainer="QLDTEntities">
+        <EntityContainerMapping StorageEntityContainer="QLDTModelStoreContainer" CdmEntityContainer="QLDTEntities">
           <EntitySetMapping Name="QLChuyenNganhs">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLChuyenNganh">
+            <EntityTypeMapping TypeName="QLDTModel.QLChuyenNganh">
               <MappingFragment StoreEntitySet="QLChuyenNganh">
                 <ScalarProperty Name="MaCN" ColumnName="MaCN" />
                 <ScalarProperty Name="TenCN" ColumnName="TenCN" />
@@ -647,7 +647,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLDiems">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLDiem">
+            <EntityTypeMapping TypeName="QLDTModel.QLDiem">
               <MappingFragment StoreEntitySet="QLDiem">
                 <ScalarProperty Name="MaDiem" ColumnName="MaDiem" />
                 <ScalarProperty Name="DiemLab" ColumnName="DiemLab" />
@@ -659,7 +659,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLGiangViens">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLGiangVien">
+            <EntityTypeMapping TypeName="QLDTModel.QLGiangVien">
               <MappingFragment StoreEntitySet="QLGiangVien">
                 <ScalarProperty Name="MaGV" ColumnName="MaGV" />
                 <ScalarProperty Name="HoTenGV" ColumnName="HoTenGV" />
@@ -672,7 +672,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLHocKies">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLHocKy">
+            <EntityTypeMapping TypeName="QLDTModel.QLHocKy">
               <MappingFragment StoreEntitySet="QLHocKy">
                 <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
                 <ScalarProperty Name="TenHocKy" ColumnName="TenHocKy" />
@@ -682,7 +682,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLLiches">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLich">
+            <EntityTypeMapping TypeName="QLDTModel.QLLich">
               <MappingFragment StoreEntitySet="QLLich">
                 <ScalarProperty Name="MaLichHoc" ColumnName="MaLichHoc" />
                 <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
@@ -692,7 +692,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLLops">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLop">
+            <EntityTypeMapping TypeName="QLDTModel.QLLop">
               <MappingFragment StoreEntitySet="QLLop">
                 <ScalarProperty Name="MaLop" ColumnName="MaLop" />
                 <ScalarProperty Name="TenLop" ColumnName="TenLop" />
@@ -700,7 +700,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLLopMons">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLopMon">
+            <EntityTypeMapping TypeName="QLDTModel.QLLopMon">
               <MappingFragment StoreEntitySet="QLLopMon">
                 <ScalarProperty Name="MaLopMon" ColumnName="MaLopMon" />
                 <ScalarProperty Name="MaGV" ColumnName="MaGV" />
@@ -712,7 +712,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLMonHocs">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLMonHoc">
+            <EntityTypeMapping TypeName="QLDTModel.QLMonHoc">
               <MappingFragment StoreEntitySet="QLMonHoc">
                 <ScalarProperty Name="MaMonHoc" ColumnName="MaMonHoc" />
                 <ScalarProperty Name="TenMonHoc" ColumnName="TenMonHoc" />
@@ -720,7 +720,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLNganhs">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLNganh">
+            <EntityTypeMapping TypeName="QLDTModel.QLNganh">
               <MappingFragment StoreEntitySet="QLNganh">
                 <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
                 <ScalarProperty Name="TenNganh" ColumnName="TenNganh" />
@@ -731,7 +731,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLPhongs">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLPhong">
+            <EntityTypeMapping TypeName="QLDTModel.QLPhong">
               <MappingFragment StoreEntitySet="QLPhong">
                 <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
                 <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
@@ -739,7 +739,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLSinhViens">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLSinhVien">
+            <EntityTypeMapping TypeName="QLDTModel.QLSinhVien">
               <MappingFragment StoreEntitySet="QLSinhVien">
                 <ScalarProperty Name="MaSV" ColumnName="MaSV" />
                 <ScalarProperty Name="HoTenSV" ColumnName="HoTenSV" />
@@ -752,7 +752,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLUsers">
-            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLUser">
+            <EntityTypeMapping TypeName="QLDTModel.QLUser">
               <MappingFragment StoreEntitySet="QLUser">
                 <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />

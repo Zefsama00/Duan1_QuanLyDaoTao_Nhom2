@@ -333,16 +333,6 @@
     <None Include="Resources\Forgot Password_48px.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="QLDT.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>QLDT.Context.cs</LastGenOutput>
-      <DependentUpon>QLDT.edmx</DependentUpon>
-    </Content>
-    <Content Include="QLDT.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>QLDT.edmx</DependentUpon>
-      <LastGenOutput>QLDT.cs</LastGenOutput>
-    </Content>
     <None Include="Resources\yeti3.png" />
     <None Include="Resources\yeti2.png" />
     <None Include="Resources\yeti.png" />
@@ -352,6 +342,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QLDT.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLDT.edmx</DependentUpon>
+      <LastGenOutput>QLDT.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="QLDT.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLDT.edmx</DependentUpon>
+      <LastGenOutput>QLDT.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
