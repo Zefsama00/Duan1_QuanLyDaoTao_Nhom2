@@ -18,7 +18,35 @@ namespace QuanLyDaoTao_Nhom2
         List<QLLop> dsLop;
         List<QLMonHoc> dsMonHoc;
         List<QLHocKy> dsHocKy;
-        string maPhong,maGV,maLop,maMonHoc,maHocKy;
+
+        private void dvThongTin_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string tenPhong, tenGV, tenLop, tenMonHoc, tenHocKy;
+            int selectedRowIndex = dvThongTin.SelectedCells[0].RowIndex;
+            QLLopMon selectedPM = dsLopMon[selectedRowIndex];
+            txtMaLopmon.Text = selectedPM.MaLopMon.ToString();
+            
+            tenPhong = dsPhong.Find(loai => loai.MaPhong == selectedPM.MaPhong.ToString()).TenPhong;
+            cmxPhong.SelectedIndex = dsPhong.FindIndex(loai=>loai.TenPhong == tenPhong);
+            
+            tenGV = dsGV.Find(loai => loai.MaGV == selectedPM.MaGV.ToString()).HoTenGV;
+            cmxGV.SelectedIndex = dsGV.FindIndex(loai => loai.HoTenGV == tenGV);
+            
+            tenLop = dsLop.Find(loai => loai.MaLop == selectedPM.MaLop.ToString()).TenLop;
+            cmxLop.SelectedIndex = dsLop.FindIndex(loai => loai.TenLop == tenLop);
+            
+            tenMonHoc = dsMonHoc.Find(loai => loai.MaMonHoc == selectedPM.MaMonHoc.ToString()).TenMonHoc;
+            cmxMonHoc.SelectedIndex = dsMonHoc.FindIndex(loai => loai.TenMonHoc == tenMonHoc);
+            
+            tenHocKy = dsHocKy.Find(loai => loai.MaHocKy == selectedPM.MaHocKy.ToString()).TenHocKy;
+            cmxHocKy.SelectedIndex = dsHocKy.FindIndex(loai => loai.TenHocKy == tenHocKy);
+            
+            txtMaLopmon.ReadOnly = true;
+            btnThem.Enabled = false;
+            btnSua.Enabled = true;
+            btnXoa.Enabled = true;
+        }
+
         public QuanLyLopMon()
         {
             InitializeComponent();
@@ -82,6 +110,21 @@ namespace QuanLyDaoTao_Nhom2
                     MessageBoxIcon.Error
                 );
             }
+        }
+
+        private void btnLamMoi_Click(object sender, EventArgs e)
+        {
+            txtMaLopmon.Text = "";
+            cmxPhong.SelectedIndex = -1;
+            cmxGV.SelectedIndex = -1;
+            cmxLop.SelectedIndex = -1;
+            cmxMonHoc.SelectedIndex = -1;
+            cmxHocKy.SelectedIndex = -1;
+            dvThongTin.ClearSelection();
+            txtMaLopmon.ReadOnly = false;
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
     }
 }

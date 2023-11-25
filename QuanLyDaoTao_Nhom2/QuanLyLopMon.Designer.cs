@@ -35,6 +35,12 @@
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.dvThongTin = new System.Windows.Forms.DataGridView();
+            this.MaLopMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaGiangVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaPhongHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaKyHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaLopHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblQuanLyLopMon = new System.Windows.Forms.Label();
@@ -51,12 +57,6 @@
             this.cmxLop = new System.Windows.Forms.ComboBox();
             this.cmxGV = new System.Windows.Forms.ComboBox();
             this.cmxMonHoc = new System.Windows.Forms.ComboBox();
-            this.MaLopMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaGiangVien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaPhongHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaKyHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaLopHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.grbThongTin.SuspendLayout();
@@ -89,6 +89,7 @@
             this.btnLamMoi.Text = "LÀM MỚI";
             this.btnLamMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // btnXoa
             // 
@@ -150,6 +151,43 @@
             this.dvThongTin.RowTemplate.Height = 28;
             this.dvThongTin.Size = new System.Drawing.Size(775, 199);
             this.dvThongTin.TabIndex = 52;
+            this.dvThongTin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvThongTin_CellClick);
+            // 
+            // MaLopMon
+            // 
+            this.MaLopMon.HeaderText = "Mã Lớp Môn";
+            this.MaLopMon.Name = "MaLopMon";
+            this.MaLopMon.Width = 120;
+            // 
+            // MaGiangVien
+            // 
+            this.MaGiangVien.HeaderText = "Mã Giảng Viên";
+            this.MaGiangVien.Name = "MaGiangVien";
+            this.MaGiangVien.Width = 120;
+            // 
+            // MaMH
+            // 
+            this.MaMH.HeaderText = "Mã Môn Học";
+            this.MaMH.Name = "MaMH";
+            this.MaMH.Width = 120;
+            // 
+            // MaPhongHoc
+            // 
+            this.MaPhongHoc.HeaderText = "Mã Phòng";
+            this.MaPhongHoc.Name = "MaPhongHoc";
+            this.MaPhongHoc.Width = 120;
+            // 
+            // MaKyHoc
+            // 
+            this.MaKyHoc.HeaderText = "Mã Học Kỳ";
+            this.MaKyHoc.Name = "MaKyHoc";
+            this.MaKyHoc.Width = 120;
+            // 
+            // MaLopHoc
+            // 
+            this.MaLopHoc.HeaderText = "Mã Lớp";
+            this.MaLopHoc.Name = "MaLopHoc";
+            this.MaLopHoc.Width = 120;
             // 
             // txtTimKiem
             // 
@@ -319,42 +357,6 @@
             this.cmxMonHoc.Name = "cmxMonHoc";
             this.cmxMonHoc.Size = new System.Drawing.Size(214, 23);
             this.cmxMonHoc.TabIndex = 2;
-            // 
-            // MaLopMon
-            // 
-            this.MaLopMon.HeaderText = "Mã Lớp Môn";
-            this.MaLopMon.Name = "MaLopMon";
-            this.MaLopMon.Width = 120;
-            // 
-            // MaGiangVien
-            // 
-            this.MaGiangVien.HeaderText = "Mã Giảng Viên";
-            this.MaGiangVien.Name = "MaGiangVien";
-            this.MaGiangVien.Width = 120;
-            // 
-            // MaMH
-            // 
-            this.MaMH.HeaderText = "Mã Môn Học";
-            this.MaMH.Name = "MaMH";
-            this.MaMH.Width = 120;
-            // 
-            // MaPhongHoc
-            // 
-            this.MaPhongHoc.HeaderText = "Mã Phòng";
-            this.MaPhongHoc.Name = "MaPhongHoc";
-            this.MaPhongHoc.Width = 120;
-            // 
-            // MaKyHoc
-            // 
-            this.MaKyHoc.HeaderText = "Mã Học Kỳ";
-            this.MaKyHoc.Name = "MaKyHoc";
-            this.MaKyHoc.Width = 120;
-            // 
-            // MaLopHoc
-            // 
-            this.MaLopHoc.HeaderText = "Mã Lớp";
-            this.MaLopHoc.Name = "MaLopHoc";
-            this.MaLopHoc.Width = 120;
             // 
             // QuanLyLopMon
             // 
