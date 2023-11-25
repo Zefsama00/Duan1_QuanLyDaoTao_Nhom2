@@ -24,7 +24,7 @@ namespace QuanLyDaoTao_Nhom2
         public string MaSV { get; set; }
         public string HoTenSV { get; set; }
         public string GioiTinhSV { get; set; }
-        public Nullable<System.DateTime> NgaySinhSV { get; set; }
+        public System.DateTime NgaySinhSV { get; set; }
         public string DiaChiSV { get; set; }
         public string SoDienThoaiSV { get; set; }
         public string EmailSV { get; set; }
