@@ -17,6 +17,12 @@ namespace QuanLyDaoTao_Nhom2
             InitializeComponent();
         }
 
-       
+        private void btThoat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            DangNhap form = new DangNhap();
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }

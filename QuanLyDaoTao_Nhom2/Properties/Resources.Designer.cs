@@ -143,6 +143,16 @@ namespace QuanLyDaoTao_Nhom2.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Exit {
+            get {
+                object obj = ResourceManager.GetObject("Exit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Forgot_Password_48px {
             get {
                 object obj = ResourceManager.GetObject("Forgot Password_48px", resourceCulture);
@@ -246,6 +256,56 @@ namespace QuanLyDaoTao_Nhom2.Properties {
         internal static System.Drawing.Bitmap Xoa {
             get {
                 object obj = ResourceManager.GetObject("Xoa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yeti {
+            get {
+                object obj = ResourceManager.GetObject("yeti", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yeti1 {
+            get {
+                object obj = ResourceManager.GetObject("yeti1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yeti2 {
+            get {
+                object obj = ResourceManager.GetObject("yeti2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yeti21 {
+            get {
+                object obj = ResourceManager.GetObject("yeti21", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yeti3 {
+            get {
+                object obj = ResourceManager.GetObject("yeti3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
