@@ -23,8 +23,8 @@ namespace QuanLyDaoTao_Nhom2
     
         public string MaHocKy { get; set; }
         public string TenHocKy { get; set; }
-        public Nullable<System.DateTime> NgayBatDau { get; set; }
-        public Nullable<System.DateTime> NgayKetThuc { get; set; }
+        public System.DateTime NgayBatDau { get; set; }
+        public System.DateTime NgayKetThuc { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<QLLich> QLLiches { get; set; }

@@ -23,7 +23,7 @@ namespace QuanLyDaoTao_Nhom2
         public string MaGV { get; set; }
         public string HoTenGV { get; set; }
         public string GioiTinhGV { get; set; }
-        public Nullable<System.DateTime> NgaySinhGV { get; set; }
+        public System.DateTime NgaySinhGV { get; set; }
         public string DiaChiGV { get; set; }
         public string SoDienThoaiGV { get; set; }
         public string EmailGV { get; set; }

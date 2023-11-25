@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="efd6b150b2d74018a6f34bf3d9336636" Name="Diagram1">
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLChuyenNganh" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLDiem" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLGiangVien" Width="1.5" PointX="3.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLHocKy" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLLich" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLLop" Width="1.5" PointX="3.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLLopMon" Width="1.5" PointX="6" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLMonHoc" Width="1.5" PointX="3.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLNganh" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLPhong" Width="1.5" PointX="3.75" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLSinhVien" Width="1.5" PointX="3.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NHOM2_QUANLY_DAOTAOModel.QLUser" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_Nganh_CN" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_Diem_MonHoc" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_Diem_SV" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_LopMon_GV" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_LichHoc_HocKy" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_LopMon_HocKy" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_LopMon_Lop" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_Nganh_Lop" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_LopMon_MH" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_LopMon_Phong" ManuallyRouted="false" />
+        <AssociationConnector Association="NHOM2_QUANLY_DAOTAOModel.FK_Nganh_SV" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

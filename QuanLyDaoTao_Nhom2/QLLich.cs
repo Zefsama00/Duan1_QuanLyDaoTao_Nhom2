@@ -16,6 +16,8 @@ namespace QuanLyDaoTao_Nhom2
     {
         public string MaLichHoc { get; set; }
         public string MaHocKy { get; set; }
+        public System.DateTime NgayHoc { get; set; }
+        public int GioHoc { get; set; }
         public Nullable<System.DateTime> NgayHoc { get; set; }
         public Nullable<int> GioHoc { get; set; }
     
