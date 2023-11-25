@@ -343,6 +343,12 @@
       <DependentUpon>QLDT.edmx</DependentUpon>
       <LastGenOutput>QLDT.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\yeti3.png" />
+    <None Include="Resources\yeti2.png" />
+    <None Include="Resources\yeti.png" />
+    <None Include="Resources\yeti2.jpg" />
+    <None Include="Resources\yeti.jpg" />
+    <None Include="Resources\Exit.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
