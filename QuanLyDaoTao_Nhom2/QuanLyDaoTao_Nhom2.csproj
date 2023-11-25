@@ -115,6 +115,12 @@
     <Compile Include="MonHoc.Designer.cs">
       <DependentUpon>MonHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Nganh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nganh.Designer.cs">
+      <DependentUpon>Nganh.cs</DependentUpon>
+    </Compile>
     <Compile Include="QLChuyenNganh.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -221,6 +227,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MonHoc.resx">
       <DependentUpon>MonHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nganh.resx">
+      <DependentUpon>Nganh.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyGiangVien.resx">
       <DependentUpon>QuanLyGiangVien.cs</DependentUpon>
