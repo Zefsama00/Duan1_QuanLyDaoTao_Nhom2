@@ -108,7 +108,6 @@
             this.btnMonHoc.TabIndex = 47;
             this.btnMonHoc.Text = "MÔN HỌC";
             this.btnMonHoc.UseVisualStyleBackColor = true;
-            this.btnMonHoc.Click += new System.EventHandler(this.button4_Click);
             // 
             // btnDiem
             // 

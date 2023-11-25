@@ -23,14 +23,27 @@ namespace QuanLyDaoTao_Nhom2.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ZEF\\SQLEXPRESS;Initial Catalog=QUANLY_DAOTAO_NHOM2;Integrated Securit" +
-            "y=True")]
-        public string QUANLY_DAOTAO_NHOM2ConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Username {
             get {
-                return ((string)(this["QUANLY_DAOTAO_NHOM2ConnectionString"]));
+                return ((string)(this["Username"]));
+            }
+            set {
+                this["Username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Password {
+            get {
+                return ((string)(this["Password"]));
+            }
+            set {
+                this["Password"] = value;
             }
         }
     }

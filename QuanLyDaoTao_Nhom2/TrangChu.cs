@@ -12,14 +12,11 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class TrangChu : Form
     {
-        public TrangChu()
+        public TrangChu(String nametk)
         {
             InitializeComponent();
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

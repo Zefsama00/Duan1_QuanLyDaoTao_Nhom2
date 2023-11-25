@@ -69,6 +69,7 @@
             this.btDangNhap.TabIndex = 49;
             this.btDangNhap.Text = "Đăng nhập";
             this.btDangNhap.UseVisualStyleBackColor = true;
+            this.btDangNhap.Click += new System.EventHandler(this.btDangNhap_Click);
             // 
             // linkLabel1
             // 
@@ -111,6 +112,7 @@
             this.txtMatkhau.PasswordChar = '*';
             this.txtMatkhau.Size = new System.Drawing.Size(245, 23);
             this.txtMatkhau.TabIndex = 39;
+            this.txtMatkhau.Click += new System.EventHandler(this.txtMatkhau_Click);
             // 
             // txtTaiKhoan
             // 
@@ -119,6 +121,8 @@
             this.txtTaiKhoan.Name = "txtTaiKhoan";
             this.txtTaiKhoan.Size = new System.Drawing.Size(245, 23);
             this.txtTaiKhoan.TabIndex = 38;
+            this.txtTaiKhoan.Click += new System.EventHandler(this.txtTaiKhoan_Click);
+            this.txtTaiKhoan.TextChanged += new System.EventHandler(this.txtTaiKhoan_TextChanged);
             // 
             // panel1
             // 
@@ -139,6 +143,7 @@
             this.Hienmatkhau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Hienmatkhau.TabIndex = 47;
             this.Hienmatkhau.TabStop = false;
+            this.Hienmatkhau.Click += new System.EventHandler(this.Hienmatkhau_Click);
             // 
             // Anmatkhau
             // 
@@ -150,6 +155,7 @@
             this.Anmatkhau.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Anmatkhau.TabIndex = 48;
             this.Anmatkhau.TabStop = false;
+            this.Anmatkhau.Click += new System.EventHandler(this.Anmatkhau_Click);
             // 
             // btThoat
             // 
@@ -160,6 +166,7 @@
             this.btThoat.Size = new System.Drawing.Size(42, 34);
             this.btThoat.TabIndex = 46;
             this.btThoat.UseVisualStyleBackColor = false;
+            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
             // pictureBox3
             // 
@@ -215,6 +222,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DangNhap";
+            this.Load += new System.EventHandler(this.DangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Hienmatkhau)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Anmatkhau)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();

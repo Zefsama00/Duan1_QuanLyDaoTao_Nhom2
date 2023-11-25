@@ -12,7 +12,7 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class SinhVien : Form
     {
-        public SinhVien()
+        public SinhVien(String nametk)
         {
             InitializeComponent();
         }

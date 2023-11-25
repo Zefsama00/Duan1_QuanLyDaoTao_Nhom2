@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -88,6 +97,57 @@
     <Compile Include="MonHoc.Designer.cs">
       <DependentUpon>MonHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLChuyenNganh.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLDiem.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLDT.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLDT.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLDT.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLDT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLDT.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="QLGiangVien.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLHocKy.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLLich.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLLop.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLLopMon.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLMonHoc.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLNganh.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLPhong.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLSinhVien.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLUser.cs">
+      <DependentUpon>QLDT.tt</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyGiangVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +198,7 @@
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="XuLyCode.cs" />
     <EmbeddedResource Include="ChuyenNganh.resx">
       <DependentUpon>ChuyenNganh.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +254,7 @@
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -207,6 +269,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="QLDT.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QLDT.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="QLDT.edmx.diagram">
+      <DependentUpon>QLDT.edmx</DependentUpon>
+    </None>
     <None Include="Resources\FPT_Polytechnic1.png" />
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +331,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Forgot Password_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QLDT.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>QLDT.Context.cs</LastGenOutput>
+      <DependentUpon>QLDT.edmx</DependentUpon>
+    </Content>
+    <Content Include="QLDT.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QLDT.edmx</DependentUpon>
+      <LastGenOutput>QLDT.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
