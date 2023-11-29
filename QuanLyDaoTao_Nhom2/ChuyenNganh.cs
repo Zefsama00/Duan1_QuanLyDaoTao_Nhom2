@@ -99,12 +99,7 @@ namespace QuanLyDaoTao_Nhom2
                 else{
                     MessageBox.Show("Chuyên ngành đã được thêm thất bại.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                
-
-               
-                
-                
-
+      
             }
             catch (Exception ex)
             {
