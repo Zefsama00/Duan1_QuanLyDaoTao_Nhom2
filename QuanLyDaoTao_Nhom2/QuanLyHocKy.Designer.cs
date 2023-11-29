@@ -61,7 +61,7 @@
             this.dvThongTin.RowTemplate.Height = 24;
             this.dvThongTin.Size = new System.Drawing.Size(911, 265);
             this.dvThongTin.TabIndex = 50;
-            this.dvThongTin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvThongTin_CellClick);
+            this.dvThongTin.DoubleClick += new System.EventHandler(this.dvThongTin_DoubleClick);
             // 
             // txtTimKiem
             // 
@@ -75,7 +75,7 @@
             // 
             this.lblQuanLyHocKy.AutoSize = true;
             this.lblQuanLyHocKy.Font = new System.Drawing.Font("Times New Roman", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuanLyHocKy.Location = new System.Drawing.Point(236, 124);
+            this.lblQuanLyHocKy.Location = new System.Drawing.Point(246, 113);
             this.lblQuanLyHocKy.Name = "lblQuanLyHocKy";
             this.lblQuanLyHocKy.Size = new System.Drawing.Size(442, 53);
             this.lblQuanLyHocKy.TabIndex = 47;
@@ -153,9 +153,9 @@
             // label1
             // 
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(9, 18);
+            this.label1.Location = new System.Drawing.Point(9, -2);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(364, 92);
+            this.label1.Size = new System.Drawing.Size(339, 115);
             this.label1.TabIndex = 46;
             // 
             // groupBox1
