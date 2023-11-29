@@ -1,0 +1,819 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="NHOM2_QUANLY_DAOTAOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="QLChuyenNganh">
+          <Key>
+            <PropertyRef Name="MaCN" />
+          </Key>
+          <Property Name="MaCN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenCN" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLDiem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="DiemLab" Type="float" Nullable="false" />
+          <Property Name="DiemThi" Type="float" Nullable="false" />
+          <Property Name="DiemTongKet" Type="float" Nullable="false" />
+          <Property Name="MaSV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaMonHoc" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLGiangVien">
+          <Key>
+            <PropertyRef Name="MaGV" />
+          </Key>
+          <Property Name="MaGV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoTenGV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GioiTinhGV" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NgaySinhGV" Type="date" />
+          <Property Name="DiaChiGV" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SoDienThoaiGV" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="EmailGV" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLHocKy">
+          <Key>
+            <PropertyRef Name="MaHocKy" />
+          </Key>
+          <Property Name="MaHocKy" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenHocKy" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgayBatDau" Type="date" />
+          <Property Name="NgayKetThuc" Type="date" />
+        </EntityType>
+        <EntityType Name="QLLich">
+          <Key>
+            <PropertyRef Name="MaLichHoc" />
+          </Key>
+          <Property Name="MaLichHoc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaHocKy" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="NgayHoc" Type="date" />
+          <Property Name="GioHoc" Type="int" />
+        </EntityType>
+        <EntityType Name="QLLop">
+          <Key>
+            <PropertyRef Name="MaLop" />
+          </Key>
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenLop" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLLopMon">
+          <Key>
+            <PropertyRef Name="MaLopMon" />
+          </Key>
+          <Property Name="MaLopMon" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaGV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaMonHoc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaPhong" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaHocKy" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLMonHoc">
+          <Key>
+            <PropertyRef Name="MaMonHoc" />
+          </Key>
+          <Property Name="MaMonHoc" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenMonHoc" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLNganh">
+          <Key>
+            <PropertyRef Name="MaNganh" />
+          </Key>
+          <Property Name="MaNganh" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenNganh" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MaSV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaCN" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="MaLop" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLPhong">
+          <Key>
+            <PropertyRef Name="MaPhong" />
+          </Key>
+          <Property Name="MaPhong" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="TenPhong" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QLSinhVien">
+          <Key>
+            <PropertyRef Name="MaSV" />
+          </Key>
+          <Property Name="MaSV" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="HoTenSV" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GioiTinhSV" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="NgaySinhSV" Type="date" />
+          <Property Name="DiaChiSV" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="SoDienThoaiSV" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="EmailSV" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QLUser">
+          <Key>
+            <PropertyRef Name="TaiKhoan" />
+          </Key>
+          <Property Name="TaiKhoan" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="VaiTro" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Diem_MonHoc">
+          <End Role="QLMonHoc" Type="Self.QLMonHoc" Multiplicity="1" />
+          <End Role="QLDiem" Type="Self.QLDiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLMonHoc">
+              <PropertyRef Name="MaMonHoc" />
+            </Principal>
+            <Dependent Role="QLDiem">
+              <PropertyRef Name="MaMonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diem_SV">
+          <End Role="QLSinhVien" Type="Self.QLSinhVien" Multiplicity="1" />
+          <End Role="QLDiem" Type="Self.QLDiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLSinhVien">
+              <PropertyRef Name="MaSV" />
+            </Principal>
+            <Dependent Role="QLDiem">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichHoc_HocKy">
+          <End Role="QLHocKy" Type="Self.QLHocKy" Multiplicity="1" />
+          <End Role="QLLich" Type="Self.QLLich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLHocKy">
+              <PropertyRef Name="MaHocKy" />
+            </Principal>
+            <Dependent Role="QLLich">
+              <PropertyRef Name="MaHocKy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_GV">
+          <End Role="QLGiangVien" Type="Self.QLGiangVien" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLGiangVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_HocKy">
+          <End Role="QLHocKy" Type="Self.QLHocKy" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLHocKy">
+              <PropertyRef Name="MaHocKy" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaHocKy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_Lop">
+          <End Role="QLLop" Type="Self.QLLop" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLLop">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_MH">
+          <End Role="QLMonHoc" Type="Self.QLMonHoc" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLMonHoc">
+              <PropertyRef Name="MaMonHoc" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaMonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_Phong">
+          <End Role="QLPhong" Type="Self.QLPhong" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLPhong">
+              <PropertyRef Name="MaPhong" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_CN">
+          <End Role="QLChuyenNganh" Type="Self.QLChuyenNganh" Multiplicity="1" />
+          <End Role="QLNganh" Type="Self.QLNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLChuyenNganh">
+              <PropertyRef Name="MaCN" />
+            </Principal>
+            <Dependent Role="QLNganh">
+              <PropertyRef Name="MaCN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_Lop">
+          <End Role="QLLop" Type="Self.QLLop" Multiplicity="1" />
+          <End Role="QLNganh" Type="Self.QLNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLLop">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="QLNganh">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_SV">
+          <End Role="QLSinhVien" Type="Self.QLSinhVien" Multiplicity="1" />
+          <End Role="QLNganh" Type="Self.QLNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLSinhVien">
+              <PropertyRef Name="MaSV" />
+            </Principal>
+            <Dependent Role="QLNganh">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NHOM2_QUANLY_DAOTAOModelStoreContainer">
+          <EntitySet Name="QLChuyenNganh" EntityType="Self.QLChuyenNganh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLDiem" EntityType="Self.QLDiem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLGiangVien" EntityType="Self.QLGiangVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLHocKy" EntityType="Self.QLHocKy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLLich" EntityType="Self.QLLich" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLLop" EntityType="Self.QLLop" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLLopMon" EntityType="Self.QLLopMon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLMonHoc" EntityType="Self.QLMonHoc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLNganh" EntityType="Self.QLNganh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLPhong" EntityType="Self.QLPhong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLSinhVien" EntityType="Self.QLSinhVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QLUser" EntityType="Self.QLUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Diem_MonHoc" Association="Self.FK_Diem_MonHoc">
+            <End Role="QLMonHoc" EntitySet="QLMonHoc" />
+            <End Role="QLDiem" EntitySet="QLDiem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diem_SV" Association="Self.FK_Diem_SV">
+            <End Role="QLSinhVien" EntitySet="QLSinhVien" />
+            <End Role="QLDiem" EntitySet="QLDiem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichHoc_HocKy" Association="Self.FK_LichHoc_HocKy">
+            <End Role="QLHocKy" EntitySet="QLHocKy" />
+            <End Role="QLLich" EntitySet="QLLich" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_GV" Association="Self.FK_LopMon_GV">
+            <End Role="QLGiangVien" EntitySet="QLGiangVien" />
+            <End Role="QLLopMon" EntitySet="QLLopMon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_HocKy" Association="Self.FK_LopMon_HocKy">
+            <End Role="QLHocKy" EntitySet="QLHocKy" />
+            <End Role="QLLopMon" EntitySet="QLLopMon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_Lop" Association="Self.FK_LopMon_Lop">
+            <End Role="QLLop" EntitySet="QLLop" />
+            <End Role="QLLopMon" EntitySet="QLLopMon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_MH" Association="Self.FK_LopMon_MH">
+            <End Role="QLMonHoc" EntitySet="QLMonHoc" />
+            <End Role="QLLopMon" EntitySet="QLLopMon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_Phong" Association="Self.FK_LopMon_Phong">
+            <End Role="QLPhong" EntitySet="QLPhong" />
+            <End Role="QLLopMon" EntitySet="QLLopMon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_CN" Association="Self.FK_Nganh_CN">
+            <End Role="QLChuyenNganh" EntitySet="QLChuyenNganh" />
+            <End Role="QLNganh" EntitySet="QLNganh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_Lop" Association="Self.FK_Nganh_Lop">
+            <End Role="QLLop" EntitySet="QLLop" />
+            <End Role="QLNganh" EntitySet="QLNganh" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_SV" Association="Self.FK_Nganh_SV">
+            <End Role="QLSinhVien" EntitySet="QLSinhVien" />
+            <End Role="QLNganh" EntitySet="QLNganh" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NHOM2_QUANLY_DAOTAOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="QLChuyenNganh">
+          <Key>
+            <PropertyRef Name="MaCN" />
+          </Key>
+          <Property Name="MaCN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenCN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="QLNganhs" Relationship="Self.FK_Nganh_CN" FromRole="QLChuyenNganh" ToRole="QLNganh" />
+        </EntityType>
+        <EntityType Name="QLDiem">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DiemLab" Type="Double" Nullable="false" />
+          <Property Name="DiemThi" Type="Double" Nullable="false" />
+          <Property Name="DiemTongKet" Type="Double" Nullable="false" />
+          <Property Name="MaSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaMonHoc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="QLMonHoc" Relationship="Self.FK_Diem_MonHoc" FromRole="QLDiem" ToRole="QLMonHoc" />
+          <NavigationProperty Name="QLSinhVien" Relationship="Self.FK_Diem_SV" FromRole="QLDiem" ToRole="QLSinhVien" />
+        </EntityType>
+        <EntityType Name="QLGiangVien">
+          <Key>
+            <PropertyRef Name="MaGV" />
+          </Key>
+          <Property Name="MaGV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoTenGV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GioiTinhGV" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinhGV" Type="DateTime" Precision="0" />
+          <Property Name="DiaChiGV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoDienThoaiGV" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailGV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_GV" FromRole="QLGiangVien" ToRole="QLLopMon" />
+        </EntityType>
+        <EntityType Name="QLHocKy">
+          <Key>
+            <PropertyRef Name="MaHocKy" />
+          </Key>
+          <Property Name="MaHocKy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenHocKy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayBatDau" Type="DateTime" Precision="0" />
+          <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="QLLiches" Relationship="Self.FK_LichHoc_HocKy" FromRole="QLHocKy" ToRole="QLLich" />
+          <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_HocKy" FromRole="QLHocKy" ToRole="QLLopMon" />
+        </EntityType>
+        <EntityType Name="QLLich">
+          <Key>
+            <PropertyRef Name="MaLichHoc" />
+          </Key>
+          <Property Name="MaLichHoc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaHocKy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NgayHoc" Type="DateTime" Precision="0" />
+          <Property Name="GioHoc" Type="Int32" />
+          <NavigationProperty Name="QLHocKy" Relationship="Self.FK_LichHoc_HocKy" FromRole="QLLich" ToRole="QLHocKy" />
+        </EntityType>
+        <EntityType Name="QLLop">
+          <Key>
+            <PropertyRef Name="MaLop" />
+          </Key>
+          <Property Name="MaLop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_Lop" FromRole="QLLop" ToRole="QLLopMon" />
+          <NavigationProperty Name="QLNganhs" Relationship="Self.FK_Nganh_Lop" FromRole="QLLop" ToRole="QLNganh" />
+        </EntityType>
+        <EntityType Name="QLLopMon">
+          <Key>
+            <PropertyRef Name="MaLopMon" />
+          </Key>
+          <Property Name="MaLopMon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaGV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaMonHoc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaPhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaHocKy" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaLop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="QLGiangVien" Relationship="Self.FK_LopMon_GV" FromRole="QLLopMon" ToRole="QLGiangVien" />
+          <NavigationProperty Name="QLHocKy" Relationship="Self.FK_LopMon_HocKy" FromRole="QLLopMon" ToRole="QLHocKy" />
+          <NavigationProperty Name="QLLop" Relationship="Self.FK_LopMon_Lop" FromRole="QLLopMon" ToRole="QLLop" />
+          <NavigationProperty Name="QLMonHoc" Relationship="Self.FK_LopMon_MH" FromRole="QLLopMon" ToRole="QLMonHoc" />
+          <NavigationProperty Name="QLPhong" Relationship="Self.FK_LopMon_Phong" FromRole="QLLopMon" ToRole="QLPhong" />
+        </EntityType>
+        <EntityType Name="QLMonHoc">
+          <Key>
+            <PropertyRef Name="MaMonHoc" />
+          </Key>
+          <Property Name="MaMonHoc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenMonHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="QLDiems" Relationship="Self.FK_Diem_MonHoc" FromRole="QLMonHoc" ToRole="QLDiem" />
+          <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_MH" FromRole="QLMonHoc" ToRole="QLLopMon" />
+        </EntityType>
+        <EntityType Name="QLNganh">
+          <Key>
+            <PropertyRef Name="MaNganh" />
+          </Key>
+          <Property Name="MaNganh" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenNganh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MaSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaCN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MaLop" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="QLChuyenNganh" Relationship="Self.FK_Nganh_CN" FromRole="QLNganh" ToRole="QLChuyenNganh" />
+          <NavigationProperty Name="QLLop" Relationship="Self.FK_Nganh_Lop" FromRole="QLNganh" ToRole="QLLop" />
+          <NavigationProperty Name="QLSinhVien" Relationship="Self.FK_Nganh_SV" FromRole="QLNganh" ToRole="QLSinhVien" />
+        </EntityType>
+        <EntityType Name="QLPhong">
+          <Key>
+            <PropertyRef Name="MaPhong" />
+          </Key>
+          <Property Name="MaPhong" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TenPhong" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="QLLopMons" Relationship="Self.FK_LopMon_Phong" FromRole="QLPhong" ToRole="QLLopMon" />
+        </EntityType>
+        <EntityType Name="QLSinhVien">
+          <Key>
+            <PropertyRef Name="MaSV" />
+          </Key>
+          <Property Name="MaSV" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="HoTenSV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GioiTinhSV" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgaySinhSV" Type="DateTime" Precision="0" />
+          <Property Name="DiaChiSV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SoDienThoaiSV" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="EmailSV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="QLDiems" Relationship="Self.FK_Diem_SV" FromRole="QLSinhVien" ToRole="QLDiem" />
+          <NavigationProperty Name="QLNganhs" Relationship="Self.FK_Nganh_SV" FromRole="QLSinhVien" ToRole="QLNganh" />
+        </EntityType>
+        <EntityType Name="QLUser">
+          <Key>
+            <PropertyRef Name="TaiKhoan" />
+          </Key>
+          <Property Name="TaiKhoan" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VaiTro" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Nganh_CN">
+          <End Role="QLChuyenNganh" Type="Self.QLChuyenNganh" Multiplicity="1" />
+          <End Role="QLNganh" Type="Self.QLNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLChuyenNganh">
+              <PropertyRef Name="MaCN" />
+            </Principal>
+            <Dependent Role="QLNganh">
+              <PropertyRef Name="MaCN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diem_MonHoc">
+          <End Role="QLMonHoc" Type="Self.QLMonHoc" Multiplicity="1" />
+          <End Role="QLDiem" Type="Self.QLDiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLMonHoc">
+              <PropertyRef Name="MaMonHoc" />
+            </Principal>
+            <Dependent Role="QLDiem">
+              <PropertyRef Name="MaMonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Diem_SV">
+          <End Role="QLSinhVien" Type="Self.QLSinhVien" Multiplicity="1" />
+          <End Role="QLDiem" Type="Self.QLDiem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLSinhVien">
+              <PropertyRef Name="MaSV" />
+            </Principal>
+            <Dependent Role="QLDiem">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_GV">
+          <End Role="QLGiangVien" Type="Self.QLGiangVien" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLGiangVien">
+              <PropertyRef Name="MaGV" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaGV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LichHoc_HocKy">
+          <End Role="QLHocKy" Type="Self.QLHocKy" Multiplicity="1" />
+          <End Role="QLLich" Type="Self.QLLich" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLHocKy">
+              <PropertyRef Name="MaHocKy" />
+            </Principal>
+            <Dependent Role="QLLich">
+              <PropertyRef Name="MaHocKy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_HocKy">
+          <End Role="QLHocKy" Type="Self.QLHocKy" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLHocKy">
+              <PropertyRef Name="MaHocKy" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaHocKy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_Lop">
+          <End Role="QLLop" Type="Self.QLLop" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLLop">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_Lop">
+          <End Role="QLLop" Type="Self.QLLop" Multiplicity="1" />
+          <End Role="QLNganh" Type="Self.QLNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLLop">
+              <PropertyRef Name="MaLop" />
+            </Principal>
+            <Dependent Role="QLNganh">
+              <PropertyRef Name="MaLop" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_MH">
+          <End Role="QLMonHoc" Type="Self.QLMonHoc" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLMonHoc">
+              <PropertyRef Name="MaMonHoc" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaMonHoc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LopMon_Phong">
+          <End Role="QLPhong" Type="Self.QLPhong" Multiplicity="1" />
+          <End Role="QLLopMon" Type="Self.QLLopMon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLPhong">
+              <PropertyRef Name="MaPhong" />
+            </Principal>
+            <Dependent Role="QLLopMon">
+              <PropertyRef Name="MaPhong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Nganh_SV">
+          <End Role="QLSinhVien" Type="Self.QLSinhVien" Multiplicity="1" />
+          <End Role="QLNganh" Type="Self.QLNganh" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QLSinhVien">
+              <PropertyRef Name="MaSV" />
+            </Principal>
+            <Dependent Role="QLNganh">
+              <PropertyRef Name="MaSV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NHOM2_QUANLY_DAOTAOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="QLChuyenNganhs" EntityType="Self.QLChuyenNganh" />
+          <EntitySet Name="QLDiems" EntityType="Self.QLDiem" />
+          <EntitySet Name="QLGiangViens" EntityType="Self.QLGiangVien" />
+          <EntitySet Name="QLHocKies" EntityType="Self.QLHocKy" />
+          <EntitySet Name="QLLiches" EntityType="Self.QLLich" />
+          <EntitySet Name="QLLops" EntityType="Self.QLLop" />
+          <EntitySet Name="QLLopMons" EntityType="Self.QLLopMon" />
+          <EntitySet Name="QLMonHocs" EntityType="Self.QLMonHoc" />
+          <EntitySet Name="QLNganhs" EntityType="Self.QLNganh" />
+          <EntitySet Name="QLPhongs" EntityType="Self.QLPhong" />
+          <EntitySet Name="QLSinhViens" EntityType="Self.QLSinhVien" />
+          <EntitySet Name="QLUsers" EntityType="Self.QLUser" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Nganh_CN" Association="Self.FK_Nganh_CN">
+            <End Role="QLChuyenNganh" EntitySet="QLChuyenNganhs" />
+            <End Role="QLNganh" EntitySet="QLNganhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diem_MonHoc" Association="Self.FK_Diem_MonHoc">
+            <End Role="QLMonHoc" EntitySet="QLMonHocs" />
+            <End Role="QLDiem" EntitySet="QLDiems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Diem_SV" Association="Self.FK_Diem_SV">
+            <End Role="QLSinhVien" EntitySet="QLSinhViens" />
+            <End Role="QLDiem" EntitySet="QLDiems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_GV" Association="Self.FK_LopMon_GV">
+            <End Role="QLGiangVien" EntitySet="QLGiangViens" />
+            <End Role="QLLopMon" EntitySet="QLLopMons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LichHoc_HocKy" Association="Self.FK_LichHoc_HocKy">
+            <End Role="QLHocKy" EntitySet="QLHocKies" />
+            <End Role="QLLich" EntitySet="QLLiches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_HocKy" Association="Self.FK_LopMon_HocKy">
+            <End Role="QLHocKy" EntitySet="QLHocKies" />
+            <End Role="QLLopMon" EntitySet="QLLopMons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_Lop" Association="Self.FK_LopMon_Lop">
+            <End Role="QLLop" EntitySet="QLLops" />
+            <End Role="QLLopMon" EntitySet="QLLopMons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_Lop" Association="Self.FK_Nganh_Lop">
+            <End Role="QLLop" EntitySet="QLLops" />
+            <End Role="QLNganh" EntitySet="QLNganhs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_MH" Association="Self.FK_LopMon_MH">
+            <End Role="QLMonHoc" EntitySet="QLMonHocs" />
+            <End Role="QLLopMon" EntitySet="QLLopMons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LopMon_Phong" Association="Self.FK_LopMon_Phong">
+            <End Role="QLPhong" EntitySet="QLPhongs" />
+            <End Role="QLLopMon" EntitySet="QLLopMons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Nganh_SV" Association="Self.FK_Nganh_SV">
+            <End Role="QLSinhVien" EntitySet="QLSinhViens" />
+            <End Role="QLNganh" EntitySet="QLNganhs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NHOM2_QUANLY_DAOTAOModelStoreContainer" CdmEntityContainer="NHOM2_QUANLY_DAOTAOEntities">
+          <EntitySetMapping Name="QLChuyenNganhs">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLChuyenNganh">
+              <MappingFragment StoreEntitySet="QLChuyenNganh">
+                <ScalarProperty Name="MaCN" ColumnName="MaCN" />
+                <ScalarProperty Name="TenCN" ColumnName="TenCN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLDiems">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLDiem">
+              <MappingFragment StoreEntitySet="QLDiem">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="DiemLab" ColumnName="DiemLab" />
+                <ScalarProperty Name="DiemThi" ColumnName="DiemThi" />
+                <ScalarProperty Name="DiemTongKet" ColumnName="DiemTongKet" />
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="MaMonHoc" ColumnName="MaMonHoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLGiangViens">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLGiangVien">
+              <MappingFragment StoreEntitySet="QLGiangVien">
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+                <ScalarProperty Name="HoTenGV" ColumnName="HoTenGV" />
+                <ScalarProperty Name="GioiTinhGV" ColumnName="GioiTinhGV" />
+                <ScalarProperty Name="NgaySinhGV" ColumnName="NgaySinhGV" />
+                <ScalarProperty Name="DiaChiGV" ColumnName="DiaChiGV" />
+                <ScalarProperty Name="SoDienThoaiGV" ColumnName="SoDienThoaiGV" />
+                <ScalarProperty Name="EmailGV" ColumnName="EmailGV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLHocKies">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLHocKy">
+              <MappingFragment StoreEntitySet="QLHocKy">
+                <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
+                <ScalarProperty Name="TenHocKy" ColumnName="TenHocKy" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLLiches">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLich">
+              <MappingFragment StoreEntitySet="QLLich">
+                <ScalarProperty Name="MaLichHoc" ColumnName="MaLichHoc" />
+                <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
+                <ScalarProperty Name="NgayHoc" ColumnName="NgayHoc" />
+                <ScalarProperty Name="GioHoc" ColumnName="GioHoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLLops">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLop">
+              <MappingFragment StoreEntitySet="QLLop">
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+                <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLLopMons">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLopMon">
+              <MappingFragment StoreEntitySet="QLLopMon">
+                <ScalarProperty Name="MaLopMon" ColumnName="MaLopMon" />
+                <ScalarProperty Name="MaGV" ColumnName="MaGV" />
+                <ScalarProperty Name="MaMonHoc" ColumnName="MaMonHoc" />
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLMonHocs">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLMonHoc">
+              <MappingFragment StoreEntitySet="QLMonHoc">
+                <ScalarProperty Name="MaMonHoc" ColumnName="MaMonHoc" />
+                <ScalarProperty Name="TenMonHoc" ColumnName="TenMonHoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLNganhs">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLNganh">
+              <MappingFragment StoreEntitySet="QLNganh">
+                <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
+                <ScalarProperty Name="TenNganh" ColumnName="TenNganh" />
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="MaCN" ColumnName="MaCN" />
+                <ScalarProperty Name="MaLop" ColumnName="MaLop" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLPhongs">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLPhong">
+              <MappingFragment StoreEntitySet="QLPhong">
+                <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
+                <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLSinhViens">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLSinhVien">
+              <MappingFragment StoreEntitySet="QLSinhVien">
+                <ScalarProperty Name="MaSV" ColumnName="MaSV" />
+                <ScalarProperty Name="HoTenSV" ColumnName="HoTenSV" />
+                <ScalarProperty Name="GioiTinhSV" ColumnName="GioiTinhSV" />
+                <ScalarProperty Name="NgaySinhSV" ColumnName="NgaySinhSV" />
+                <ScalarProperty Name="DiaChiSV" ColumnName="DiaChiSV" />
+                <ScalarProperty Name="SoDienThoaiSV" ColumnName="SoDienThoaiSV" />
+                <ScalarProperty Name="EmailSV" ColumnName="EmailSV" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QLUsers">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLUser">
+              <MappingFragment StoreEntitySet="QLUser">
+                <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="VaiTro" ColumnName="VaiTro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
