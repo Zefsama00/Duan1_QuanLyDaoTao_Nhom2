@@ -26,6 +26,7 @@ namespace QuanLyDaoTao_Nhom2
         void LoadData()
         {
             var result = from st in db.QLHocKies
+                        
                          select new
                          {
                              MaHocKy = st.MaHocKy,
@@ -34,6 +35,8 @@ namespace QuanLyDaoTao_Nhom2
                              NgayKetThuc = st.NgayKetThuc,
 
                          };
+                         
+            
             dvThongTin.DataSource = result.ToList();
         }
         void ClearFields()
@@ -73,6 +76,10 @@ namespace QuanLyDaoTao_Nhom2
                     MessageBox.Show("Thêm thành công", "OK", MessageBoxButtons.OK);
                     LoadData();
                     ClearFields();
+                    
+                    btnThem.Enabled = false;
+                    btnSua.Enabled = true;
+                    btnXoa.Enabled = true;
                 }
                 catch (Exception)
                 {
@@ -88,51 +95,39 @@ namespace QuanLyDaoTao_Nhom2
         private void btnSua_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtMaHocky.Text) &&
-               !string.IsNullOrEmpty(txtTenHocky.Text) &&
-               !string.IsNullOrEmpty(dtNgayBatDau.Text) &&
-               !string.IsNullOrEmpty(dtNgayKetThuc.Text))
-
+     !string.IsNullOrEmpty(txtTenHocky.Text) &&
+     !string.IsNullOrEmpty(dtNgayBatDau.Text) &&
+     !string.IsNullOrEmpty(dtNgayKetThuc.Text))
             {
                 try
                 {
-                    QLHocKy gv = new QLHocKy()
-                    {
-                        MaHocKy = txtMaHocky.Text,
-                        TenHocKy = txtTenHocky.Text,
-                        NgayBatDau = dtNgayBatDau.Value,
-                        NgayKetThuc = dtNgayKetThuc.Value
-
-                    };
-
                     using (var context = new NHOM2_QUANLY_DAOTAOEntities())
                     {
-                        var existingGv = context.QLHocKies.FirstOrDefault(g => g.MaHocKy == gv.MaHocKy);
-                        if (existingGv != null)
+                        string hk = dvThongTin.CurrentRow.Cells["MaHocKy"].Value.ToString();
+                        QLHocKy HocKy = context.QLHocKies.Where(n => n.MaHocKy == hk).FirstOrDefault();
+
+
+                        if (HocKy != null)
                         {
-                            existingGv.TenHocKy = gv.TenHocKy;
+                            HocKy.MaHocKy = txtMaHocky.Text;
+                            HocKy.TenHocKy = txtTenHocky.Text;
+                            HocKy.NgayBatDau = dtNgayBatDau.Value;
+                            HocKy.NgayKetThuc = dtNgayKetThuc.Value;
 
-
+                            context.SaveChanges();
+                            MessageBox.Show("Sửa thành công", "Thông báo", MessageBoxButtons.OK);
+                            LoadData();
                         }
-                        else
-                        {
-                            context.QLHocKies.Add(gv);
-                        }
-
-                        context.SaveChanges();
                     }
-
-                    MessageBox.Show("Cập nhật thành công", "Thông báo", MessageBoxButtons.OK);
-                    LoadData();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
                 MessageBox.Show("Vui lòng nhập đầy đủ thông tin", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
             }
         }
 
@@ -141,12 +136,22 @@ namespace QuanLyDaoTao_Nhom2
             if (MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 string MaHocKy = txtMaHocky.Text;
-                QLHocKy hk = db.QLHocKies.Where(s => s.MaHocKy == MaHocKy).SingleOrDefault();
+                QLHocKy hk = db.QLHocKies.FirstOrDefault(s => s.MaHocKy == MaHocKy);
+                QLLich lH = db.QLLiches.FirstOrDefault(s => s.MaHocKy == MaHocKy);
+                QLLopMon lm = db.QLLopMons.FirstOrDefault(s => s.MaHocKy == MaHocKy);
 
                 if (hk != null)
                 {
+                    if(lH != null)
+                    {
+                        db.QLLiches.Remove(lH);
+                    }
                     db.QLHocKies.Remove(hk);
-                    int ketQua = (int)db.SaveChanges();
+                    if(lm != null)
+                    {
+                        db.QLLopMons.Remove(lm);
+                    }
+                    int ketQua = db.SaveChanges();
                     if (ketQua > 0)
                     {
                         MessageBox.Show("Xóa thành công", "OK", MessageBoxButtons.OK);
@@ -175,24 +180,27 @@ namespace QuanLyDaoTao_Nhom2
             txtTimKiem.Text = "";
             dtNgayBatDau.Text = "";
             dtNgayKetThuc.Text = "";
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
             btnThem.Enabled = true;
             btnLamMoi.Enabled = true;
+            txtMaHocky.Enabled = true;
             LoadData();
         }
 
-        private void dvThongTin_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dvThongTin_DoubleClick(object sender, EventArgs e)
         {
-
             if (dvThongTin.SelectedRows.Count > 0)
             {
                 DataGridViewRow row = dvThongTin.SelectedRows[0];
                 txtMaHocky.Text = row.Cells["MaHocKy"].Value.ToString();
                 txtTenHocky.Text = row.Cells["TenHocKy"].Value.ToString();
-                dtNgayBatDau.Text= row.Cells["NgayBatDau"].Value.ToString();
+                dtNgayBatDau.Text = row.Cells["NgayBatDau"].Value.ToString();
                 dtNgayKetThuc.Text = row.Cells["NgayKetThuc"].Value.ToString();
-
+                txtMaHocky.Enabled = false;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                btnThem.Enabled = false;
             }
         }
     }
