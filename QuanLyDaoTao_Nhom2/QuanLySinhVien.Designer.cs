@@ -40,10 +40,9 @@ namespace QuanLyDaoTao_Nhom2
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.grbThongTin = new System.Windows.Forms.GroupBox();
-            this.radNu = new System.Windows.Forms.RadioButton();
-            this.radNam = new System.Windows.Forms.RadioButton();
+            this.dtNgaySinh = new System.Windows.Forms.DateTimePicker();
+            this.txtGioiTinh = new System.Windows.Forms.TextBox();
             this.txtSoDienThoai = new System.Windows.Forms.TextBox();
-            this.txtNgaySinh = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.dvThongTin = new System.Windows.Forms.DataGridView();
@@ -121,7 +120,6 @@ namespace QuanLyDaoTao_Nhom2
             this.label3.Size = new System.Drawing.Size(63, 22);
             this.label3.TabIndex = 0;
             this.label3.Text = "Email:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -145,12 +143,11 @@ namespace QuanLyDaoTao_Nhom2
             // 
             // grbThongTin
             // 
-            this.grbThongTin.Controls.Add(this.radNu);
-            this.grbThongTin.Controls.Add(this.radNam);
+            this.grbThongTin.Controls.Add(this.dtNgaySinh);
+            this.grbThongTin.Controls.Add(this.txtGioiTinh);
             this.grbThongTin.Controls.Add(this.txtDiaChi);
             this.grbThongTin.Controls.Add(this.txtSoDienThoai);
             this.grbThongTin.Controls.Add(this.txtEmail);
-            this.grbThongTin.Controls.Add(this.txtNgaySinh);
             this.grbThongTin.Controls.Add(this.txtTenSV);
             this.grbThongTin.Controls.Add(this.txtMaSV);
             this.grbThongTin.Controls.Add(this.label5);
@@ -168,27 +165,21 @@ namespace QuanLyDaoTao_Nhom2
             this.grbThongTin.TabStop = false;
             this.grbThongTin.Text = "Thông tin";
             // 
-            // radNu
+            // dtNgaySinh
             // 
-            this.radNu.AutoSize = true;
-            this.radNu.Location = new System.Drawing.Point(361, 192);
-            this.radNu.Name = "radNu";
-            this.radNu.Size = new System.Drawing.Size(61, 27);
-            this.radNu.TabIndex = 3;
-            this.radNu.TabStop = true;
-            this.radNu.Text = "Nữ";
-            this.radNu.UseVisualStyleBackColor = true;
+            this.dtNgaySinh.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtNgaySinh.Location = new System.Drawing.Point(203, 138);
+            this.dtNgaySinh.Name = "dtNgaySinh";
+            this.dtNgaySinh.Size = new System.Drawing.Size(319, 30);
+            this.dtNgaySinh.TabIndex = 3;
             // 
-            // radNam
+            // txtGioiTinh
             // 
-            this.radNam.AutoSize = true;
-            this.radNam.Location = new System.Drawing.Point(241, 192);
-            this.radNam.Name = "radNam";
-            this.radNam.Size = new System.Drawing.Size(74, 27);
-            this.radNam.TabIndex = 2;
-            this.radNam.TabStop = true;
-            this.radNam.Text = "Nam";
-            this.radNam.UseVisualStyleBackColor = true;
+            this.txtGioiTinh.Location = new System.Drawing.Point(203, 186);
+            this.txtGioiTinh.Name = "txtGioiTinh";
+            this.txtGioiTinh.Size = new System.Drawing.Size(319, 30);
+            this.txtGioiTinh.TabIndex = 2;
             // 
             // txtSoDienThoai
             // 
@@ -197,14 +188,6 @@ namespace QuanLyDaoTao_Nhom2
             this.txtSoDienThoai.Name = "txtSoDienThoai";
             this.txtSoDienThoai.Size = new System.Drawing.Size(319, 30);
             this.txtSoDienThoai.TabIndex = 1;
-            // 
-            // txtNgaySinh
-            // 
-            this.txtNgaySinh.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNgaySinh.Location = new System.Drawing.Point(203, 138);
-            this.txtNgaySinh.Name = "txtNgaySinh";
-            this.txtNgaySinh.Size = new System.Drawing.Size(319, 30);
-            this.txtNgaySinh.TabIndex = 1;
             // 
             // label7
             // 
@@ -279,6 +262,7 @@ namespace QuanLyDaoTao_Nhom2
             this.btnLamMoi.Text = "LÀM MỚI";
             this.btnLamMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // btnXoa
             // 
@@ -292,6 +276,7 @@ namespace QuanLyDaoTao_Nhom2
             this.btnXoa.Text = "XOÁ";
             this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -305,6 +290,7 @@ namespace QuanLyDaoTao_Nhom2
             this.btnSua.Text = "SỬA";
             this.btnSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -318,6 +304,7 @@ namespace QuanLyDaoTao_Nhom2
             this.btnThem.Text = "THÊM";
             this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // pictureBox1
             // 
@@ -346,6 +333,7 @@ namespace QuanLyDaoTao_Nhom2
             this.Controls.Add(this.lblQuanLySinhVien);
             this.Name = "QuanLySinhVien";
             this.Text = "QuanLySinhVien";
+            this.Load += new System.EventHandler(this.QuanLySinhVien_Load);
             this.grbThongTin.ResumeLayout(false);
             this.grbThongTin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).EndInit();
@@ -377,10 +365,9 @@ namespace QuanLyDaoTao_Nhom2
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblQuanLySinhVien;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.RadioButton radNam;
-        private System.Windows.Forms.TextBox txtNgaySinh;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.RadioButton radNu;
         private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.TextBox txtGioiTinh;
+        private System.Windows.Forms.DateTimePicker dtNgaySinh;
     }
 }

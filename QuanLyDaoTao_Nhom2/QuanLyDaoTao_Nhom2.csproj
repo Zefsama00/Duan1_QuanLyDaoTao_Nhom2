@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,6 +66,21 @@
     </Compile>
     <Compile Include="DangNhap.Designer.cs">
       <DependentUpon>DangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DBConnect.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBConnect.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBConnect.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DBConnect.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBConnect.edmx</DependentUpon>
     </Compile>
     <Compile Include="Diem.cs">
       <SubType>Form</SubType>
@@ -87,6 +111,42 @@
     </Compile>
     <Compile Include="MonHoc.Designer.cs">
       <DependentUpon>MonHoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="QLChuyenNganh.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLDiem.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLGiangVien.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLHocKy.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLLich.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLLop.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLLopMon.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLMonHoc.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLNganh.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLPhong.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLSinhVien.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
+    </Compile>
+    <Compile Include="QLUser.cs">
+      <DependentUpon>DBConnect.tt</DependentUpon>
     </Compile>
     <Compile Include="QuanLyGiangVien.cs">
       <SubType>Form</SubType>
@@ -138,6 +198,7 @@
     <Compile Include="TrangChu.Designer.cs">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="XuLyNganh.cs" />
     <EmbeddedResource Include="ChuyenNganh.resx">
       <DependentUpon>ChuyenNganh.cs</DependentUpon>
     </EmbeddedResource>
@@ -193,6 +254,14 @@
     <EmbeddedResource Include="TrangChu.resx">
       <DependentUpon>TrangChu.cs</DependentUpon>
     </EmbeddedResource>
+    <EntityDeploy Include="DBConnect.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DBConnect.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DBConnect.edmx.diagram">
+      <DependentUpon>DBConnect.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -262,6 +331,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Forgot Password_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DBConnect.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DBConnect.Context.cs</LastGenOutput>
+      <DependentUpon>DBConnect.edmx</DependentUpon>
+    </Content>
+    <Content Include="DBConnect.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBConnect.edmx</DependentUpon>
+      <LastGenOutput>DBConnect.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
