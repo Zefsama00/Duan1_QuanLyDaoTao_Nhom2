@@ -58,11 +58,18 @@ namespace QuanLyDaoTao_Nhom2
             
             try
             {
+                var CheckID_MaCN = db.QLChuyenNganhs.Where(x => x.MaCN == txtMaChuyenNganh.Text || x.MaCN == txtMaChuyenNganh.Text).ToList().FirstOrDefault();
                 if (txtMaChuyenNganh.Text == "")
                 {
                     MessageBox.Show("Mã chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                }else if(txtTenChuyenNganh.Text == "")
+                }
+                else if (CheckID_MaCN != null)
+                {
+                    MessageBox.Show("Mã chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if(txtTenChuyenNganh.Text == "")
                 {
                     MessageBox.Show("Tên chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
