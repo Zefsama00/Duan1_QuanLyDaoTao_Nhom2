@@ -13,16 +13,17 @@ namespace QuanLyDaoTao_Nhom2
     public partial class QuanLySinhVien : Form
     {
         NHOM2_QUANLY_DAOTAOEntities db = new NHOM2_QUANLY_DAOTAOEntities();
+        QLSinhVien qlsv = new QLSinhVien();
         public QuanLySinhVien()
         {
             InitializeComponent();
             LoadData();
-            YoutubeData();
+            
         }
 
         void LoadData()
         {
-            var sql = from c in db.QLSinhViens
+            var sql = from c in db.QLSinhViens.ToList()
                       select new
                       {
                           MaSV = c.MaSV,
@@ -36,27 +37,34 @@ namespace QuanLyDaoTao_Nhom2
             dvThongTin.DataSource = sql.ToList();
         }
 
-        void YoutubeData()
+        void SaveData()
         {
-            txtID.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "MaSV"));
-            txtTenSV.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "HoTenSV"));
-            txtGioiTinh.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "GioiTinhSV"));
-            dtNgaySinh.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "NgaySinhSV"));
-            txtDiaChi.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "DiaChiSV"));
-            txtSoDienThoai.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "SoDienThoaiSV"));
-            txtEmail.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "EmailSV"));
+            qlsv.MaSV = txtMaSV.Text;
+            qlsv.HoTenSV = txtTenSV.Text;
+            qlsv.SoDienThoaiSV = txtSoDienThoai.Text;
+            qlsv.NgaySinhSV = DateTime.Parse(dtNgaySinh.Text);
+            qlsv.EmailSV = txtEmail.Text;
+            qlsv.DiaChiSV = txtDiaChi.Text;
+            if (radNam.Checked == true)
+            {
+                qlsv.GioiTinhSV = radNam.Text;
+            }
+            else
+            {
+                qlsv.GioiTinhSV = radNu.Text;
+            }
+            db.QLSinhViens.Add(qlsv);
+            int result = db.SaveChanges();
+            if (result > 0)
+            {
+                MessageBox.Show("Thêm Thành công");
 
+            }
+            else
+            {
+                MessageBox.Show("Thêm Thất bại");
+            }
         }
-       
-
-
-
-        
-
-       
-
-       
-
         private void QuanLySinhVien_Load(object sender, EventArgs e)
         {
 
@@ -64,66 +72,38 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            try
+            var CheckID_MaSV = db.QLSinhViens.Where(x => x.MaSV == txtMaSV.Text || x.MaSV == txtMaSV.Text).ToList().FirstOrDefault();
+            var CheckSDT_Email = db.QLSinhViens.Where(x => x.SoDienThoaiSV == txtSoDienThoai.Text || x.EmailSV == txtEmail.Text).ToList().FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(txtMaSV.Text)
+                || string.IsNullOrWhiteSpace(txtTenSV.Text)
+                || string.IsNullOrWhiteSpace(txtSoDienThoai.Text)
+                || string.IsNullOrEmpty(dtNgaySinh.Text)
+                || string.IsNullOrWhiteSpace(txtEmail.Text)
+                || string.IsNullOrWhiteSpace(txtDiaChi.Text))
             {
-                if (txtID.Text == "")
-                {
-                    MessageBox.Show("Mã sinh viên sinh viên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (txtTenSV.Text == "")
-                {
-                    MessageBox.Show("Họ tên sinh viên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (txtGioiTinh.Text == "")
-                {
-                    MessageBox.Show("Giới tính sinh viên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (txtSoDienThoai.Text == "")
-                {
-                    MessageBox.Show("Số điện thoại sinh viên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (txtEmail.Text == "")
-                {
-                    MessageBox.Show("Email sinh viên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                else if (txtDiaChi.Text == "")
-                {
-                    MessageBox.Show("Địa chỉ sinh viên không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                db.QLSinhViens.Add(new QLSinhVien()
-                {
-                    MaSV = txtID.Text,
-                    HoTenSV = txtTenSV.Text,
-                    GioiTinhSV = txtGioiTinh.Text,
-                    NgaySinhSV = DateTime.Parse(dtNgaySinh.Text),
-                    DiaChiSV = txtDiaChi.Text,
-                    SoDienThoaiSV = txtSoDienThoai.Text,
-                    EmailSV = txtEmail.Text,
-                });
-                string matkhausv;
-                Random rand = new Random();
-                matkhausv = rand.Next(1000, 9999).ToString();
-                db.QLUsers.Add(new QLUser()
-                {
-                    TaiKhoan = txtEmail.Text,
-                    MatKhau = matkhausv,
-                    VaiTro = "SINHVIEN"
-                });
-                db.SaveChanges();
-                MessageBox.Show("Sinh viên đã được thêm thành công.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                MessageBox.Show("Bạn đang nhập dữ chưa đủ - Vui lòng kiểm tra lại!!!");
+            }
+            else if(CheckID_MaSV != null )
+            {
+                MessageBox.Show("Mã sinh viên bị trùng - Vui lòng kiểm tra lại");
+            }
+            else if (radNam.Checked == false && radNu.Checked == false)
+            {
+                MessageBox.Show("Bạn chưa chọn giới tính");
+            }
+            else if (CheckSDT_Email != null)
+            {
+                MessageBox.Show("Bạn đã nhập SDT hoặc Email trùng với một sinh viên khác");
+            }
+          
+            else
+            {
+                SaveData();
                 LoadData();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi khi thêm sinh viên: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
+
 
         private void btnSua_Click(object sender, EventArgs e)
         {
@@ -132,17 +112,16 @@ namespace QuanLyDaoTao_Nhom2
             sv.HoTenSV = txtTenSV.Text;
             sv.NgaySinhSV = DateTime.Parse(dtNgaySinh.Text);
             sv.DiaChiSV = txtDiaChi.Text;
-            sv.GioiTinhSV = txtGioiTinh.Text;
+            sv.GioiTinhSV = (radNam.Checked ? radNam.Text : radNu.Text);
             sv.SoDienThoaiSV = txtSoDienThoai.Text;
             sv.EmailSV = txtEmail.Text;
-
             db.SaveChanges();
             LoadData();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            var id = txtID.Text;
+            var id = txtMaSV.Text;
             QLSinhVien sv = db.QLSinhViens.Where(P => P.MaSV == id && P.HoTenSV == txtTenSV.Text).FirstOrDefault();
             db.QLSinhViens.Remove(sv);
             db.SaveChanges();
@@ -151,12 +130,42 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnLamMoi_Click_1(object sender, EventArgs e)
         {
-            txtID.Text = "";
+            txtMaSV.Text = "";
             txtTenSV.Text = "";
-            txtGioiTinh.Text = "";
+           
             txtDiaChi.Text = "";
             txtSoDienThoai.Text = "";
             txtEmail.Text = "";
+        }
+
+
+        private void dvThongTin_DoubleClick(object sender, EventArgs e)
+        {
+            btnThem.Enabled = false;
+            int lst = dvThongTin.CurrentRow.Index;
+            DataGridViewRow selectedRow = dvThongTin.SelectedRows[0];
+            txtMaSV.Enabled = false;
+            txtMaSV.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
+            txtTenSV.Text = dvThongTin.Rows[lst].Cells[1].Value.ToString();
+            string GioiTinh = dvThongTin.Rows[lst].Cells[2].Value.ToString();
+            dtNgaySinh.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
+            txtDiaChi.Text = dvThongTin.Rows[lst].Cells[4].Value.ToString();
+            txtSoDienThoai.Text = dvThongTin.Rows[lst].Cells[5].Value.ToString();
+            txtEmail.Text = dvThongTin.Rows[lst].Cells[6].Value.ToString();
+            if (GioiTinh == "Nam")
+            {
+                radNam.Checked = true;
+            }
+            else
+            {
+                radNu.Checked = true;
+            }
+        }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTimKiem.Text.Trim().ToLower();
+            dvThongTin.DataSource = db.QLSinhViens.Where(x => x.MaSV.ToLower().Contains(key)).ToList();
         }
     }
 }

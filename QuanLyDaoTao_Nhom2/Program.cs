@@ -16,9 +16,8 @@ namespace QuanLyDaoTao_Nhom2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            //Application.Run(new QuanLySinhVien());
-            Application.Run(new Diem());
+            Application.Run(new QuanLySinhVien());
+            //Application.Run(new Diem());
             //Application.Run(new ChuyenNganh());
 
         }

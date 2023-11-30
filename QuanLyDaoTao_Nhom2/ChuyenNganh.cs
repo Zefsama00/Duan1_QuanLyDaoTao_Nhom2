@@ -3,6 +3,7 @@ using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,24 +14,22 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class ChuyenNganh : Form
     {
-
+        string str = @"Data Source=PHANHUUHIEU\SQLEXPRESS;Initial Catalog=NHOM2_QUANLY_DAOTAO;Integrated Security=True;Encrypt=False";
+        SqlConnection KetNoi;
+        SqlCommand ThucHien;
+        SqlDataReader DuLieu;
         NHOM2_QUANLY_DAOTAOEntities db = new NHOM2_QUANLY_DAOTAOEntities();
         public ChuyenNganh()
         {
             InitializeComponent();
             LoadData();
-            YoutubeData();
+       
 
         }
 
         void LoadData()
         {
-
-
-
-            var sql =
-                      from b in db.QLChuyenNganhs
-
+            var sql = from b in db.QLChuyenNganhs
 
                       select new
                       {
@@ -44,22 +43,31 @@ namespace QuanLyDaoTao_Nhom2
 
         }
 
-        void YoutubeData()
-        {
-            txtMaChuyenNganh.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "MaChuyenNganh"));
-            txtTenChuyenNganh.DataBindings.Add(new Binding("Text", dvThongTin.DataSource, "TenChuyenNganh"));
+        
 
-        }
+    
 
-        private void ChuyenNganh_Load(object sender, EventArgs e)
-        {
+        string manganh;
+        string tennganh;
+       
 
-        }
+        
 
         private void btnThem_Click_1(object sender, EventArgs e)
         {
+            
             try
             {
+                if (txtMaChuyenNganh.Text == "")
+                {
+                    MessageBox.Show("Mã chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }else if(txtTenChuyenNganh.Text == "")
+                {
+                    MessageBox.Show("Tên chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 db.QLChuyenNganhs.Add(new QLChuyenNganh()
                 {
                     MaCN = txtMaChuyenNganh.Text,
@@ -80,6 +88,16 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnSua_Click_1(object sender, EventArgs e)
         {
+            if (txtMaChuyenNganh.Text == "")
+            {
+                MessageBox.Show("Mã chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (txtTenChuyenNganh.Text == "")
+            {
+                MessageBox.Show("Tên chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var sua = (dvThongTin.SelectedCells[0].OwningRow.Cells["MaChuyenNganh"].Value.ToString());
             QLChuyenNganh sv = db.QLChuyenNganhs.Find(sua);
 
@@ -103,5 +121,19 @@ namespace QuanLyDaoTao_Nhom2
             txtTenChuyenNganh.Text = "";
             txtMaChuyenNganh.Text = "";
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string key = txtTenChuyenNganh.Text.Trim().ToLower();
+            dvThongTin.DataSource = db.QLChuyenNganhs.Where(x => x.TenCN.ToLower().Contains(key)).ToList();
+        }
+
+        private void dvThongTin_DoubleClick(object sender, EventArgs e)
+        {
+            int lst = dvThongTin.CurrentRow.Index;
+            txtMaChuyenNganh.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
+            txtTenChuyenNganh.Text = dvThongTin.Rows[lst].Cells[1].Value.ToString();
+        }
+
     }
 }

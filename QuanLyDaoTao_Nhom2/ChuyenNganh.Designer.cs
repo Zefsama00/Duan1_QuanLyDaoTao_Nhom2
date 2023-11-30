@@ -59,7 +59,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.groupBox1.Size = new System.Drawing.Size(1014, 111);
+            this.groupBox1.Size = new System.Drawing.Size(1025, 178);
             this.groupBox1.TabIndex = 31;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
@@ -67,30 +67,30 @@
             // txtTenChuyenNganh
             // 
             this.txtTenChuyenNganh.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenChuyenNganh.Location = new System.Drawing.Point(692, 42);
+            this.txtTenChuyenNganh.Location = new System.Drawing.Point(743, 42);
             this.txtTenChuyenNganh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtTenChuyenNganh.Name = "txtTenChuyenNganh";
-            this.txtTenChuyenNganh.Size = new System.Drawing.Size(293, 30);
+            this.txtTenChuyenNganh.Size = new System.Drawing.Size(263, 30);
             this.txtTenChuyenNganh.TabIndex = 11;
             // 
             // txtMaChuyenNganh
             // 
             this.txtMaChuyenNganh.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaChuyenNganh.Location = new System.Drawing.Point(141, 42);
+            this.txtMaChuyenNganh.Location = new System.Drawing.Point(195, 45);
             this.txtMaChuyenNganh.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtMaChuyenNganh.Name = "txtMaChuyenNganh";
-            this.txtMaChuyenNganh.Size = new System.Drawing.Size(314, 30);
+            this.txtMaChuyenNganh.Size = new System.Drawing.Size(263, 30);
             this.txtMaChuyenNganh.TabIndex = 7;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(561, 50);
+            this.label7.Location = new System.Drawing.Point(577, 45);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(83, 22);
+            this.label7.Size = new System.Drawing.Size(160, 22);
             this.label7.TabIndex = 4;
-            this.label7.Text = "Tên CN :";
+            this.label7.Text = "Tên chuyên ngành :";
             // 
             // label3
             // 
@@ -98,9 +98,9 @@
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(38, 50);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 22);
+            this.label3.Size = new System.Drawing.Size(156, 22);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Mã CN :";
+            this.label3.Text = "Mã chuyên ngành :";
             // 
             // dvThongTin
             // 
@@ -113,6 +113,7 @@
             this.dvThongTin.RowTemplate.Height = 24;
             this.dvThongTin.Size = new System.Drawing.Size(1025, 375);
             this.dvThongTin.TabIndex = 30;
+            this.dvThongTin.DoubleClick += new System.EventHandler(this.dvThongTin_DoubleClick);
             // 
             // textBox1
             // 
@@ -137,7 +138,7 @@
             // 
             this.btnLamMoi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLamMoi.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.Image")));
-            this.btnLamMoi.Location = new System.Drawing.Point(771, 814);
+            this.btnLamMoi.Location = new System.Drawing.Point(791, 871);
             this.btnLamMoi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(175, 52);
@@ -153,7 +154,7 @@
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
             this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(529, 814);
+            this.btnXoa.Location = new System.Drawing.Point(529, 871);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(120, 52);
@@ -168,7 +169,7 @@
             this.btnSua.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.Image")));
             this.btnSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSua.Location = new System.Drawing.Point(289, 814);
+            this.btnSua.Location = new System.Drawing.Point(279, 871);
             this.btnSua.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(121, 52);
@@ -183,7 +184,7 @@
             this.btnThem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
             this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThem.Location = new System.Drawing.Point(47, 814);
+            this.btnThem.Location = new System.Drawing.Point(12, 871);
             this.btnThem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(140, 52);
@@ -197,7 +198,7 @@
             // 
             this.btnTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(721, 220);
+            this.btnTimKiem.Location = new System.Drawing.Point(702, 220);
             this.btnTimKiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(161, 55);
@@ -206,6 +207,7 @@
             this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTimKiem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // label1
             // 
@@ -219,7 +221,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1068, 903);
+            this.ClientSize = new System.Drawing.Size(1083, 961);
             this.Controls.Add(this.btnLamMoi);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnSua);
@@ -231,7 +233,7 @@
             this.Controls.Add(this.lblChuyenNganh);
             this.Controls.Add(this.label1);
             this.Name = "ChuyenNganh";
-            this.Load += new System.EventHandler(this.ChuyenNganh_Load);
+            
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).EndInit();

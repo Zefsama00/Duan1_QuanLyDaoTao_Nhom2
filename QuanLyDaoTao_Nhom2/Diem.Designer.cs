@@ -34,15 +34,18 @@ namespace QuanLyDaoTao_Nhom2
             this.dvThongTin = new System.Windows.Forms.DataGridView();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDiemTongKet = new System.Windows.Forms.TextBox();
+            this.lblDiemTongKet = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboMaMonHoc = new System.Windows.Forms.ComboBox();
+            this.cboMaSV = new System.Windows.Forms.ComboBox();
             this.txtDiemThi = new System.Windows.Forms.TextBox();
             this.txtDiemLAB = new System.Windows.Forms.TextBox();
-            this.txtMaMonHoc = new System.Windows.Forms.TextBox();
-            this.txtMaSV = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
@@ -50,8 +53,6 @@ namespace QuanLyDaoTao_Nhom2
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -75,6 +76,7 @@ namespace QuanLyDaoTao_Nhom2
             this.dvThongTin.RowTemplate.Height = 28;
             this.dvThongTin.Size = new System.Drawing.Size(1165, 306);
             this.dvThongTin.TabIndex = 30;
+            this.dvThongTin.DoubleClick += new System.EventHandler(this.dvThongTin_DoubleClick);
             // 
             // txtTimKiem
             // 
@@ -86,12 +88,13 @@ namespace QuanLyDaoTao_Nhom2
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtDiemTongKet);
+            this.groupBox1.Controls.Add(this.lblDiemTongKet);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.cboMaMonHoc);
+            this.groupBox1.Controls.Add(this.cboMaSV);
             this.groupBox1.Controls.Add(this.txtDiemThi);
             this.groupBox1.Controls.Add(this.txtDiemLAB);
-            this.groupBox1.Controls.Add(this.txtMaMonHoc);
             this.groupBox1.Controls.Add(this.txtID);
-            this.groupBox1.Controls.Add(this.txtMaSV);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -106,13 +109,40 @@ namespace QuanLyDaoTao_Nhom2
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin";
             // 
-            // txtDiemTongKet
+            // lblDiemTongKet
             // 
-            this.txtDiemTongKet.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiemTongKet.Location = new System.Drawing.Point(786, 143);
-            this.txtDiemTongKet.Name = "txtDiemTongKet";
-            this.txtDiemTongKet.Size = new System.Drawing.Size(319, 30);
-            this.txtDiemTongKet.TabIndex = 1;
+            this.lblDiemTongKet.AutoSize = true;
+            this.lblDiemTongKet.Font = new System.Drawing.Font("Times New Roman", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDiemTongKet.ForeColor = System.Drawing.Color.Red;
+            this.lblDiemTongKet.Location = new System.Drawing.Point(925, 142);
+            this.lblDiemTongKet.Name = "lblDiemTongKet";
+            this.lblDiemTongKet.Size = new System.Drawing.Size(49, 32);
+            this.lblDiemTongKet.TabIndex = 4;
+            this.lblDiemTongKet.Text = "0.0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(906, 145);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(0, 23);
+            this.label7.TabIndex = 3;
+            // 
+            // cboMaMonHoc
+            // 
+            this.cboMaMonHoc.FormattingEnabled = true;
+            this.cboMaMonHoc.Location = new System.Drawing.Point(181, 142);
+            this.cboMaMonHoc.Name = "cboMaMonHoc";
+            this.cboMaMonHoc.Size = new System.Drawing.Size(319, 31);
+            this.cboMaMonHoc.TabIndex = 2;
+            // 
+            // cboMaSV
+            // 
+            this.cboMaSV.FormattingEnabled = true;
+            this.cboMaSV.Location = new System.Drawing.Point(181, 85);
+            this.cboMaSV.Name = "cboMaSV";
+            this.cboMaSV.Size = new System.Drawing.Size(319, 31);
+            this.cboMaSV.TabIndex = 2;
             // 
             // txtDiemThi
             // 
@@ -121,6 +151,7 @@ namespace QuanLyDaoTao_Nhom2
             this.txtDiemThi.Name = "txtDiemThi";
             this.txtDiemThi.Size = new System.Drawing.Size(319, 30);
             this.txtDiemThi.TabIndex = 1;
+            this.txtDiemThi.TextChanged += new System.EventHandler(this.txtDiemThi_TextChanged);
             // 
             // txtDiemLAB
             // 
@@ -130,21 +161,14 @@ namespace QuanLyDaoTao_Nhom2
             this.txtDiemLAB.Size = new System.Drawing.Size(319, 30);
             this.txtDiemLAB.TabIndex = 1;
             // 
-            // txtMaMonHoc
+            // txtID
             // 
-            this.txtMaMonHoc.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaMonHoc.Location = new System.Drawing.Point(181, 143);
-            this.txtMaMonHoc.Name = "txtMaMonHoc";
-            this.txtMaMonHoc.Size = new System.Drawing.Size(319, 30);
-            this.txtMaMonHoc.TabIndex = 1;
-            // 
-            // txtMaSV
-            // 
-            this.txtMaSV.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaSV.Location = new System.Drawing.Point(181, 86);
-            this.txtMaSV.Name = "txtMaSV";
-            this.txtMaSV.Size = new System.Drawing.Size(319, 30);
-            this.txtMaSV.TabIndex = 1;
+            this.txtID.AcceptsReturn = true;
+            this.txtID.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(181, 29);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(319, 30);
+            this.txtID.TabIndex = 1;
             // 
             // label5
             // 
@@ -186,6 +210,16 @@ namespace QuanLyDaoTao_Nhom2
             this.label2.TabIndex = 0;
             this.label2.Text = "Mã môn học:";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(37, 41);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 22);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "ID:";
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -200,7 +234,7 @@ namespace QuanLyDaoTao_Nhom2
             // 
             this.btnTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(898, 236);
+            this.btnTimKiem.Location = new System.Drawing.Point(880, 236);
             this.btnTimKiem.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnTimKiem.Name = "btnTimKiem";
             this.btnTimKiem.Size = new System.Drawing.Size(161, 55);
@@ -209,6 +243,7 @@ namespace QuanLyDaoTao_Nhom2
             this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTimKiem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnTimKiem.UseVisualStyleBackColor = true;
+            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
             // 
             // btnLamMoi
             // 
@@ -276,25 +311,6 @@ namespace QuanLyDaoTao_Nhom2
             this.pictureBox1.TabIndex = 27;
             this.pictureBox1.TabStop = false;
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(37, 41);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 22);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "ID:";
-            // 
-            // txtID
-            // 
-            this.txtID.AcceptsReturn = true;
-            this.txtID.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(181, 29);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(319, 30);
-            this.txtID.TabIndex = 1;
-            // 
             // Diem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -311,6 +327,7 @@ namespace QuanLyDaoTao_Nhom2
             this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Diem";
+            this.Load += new System.EventHandler(this.Diem_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -331,11 +348,8 @@ namespace QuanLyDaoTao_Nhom2
         private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtDiemTongKet;
         private System.Windows.Forms.TextBox txtDiemThi;
         private System.Windows.Forms.TextBox txtDiemLAB;
-        private System.Windows.Forms.TextBox txtMaMonHoc;
-        private System.Windows.Forms.TextBox txtMaSV;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -344,5 +358,9 @@ namespace QuanLyDaoTao_Nhom2
         private System.Windows.Forms.Button btnTimKiem;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboMaSV;
+        private System.Windows.Forms.ComboBox cboMaMonHoc;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblDiemTongKet;
     }
 }
