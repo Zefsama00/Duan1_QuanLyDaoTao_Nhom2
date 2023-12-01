@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -83,6 +84,62 @@ namespace QuanLyDaoTao_Nhom2
                 try
                 {
                     csharpDB.QLLopMons.Add(lmAdd);
+                    csharpDB.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        public static string Encrypt(string password)
+        {
+            using (MD5 md5 = MD5.Create())
+            {
+                byte[] data = md5.ComputeHash(Encoding.UTF8.GetBytes(password));
+                StringBuilder sb = new StringBuilder();
+
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sb.Append(data[i].ToString("x2")); // Đảm bảo luôn là 2 ký tự hex
+                }
+
+                return sb.ToString();
+            }
+        }
+        public static bool updateLopmon(QLLopMon pm)
+        {
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                try
+                {
+                    QLLopMon found = csharpDB.QLLopMons
+                        .FirstOrDefault(sp => sp.MaLopMon == pm.MaLop);
+                    found.MaLopMon = pm.MaLopMon;
+                    found.MaPhong = pm.MaPhong;
+                    found.MaGV = pm.MaGV;
+                    found.MaLop = pm.MaLop;
+                    found.MaMonHoc = pm.MaLop;
+                    found.MaHocKy = pm.MaHocKy;
+                    csharpDB.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        public static bool deleteLopMon(String Malopmon)
+        {
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                try
+                {
+                    QLLopMon found = csharpDB.QLLopMons
+                        .FirstOrDefault(sp => sp.MaLopMon == Malopmon);
+                    csharpDB.QLLopMons.Remove(found);
                     csharpDB.SaveChanges();
                     return true;
                 }

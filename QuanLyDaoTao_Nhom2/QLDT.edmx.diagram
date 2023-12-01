@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3b655effc71c4e59bbbf5d329f0889ec" Name="Diagram1">
-        <EntityTypeShape EntityType="QLDTModel.QLChuyenNganh" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDTModel.QLChuyenNganh" Width="1.5" PointX="3.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="QLDTModel.QLDiem" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLDTModel.QLGiangVien" Width="1.5" PointX="3.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="QLDTModel.QLHocKy" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
