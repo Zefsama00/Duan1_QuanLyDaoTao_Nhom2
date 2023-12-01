@@ -138,12 +138,13 @@ namespace QuanLyDaoTao_Nhom2
             else
             {
                 String role = XuLyCode.Login(txtTaiKhoan.Text, txtMatkhau.Text);
+                
                 if (!String.IsNullOrEmpty(role))
                 {
                     if (cbghinho.Checked)
                     {
                         Properties.Settings.Default.Username = txtTaiKhoan.Text;
-                        Properties.Settings.Default.Password = txtMatkhau.Text;
+                        Properties.Settings.Default.Password = XuLyCode.Encrypt(txtMatkhau.Text);
                     }
                     if (role.Equals("ADMIN"))
                     {

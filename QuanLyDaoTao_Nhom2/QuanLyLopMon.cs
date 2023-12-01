@@ -98,7 +98,7 @@ namespace QuanLyDaoTao_Nhom2
                loai => loai.TenHocKy == cmxHocKy.SelectedItem.ToString()).MaHocKy;
             if (XuLyCode.addLopMon(lmAdd))
             {
-                MessageBox.Show("Đã thêm sản phẩm");
+                MessageBox.Show("Đã thêm thành công");
                 this.updateDataGridView();
             }
             else
@@ -125,6 +125,61 @@ namespace QuanLyDaoTao_Nhom2
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            int selectedRowIndex = dvThongTin.SelectedCells[0].RowIndex;
+            QLLopMon selectedSP = dsLopMon[selectedRowIndex];
+            selectedSP.MaLopMon = txtMaLopmon.Text;
+            selectedSP.MaPhong = dsPhong.Find(loai => loai.TenPhong == cmxPhong.SelectedItem.ToString()).MaPhong;
+            selectedSP.MaGV = dsGV.Find(
+              loai => loai.HoTenGV == cmxGV.SelectedItem.ToString()).MaGV;
+            selectedSP.MaLop = dsLop.Find(
+               loai => loai.TenLop == cmxLop.SelectedItem.ToString()).MaLop;
+            selectedSP.MaMonHoc = dsMonHoc.Find(
+               loai => loai.TenMonHoc == cmxMonHoc.SelectedItem.ToString()).MaMonHoc;
+            selectedSP.MaHocKy = dsHocKy.Find(
+               loai => loai.TenHocKy == cmxHocKy.SelectedItem.ToString()).MaHocKy;
+            if (XuLyCode.updateLopmon(selectedSP))
+            {
+                MessageBox.Show("Đã cập nhật");
+                this.updateDataGridView();
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Cập nhật thất bại",
+                    "Lỗi",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+            }
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            var confirmResult = MessageBox.Show(
+               "Xóa sản phẩm đã chọn ?",
+               "Xác nhận xóa",
+               MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                    if (XuLyCode.deleteLopMon(txtMaLopmon.Text))
+                    {
+                        MessageBox.Show("Đã xóa sản phẩm");
+                        this.updateDataGridView();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Xóa thất bại",
+                            "Lỗi",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                    }
+            }
         }
     }
 }
