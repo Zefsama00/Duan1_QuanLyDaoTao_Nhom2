@@ -41,5 +41,11 @@ namespace QuanLyDaoTao_Nhom2
 
             }
         }
+
+        private void btnTimKiem_Click(object sender, EventArgs e)
+        {
+            string timCN = txtTimKiem.Text.Trim().ToLower();
+            dvThongTin.DataSource = db.QLLiches.Where(x => x.MaHocKy.ToLower().Contains(timCN)).ToList();
+        }
     }
 }
