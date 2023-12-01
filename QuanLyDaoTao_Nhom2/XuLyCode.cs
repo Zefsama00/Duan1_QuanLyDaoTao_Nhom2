@@ -77,6 +77,15 @@ namespace QuanLyDaoTao_Nhom2
             }
             return dsLoai;
         }
+        public static List<QLLich> GetListLich()
+        {
+            List<QLLich> dsLoai = new List<QLLich>();
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                dsLoai = csharpDB.QLLiches.ToList();
+            }
+            return dsLoai;
+        }
         public static bool addLopMon(QLLopMon lmAdd)
         {
             using (QLDTEntities csharpDB = new QLDTEntities())
@@ -84,6 +93,22 @@ namespace QuanLyDaoTao_Nhom2
                 try
                 {
                     csharpDB.QLLopMons.Add(lmAdd);
+                    csharpDB.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        public static bool addLich(QLLich lmAdd)
+        {
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                try
+                {
+                    csharpDB.QLLiches.Add(lmAdd);
                     csharpDB.SaveChanges();
                     return true;
                 }
