@@ -131,7 +131,6 @@ namespace QuanLyDaoTao_Nhom2
         {
             int selectedRowIndex = dvThongTin.SelectedCells[0].RowIndex;
             QLLopMon selectedSP = dsLopMon[selectedRowIndex];
-            selectedSP.MaLopMon = txtMaLopmon.Text;
             selectedSP.MaPhong = dsPhong.Find(loai => loai.TenPhong == cmxPhong.SelectedItem.ToString()).MaPhong;
             selectedSP.MaGV = dsGV.Find(
               loai => loai.HoTenGV == cmxGV.SelectedItem.ToString()).MaGV;

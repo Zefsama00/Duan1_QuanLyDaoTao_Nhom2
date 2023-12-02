@@ -32,6 +32,8 @@
             this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.lblQuanLySinhVien = new System.Windows.Forms.Label();
             this.grbThongTin = new System.Windows.Forms.GroupBox();
+            this.cmxHocKy = new System.Windows.Forms.ComboBox();
+            this.datetimeNgayHoc = new System.Windows.Forms.DateTimePicker();
             this.txtGioHoc = new System.Windows.Forms.TextBox();
             this.txtMaLichhoc = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -39,18 +41,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dvThongTin = new System.Windows.Forms.DataGridView();
+            this.MaLichHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.btnLamMoi = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnSua = new System.Windows.Forms.Button();
             this.btnThem = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.datetimeNgayHoc = new System.Windows.Forms.DateTimePicker();
-            this.cmxHocKy = new System.Windows.Forms.ComboBox();
-            this.MaLichHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GioHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grbThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -94,6 +94,21 @@
             this.grbThongTin.TabIndex = 58;
             this.grbThongTin.TabStop = false;
             this.grbThongTin.Text = "Thông tin";
+            // 
+            // cmxHocKy
+            // 
+            this.cmxHocKy.FormattingEnabled = true;
+            this.cmxHocKy.Location = new System.Drawing.Point(148, 99);
+            this.cmxHocKy.Name = "cmxHocKy";
+            this.cmxHocKy.Size = new System.Drawing.Size(201, 23);
+            this.cmxHocKy.TabIndex = 3;
+            // 
+            // datetimeNgayHoc
+            // 
+            this.datetimeNgayHoc.Location = new System.Drawing.Point(521, 30);
+            this.datetimeNgayHoc.Name = "datetimeNgayHoc";
+            this.datetimeNgayHoc.Size = new System.Drawing.Size(203, 23);
+            this.datetimeNgayHoc.TabIndex = 2;
             // 
             // txtGioHoc
             // 
@@ -172,6 +187,31 @@
             this.dvThongTin.RowTemplate.Height = 28;
             this.dvThongTin.Size = new System.Drawing.Size(777, 199);
             this.dvThongTin.TabIndex = 52;
+            this.dvThongTin.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dvThongTin_CellClick);
+            // 
+            // MaLichHoc
+            // 
+            this.MaLichHoc.HeaderText = "Mã Lịch Học";
+            this.MaLichHoc.Name = "MaLichHoc";
+            this.MaLichHoc.Width = 180;
+            // 
+            // MaHocKy
+            // 
+            this.MaHocKy.HeaderText = "Mã Học Kỳ";
+            this.MaHocKy.Name = "MaHocKy";
+            this.MaHocKy.Width = 180;
+            // 
+            // NgayHoc
+            // 
+            this.NgayHoc.HeaderText = "Ngày Học";
+            this.NgayHoc.Name = "NgayHoc";
+            this.NgayHoc.Width = 180;
+            // 
+            // GioHoc
+            // 
+            this.GioHoc.HeaderText = "Giờ Học";
+            this.GioHoc.Name = "GioHoc";
+            this.GioHoc.Width = 180;
             // 
             // btnTimKiem
             // 
@@ -200,6 +240,7 @@
             this.btnLamMoi.Text = "LÀM MỚI";
             this.btnLamMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLamMoi.UseVisualStyleBackColor = true;
+            this.btnLamMoi.Click += new System.EventHandler(this.btnLamMoi_Click);
             // 
             // btnXoa
             // 
@@ -214,6 +255,7 @@
             this.btnXoa.Text = "XOÁ";
             this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -228,6 +270,7 @@
             this.btnSua.Text = "SỬA";
             this.btnSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -254,45 +297,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 50;
             this.pictureBox1.TabStop = false;
-            // 
-            // datetimeNgayHoc
-            // 
-            this.datetimeNgayHoc.Location = new System.Drawing.Point(521, 30);
-            this.datetimeNgayHoc.Name = "datetimeNgayHoc";
-            this.datetimeNgayHoc.Size = new System.Drawing.Size(203, 23);
-            this.datetimeNgayHoc.TabIndex = 2;
-            // 
-            // cmxHocKy
-            // 
-            this.cmxHocKy.FormattingEnabled = true;
-            this.cmxHocKy.Location = new System.Drawing.Point(148, 99);
-            this.cmxHocKy.Name = "cmxHocKy";
-            this.cmxHocKy.Size = new System.Drawing.Size(201, 23);
-            this.cmxHocKy.TabIndex = 3;
-            // 
-            // MaLichHoc
-            // 
-            this.MaLichHoc.HeaderText = "Mã Lịch Học";
-            this.MaLichHoc.Name = "MaLichHoc";
-            this.MaLichHoc.Width = 180;
-            // 
-            // MaHocKy
-            // 
-            this.MaHocKy.HeaderText = "Mã Học Kỳ";
-            this.MaHocKy.Name = "MaHocKy";
-            this.MaHocKy.Width = 180;
-            // 
-            // NgayHoc
-            // 
-            this.NgayHoc.HeaderText = "Ngày Học";
-            this.NgayHoc.Name = "NgayHoc";
-            this.NgayHoc.Width = 180;
-            // 
-            // GioHoc
-            // 
-            this.GioHoc.HeaderText = "Giờ Học";
-            this.GioHoc.Name = "GioHoc";
-            this.GioHoc.Width = 180;
             // 
             // QuanLyLich
             // 
