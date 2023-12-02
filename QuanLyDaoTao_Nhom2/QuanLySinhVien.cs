@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -74,6 +75,8 @@ namespace QuanLyDaoTao_Nhom2
         {
             var CheckID_MaSV = db.QLSinhViens.Where(x => x.MaSV == txtMaSV.Text || x.MaSV == txtMaSV.Text).ToList().FirstOrDefault();
             var CheckSDT_Email = db.QLSinhViens.Where(x => x.SoDienThoaiSV == txtSoDienThoai.Text || x.EmailSV == txtEmail.Text).ToList().FirstOrDefault();
+            string emailAddress = txtEmail.Text;
+            int lengthSDT = Convert.ToInt32(txtSoDienThoai.TextLength);
             if (string.IsNullOrWhiteSpace(txtMaSV.Text)
                 || string.IsNullOrWhiteSpace(txtTenSV.Text)
                 || string.IsNullOrWhiteSpace(txtSoDienThoai.Text)
@@ -96,7 +99,17 @@ namespace QuanLyDaoTao_Nhom2
             {
                 MessageBox.Show("Bạn đã nhập SDT hoặc Email trùng với một sinh viên khác");
             }
-          
+            else if (!Regex.IsMatch(emailAddress, @"^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,}$"))
+            {
+                MessageBox.Show("Email không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (lengthSDT < 10 || lengthSDT > 10)
+            {
+                MessageBox.Show("Số điện thoại không được ít hoặc hơn 10 số", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             else
             {
                 SaveData();
@@ -107,16 +120,56 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            var sua = (dvThongTin.SelectedCells[0].OwningRow.Cells["MaSV"].Value.ToString());
-            QLSinhVien sv = db.QLSinhViens.Find(sua);
-            sv.HoTenSV = txtTenSV.Text;
-            sv.NgaySinhSV = DateTime.Parse(dtNgaySinh.Text);
-            sv.DiaChiSV = txtDiaChi.Text;
-            sv.GioiTinhSV = (radNam.Checked ? radNam.Text : radNu.Text);
-            sv.SoDienThoaiSV = txtSoDienThoai.Text;
-            sv.EmailSV = txtEmail.Text;
-            db.SaveChanges();
-            LoadData();
+            var CheckID_MaSV = db.QLSinhViens.Where(x => x.MaSV == txtMaSV.Text || x.MaSV == txtMaSV.Text).ToList().FirstOrDefault();
+            var Check_Email = db.QLSinhViens.Where(x => x.EmailSV == txtEmail.Text || x.EmailSV == txtEmail.Text).ToList().FirstOrDefault();
+            var CheckSDT = db.QLSinhViens.Where(x => x.SoDienThoaiSV == txtSoDienThoai.Text).ToList().FirstOrDefault();
+            string emailAddress = txtEmail.Text;
+            int lengthSDT = Convert.ToInt32(txtSoDienThoai.TextLength);
+            if (string.IsNullOrWhiteSpace(txtMaSV.Text)
+                || string.IsNullOrWhiteSpace(txtTenSV.Text)
+                || string.IsNullOrWhiteSpace(txtSoDienThoai.Text)
+                || string.IsNullOrEmpty(dtNgaySinh.Text)
+                || string.IsNullOrWhiteSpace(txtEmail.Text)
+                || string.IsNullOrWhiteSpace(txtDiaChi.Text))
+            {
+
+                MessageBox.Show("Bạn đang nhập dữ chưa đủ - Vui lòng kiểm tra lại!!!");
+            }
+           
+            else if (radNam.Checked == false && radNu.Checked == false)
+            {
+                MessageBox.Show("Bạn chưa chọn giới tính");
+            }
+            else if (Check_Email != null)
+            {
+                MessageBox.Show("Email  trùng với một sinh viên khác");
+                return;
+            }
+            else if (!Regex.IsMatch(emailAddress, @"^[a-zA-Z0-9\.\+_-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,}$"))
+            {
+                MessageBox.Show("Email không hợp lệ.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (lengthSDT < 10 || lengthSDT > 10)
+            {
+                MessageBox.Show("Số điện thoại không được ít hoặc hơn 10 số", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }  
+            else
+            {
+                var sua = (dvThongTin.SelectedCells[0].OwningRow.Cells["MaSV"].Value.ToString());
+                QLSinhVien sv = db.QLSinhViens.Find(sua);
+                sv.HoTenSV = txtTenSV.Text;
+                sv.NgaySinhSV = DateTime.Parse(dtNgaySinh.Text);
+                sv.DiaChiSV = txtDiaChi.Text;
+                sv.GioiTinhSV = (radNam.Checked ? radNam.Text : radNu.Text);
+                sv.SoDienThoaiSV = txtSoDienThoai.Text;
+                sv.EmailSV = txtEmail.Text;
+                db.SaveChanges();
+                LoadData();
+            }
+
+           
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -165,7 +218,7 @@ namespace QuanLyDaoTao_Nhom2
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string key = txtTimKiem.Text.Trim().ToLower();
-            dvThongTin.DataSource = db.QLSinhViens.Where(x => x.MaSV.ToLower().Contains(key)).ToList();
+            dvThongTin.DataSource = db.QLSinhViens.Where(x => x.HoTenSV.ToLower().Contains(key)).ToList();
         }
     }
 }

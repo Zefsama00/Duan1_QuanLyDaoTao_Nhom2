@@ -14,10 +14,7 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class ChuyenNganh : Form
     {
-        string str = @"Data Source=PHANHUUHIEU\SQLEXPRESS;Initial Catalog=NHOM2_QUANLY_DAOTAO;Integrated Security=True;Encrypt=False";
-        SqlConnection KetNoi;
-        SqlCommand ThucHien;
-        SqlDataReader DuLieu;
+       
         NHOM2_QUANLY_DAOTAOEntities db = new NHOM2_QUANLY_DAOTAOEntities();
         public ChuyenNganh()
         {
@@ -30,28 +27,17 @@ namespace QuanLyDaoTao_Nhom2
         void LoadData()
         {
             var sql = from b in db.QLChuyenNganhs
-
                       select new
                       {
-
                           MaChuyenNganh = b.MaCN,
                           TenChuyenNganh = b.TenCN,
-
                       };
 
             dvThongTin.DataSource = sql.ToList();
 
         }
 
-        
 
-    
-
-        string manganh;
-        string tennganh;
-       
-
-        
 
         private void btnThem_Click_1(object sender, EventArgs e)
         {
@@ -59,6 +45,7 @@ namespace QuanLyDaoTao_Nhom2
             try
             {
                 var CheckID_MaCN = db.QLChuyenNganhs.Where(x => x.MaCN == txtMaChuyenNganh.Text || x.MaCN == txtMaChuyenNganh.Text).ToList().FirstOrDefault();
+                var CheckID_TenCN = db.QLChuyenNganhs.Where(x => x.TenCN == txtTenChuyenNganh.Text || x.TenCN == txtTenChuyenNganh.Text).ToList().FirstOrDefault();
                 if (txtMaChuyenNganh.Text == "")
                 {
                     MessageBox.Show("Mã chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -66,12 +53,17 @@ namespace QuanLyDaoTao_Nhom2
                 }
                 else if (CheckID_MaCN != null)
                 {
-                    MessageBox.Show("Mã chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Mã chuyên ngành này đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else if(txtTenChuyenNganh.Text == "")
                 {
                     MessageBox.Show("Tên chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (CheckID_TenCN != null)
+                {
+                    MessageBox.Show("Tên chuyên ngành này đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -95,23 +87,30 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnSua_Click_1(object sender, EventArgs e)
         {
+            var CheckID_MaCN = db.QLChuyenNganhs.Where(x => x.MaCN == txtMaChuyenNganh.Text || x.MaCN == txtMaChuyenNganh.Text).ToList().FirstOrDefault();
+            var CheckID_TenCN = db.QLChuyenNganhs.Where(x => x.TenCN == txtTenChuyenNganh.Text || x.TenCN == txtTenChuyenNganh.Text).ToList().FirstOrDefault();
             if (txtMaChuyenNganh.Text == "")
             {
                 MessageBox.Show("Mã chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+           
             else if (txtTenChuyenNganh.Text == "")
             {
                 MessageBox.Show("Tên chuyên ngành không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            else if (CheckID_TenCN != null)
+            {
+                MessageBox.Show("Tên chuyên ngành này đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var sua = (dvThongTin.SelectedCells[0].OwningRow.Cells["MaChuyenNganh"].Value.ToString());
             QLChuyenNganh sv = db.QLChuyenNganhs.Find(sua);
-
             sv.TenCN = txtTenChuyenNganh.Text;
 
             db.SaveChanges();
-            LoadData();
+             LoadData();
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -131,13 +130,24 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            string key = txtTenChuyenNganh.Text.Trim().ToLower();
-            dvThongTin.DataSource = db.QLChuyenNganhs.Where(x => x.TenCN.ToLower().Contains(key)).ToList();
+            string timCN = txtTimKiem.Text.Trim().ToLower();
+            var query = db.QLChuyenNganhs.Where(x => x.TenCN == timCN).Select(x => new
+            {
+                MaChuyenNganh = x.MaCN,
+                TenChuyenNganh = x.TenCN
+
+            });
+            dvThongTin.DataSource = query.ToList();
+            
+
+
         }
 
         private void dvThongTin_DoubleClick(object sender, EventArgs e)
         {
             int lst = dvThongTin.CurrentRow.Index;
+            btnThem.Enabled = true;
+            txtMaChuyenNganh.Enabled = false;
             txtMaChuyenNganh.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
             txtTenChuyenNganh.Text = dvThongTin.Rows[lst].Cells[1].Value.ToString();
         }

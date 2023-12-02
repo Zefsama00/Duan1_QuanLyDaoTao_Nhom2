@@ -227,6 +227,7 @@ namespace QuanLyDaoTao_Nhom2
             // 
             // dvThongTin
             // 
+            this.dvThongTin.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dvThongTin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvThongTin.Location = new System.Drawing.Point(13, 308);
             this.dvThongTin.Name = "dvThongTin";
@@ -350,7 +351,6 @@ namespace QuanLyDaoTao_Nhom2
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lblQuanLySinhVien);
             this.Name = "QuanLySinhVien";
-            this.Text = "QuanLySinhVien";
             this.grbThongTin.ResumeLayout(false);
             this.grbThongTin.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).EndInit();
