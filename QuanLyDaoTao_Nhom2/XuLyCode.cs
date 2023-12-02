@@ -141,7 +141,6 @@ namespace QuanLyDaoTao_Nhom2
                 {
                     QLLopMon found = csharpDB.QLLopMons
                         .FirstOrDefault(sp => sp.MaLopMon == pm.MaLop);
-                    found.MaLopMon = pm.MaLopMon;
                     found.MaPhong = pm.MaPhong;
                     found.MaGV = pm.MaGV;
                     found.MaLop = pm.MaLop;
@@ -156,15 +155,53 @@ namespace QuanLyDaoTao_Nhom2
                 }
             }
         }
-        public static bool deleteLopMon(String Malopmon)
+        public static bool updateLich(QLLich pm)
         {
             using (QLDTEntities csharpDB = new QLDTEntities())
             {
                 try
                 {
-                    QLLopMon found = csharpDB.QLLopMons
-                        .FirstOrDefault(sp => sp.MaLopMon == Malopmon);
-                    csharpDB.QLLopMons.Remove(found);
+                    QLLich found = csharpDB.QLLiches
+                        .FirstOrDefault(sp => sp.MaLichHoc == pm.MaLichHoc);
+                    found.GioHoc = pm.GioHoc;
+                    found.NgayHoc = pm.NgayHoc;
+                    found.MaHocKy = pm.MaHocKy;
+                    csharpDB.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        public static bool deleteLopMon(String malich)
+        {
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                try
+                {
+                    QLLich found = csharpDB.QLLiches
+                        .FirstOrDefault(sp => sp.MaLichHoc == malich);
+                    csharpDB.QLLiches.Remove(found);
+                    csharpDB.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
+        public static bool deleteLich(String malich)
+        {
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                try
+                {
+                    QLLich found = csharpDB.QLLiches
+                        .FirstOrDefault(sp => sp.MaLichHoc == malich);
+                    csharpDB.QLLiches.Remove(found);
                     csharpDB.SaveChanges();
                     return true;
                 }
