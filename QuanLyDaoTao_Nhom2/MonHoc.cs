@@ -40,6 +40,7 @@ namespace QuanLyDaoTao_Nhom2
             originalData = new DataTable();
             adapter.Fill(originalData);
             dataGridView1.DataSource = originalData;
+           
             txtMaMonhoc.Text = "";
             txtTenMonhoc.Text = "";
 
