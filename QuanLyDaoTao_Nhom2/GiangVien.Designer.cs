@@ -81,7 +81,6 @@ namespace QuanLyDaoTao_Nhom2
             this.btThoat.TabIndex = 49;
             this.btThoat.Text = "Thoát";
             this.btThoat.UseVisualStyleBackColor = true;
-            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
             // pictureBox2
             // 
@@ -120,14 +119,6 @@ namespace QuanLyDaoTao_Nhom2
             // 
             // btnLenDiem
             // 
-            this.pictureBox1.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.FPT_Polytechnic1;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(294, 93);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
             // 
             // GiangVien
             // 
@@ -139,7 +130,6 @@ namespace QuanLyDaoTao_Nhom2
             this.Controls.Add(this.btnLenDiem);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.lblGiangvien);
-            this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GiangVien";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

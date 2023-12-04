@@ -71,7 +71,7 @@ namespace QuanLyDaoTao_Nhom2
             QLLich selectedPM = dsLich[selectedRowIndex];
             txtMaLichhoc.Text = selectedPM.MaLichHoc.ToString();
             txtGioHoc.Text= selectedPM.GioHoc.ToString();
-            datetimeNgayHoc.Value = selectedPM.NgayHoc.Value;
+            datetimeNgayHoc.Value = selectedPM.NgayHoc;
             tenHocKy = dsHocKy.Find(loai => loai.MaHocKy == selectedPM.MaHocKy.ToString()).TenHocKy;
             cmxHocKy.SelectedIndex = dsHocKy.FindIndex(loai => loai.TenHocKy == tenHocKy);
             txtMaLichhoc.ReadOnly = true;

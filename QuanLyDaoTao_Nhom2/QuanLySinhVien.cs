@@ -19,7 +19,7 @@ namespace QuanLyDaoTao_Nhom2
 
         private void QuanLySinhVien_Load(object sender, EventArgs e)
         {
-            using (var context = new NHOM2_QUANLY_DAOTAOEntities())
+            using (var context = new QLDTEntities())
             {
                 var result = (from c in context.QLSinhViens
                               select new
