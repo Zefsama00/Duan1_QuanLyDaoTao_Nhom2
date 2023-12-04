@@ -22,7 +22,8 @@ namespace QuanLyDaoTao_Nhom2
             //Application.Run(new LichDay());
             //Application.Run(new LichHoc());
             //Application.Run(new GiangVien());
-            Application.Run(new MonHoc());
+            //Application.Run(new MonHoc());
+            Application.Run(new QuanLyLop());
         }
     }
 }
