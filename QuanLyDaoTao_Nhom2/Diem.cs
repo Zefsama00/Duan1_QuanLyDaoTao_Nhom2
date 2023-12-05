@@ -24,17 +24,7 @@ namespace QuanLyDaoTao_Nhom2
         {
             username = nametk;
             InitializeComponent();
-            QLUser sv = db.QLUsers.FirstOrDefault(x => x.TaiKhoan.Contains(username));
-            if (sv.VaiTro == "ADMIN")
-            {
-                menuStrip1.Visible = true; menuStrip2.Visible = false;
-            }
-            else
-            {
-                menuStrip1.Visible = false; menuStrip2.Visible = true;
-                btnSua.Visible = false;
-                btnXoa.Visible = false;
-            }
+           
         }
 
         void LoadData()
@@ -335,6 +325,17 @@ namespace QuanLyDaoTao_Nhom2
 
         private void Diem_Load(object sender, EventArgs e)
         {
+            QLUser sv = db.QLUsers.FirstOrDefault(x => x.TaiKhoan.Contains(username));
+            if (sv.VaiTro == "ADMIN")
+            {
+                menuStrip1.Visible = true; menuStrip2.Visible = false;
+            }
+            else
+            {
+                menuStrip1.Visible = false; menuStrip2.Visible = true;
+                btnSua.Visible = false;
+                btnXoa.Visible = false;
+            }
             LoadData();
             LoadMaSV();
             LoadMaMonhoc();

@@ -219,6 +219,12 @@
     <Compile Include="XemDiem.Designer.cs">
       <DependentUpon>XemDiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="XemDSSV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XemDSSV.Designer.cs">
+      <DependentUpon>XemDSSV.cs</DependentUpon>
+    </Compile>
     <Compile Include="XuLyCode.cs" />
     <EmbeddedResource Include="ChuyenNganh.resx">
       <DependentUpon>ChuyenNganh.cs</DependentUpon>
@@ -283,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XemDiem.resx">
       <DependentUpon>XemDiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XemDSSV.resx">
+      <DependentUpon>XemDSSV.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

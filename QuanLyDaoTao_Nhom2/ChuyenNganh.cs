@@ -16,6 +16,7 @@ namespace QuanLyDaoTao_Nhom2
         string username;
         public ChuyenNganh(String nametk)
         {
+            username = nametk;
             InitializeComponent();
         }
         void LoadData()

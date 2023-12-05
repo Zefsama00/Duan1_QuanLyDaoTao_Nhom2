@@ -7,41 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace QuanLyDaoTao_Nhom2
 {
-    public partial class LichDay : Form
+    public partial class XemDSSV : Form
     {
-        QLDTEntities db = new QLDTEntities();
+        List<QLSinhVien> dssinhvien;
         string username;
-        public LichDay(String nametk)
+        public XemDSSV(String nametk)
         {
             username = nametk;
             InitializeComponent();
-            LoadData();
-            
         }
 
-        private void LichDay_Load(object sender, EventArgs e)
+        private void XemDSSV_Load(object sender, EventArgs e)
         {
-
+            dssinhvien = XuLyCode.GetListSV();
+            dvThongTin.Rows.Clear();
+            dssinhvien.ForEach(row => dvThongTin.Rows.Add(
+                    row.MaSV,
+                    row.HoTenSV,
+                    row.NgaySinhSV,
+                    row.GioiTinhSV,
+                    row.DiaChiSV,
+                    row.EmailSV,
+                    row.SoDienThoaiSV
+            ));
+            dvThongTin.Update();
         }
-        void LoadData()
-        {
-            using (var context = new QLDTEntities())
-            {
-                var result = (from ld in context.QLLiches
-                              select new
-                              {
-                                  MaLichHoc = ld.MaLichHoc,
-                                  MaHocKy = ld.MaHocKy,
-                                  GioHoc = ld.GioHoc,
-                                  NgayHoc = ld.NgayHoc,
-                              }).ToList();
-                dvThongTin.DataSource = result;
 
-            }
+        private void btThoat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            GiangVien form2 = new GiangVien(username);
+            form2.ShowDialog();
+            this.Close();
         }
 
         private void LichDayToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -65,14 +65,6 @@ namespace QuanLyDaoTao_Nhom2
             this.Hide();
             XemDSSV form = new XemDSSV(username);
             form.ShowDialog();
-            this.Close();
-        }
-
-        private void btThoat_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            GiangVien form2 = new GiangVien(username);
-            form2.ShowDialog();
             this.Close();
         }
     }

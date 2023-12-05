@@ -34,7 +34,6 @@
             this.LichHocToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblLichHoc = new System.Windows.Forms.Label();
             this.dvThongTin = new System.Windows.Forms.DataGridView();
-            this.btThoat = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +41,7 @@
             this.DiemLab = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiemThi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiemTongKet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btThoat = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             this.SuspendLayout();
@@ -100,7 +100,6 @@
             this.DiemLab,
             this.DiemThi,
             this.DiemTongKet});
-            this.dvThongTin.Enabled = false;
             this.dvThongTin.Location = new System.Drawing.Point(11, 199);
             this.dvThongTin.Margin = new System.Windows.Forms.Padding(2);
             this.dvThongTin.Name = "dvThongTin";
@@ -108,19 +107,6 @@
             this.dvThongTin.RowTemplate.Height = 28;
             this.dvThongTin.Size = new System.Drawing.Size(777, 247);
             this.dvThongTin.TabIndex = 55;
-            // 
-            // btThoat
-            // 
-            this.btThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btThoat.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.Exit;
-            this.btThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btThoat.Location = new System.Drawing.Point(690, 27);
-            this.btThoat.Name = "btThoat";
-            this.btThoat.Size = new System.Drawing.Size(98, 35);
-            this.btThoat.TabIndex = 58;
-            this.btThoat.Text = "Thoát";
-            this.btThoat.UseVisualStyleBackColor = true;
-            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
             // ID
             // 
@@ -157,6 +143,19 @@
             this.DiemTongKet.HeaderText = "Điểm Trung Bình";
             this.DiemTongKet.Name = "DiemTongKet";
             this.DiemTongKet.Width = 120;
+            // 
+            // btThoat
+            // 
+            this.btThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btThoat.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.Exit;
+            this.btThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btThoat.Location = new System.Drawing.Point(690, 27);
+            this.btThoat.Name = "btThoat";
+            this.btThoat.Size = new System.Drawing.Size(98, 35);
+            this.btThoat.TabIndex = 58;
+            this.btThoat.Text = "Thoát";
+            this.btThoat.UseVisualStyleBackColor = true;
+            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
             // XemDiem
             // 

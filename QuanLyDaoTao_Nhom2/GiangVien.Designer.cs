@@ -86,6 +86,7 @@ namespace QuanLyDaoTao_Nhom2
             this.DSSVToolStripMenuItem1.Name = "DSSVToolStripMenuItem1";
             this.DSSVToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
             this.DSSVToolStripMenuItem1.Text = "Danh Sách Sinh Viên";
+            this.DSSVToolStripMenuItem1.Click += new System.EventHandler(this.DSSVToolStripMenuItem1_Click);
             // 
             // LichDayToolStripMenuItem1
             // 
@@ -112,7 +113,7 @@ namespace QuanLyDaoTao_Nhom2
             this.btThoatGV.TabIndex = 54;
             this.btThoatGV.Text = "Thoát";
             this.btThoatGV.UseVisualStyleBackColor = true;
-            this.btThoatGV.Click += new System.EventHandler(this.btThoatGV_Click);
+            this.btThoatGV.Click += new System.EventHandler(this.btThoatGV_Click_1);
             // 
             // pictureBox2
             // 

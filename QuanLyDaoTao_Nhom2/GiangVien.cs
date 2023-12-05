@@ -19,21 +19,6 @@ namespace QuanLyDaoTao_Nhom2
             username = nametk;
         }
 
-        private void btnLenDiem_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            Diem formLuuDiem = new Diem(username);
-            formLuuDiem.ShowDialog();  // Hiển thị form mới
-            this.Close();
-        }
-
-        private void btnDanhSachSV_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            QuanLySinhVien form2 = new QuanLySinhVien(username);
-            form2.ShowDialog();
-            this.Close();
-        }
         private void btThoatGV_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -61,6 +46,22 @@ namespace QuanLyDaoTao_Nhom2
             this.Hide();
             Diem formLuuDiem = new Diem(username);
             formLuuDiem.ShowDialog();
+            this.Close();
+        }
+
+        private void DSSVToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            XemDSSV form = new XemDSSV(username);
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void btThoatGV_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            LichDay form2 = new LichDay(username);
+            form2.ShowDialog();
             this.Close();
         }
     }
