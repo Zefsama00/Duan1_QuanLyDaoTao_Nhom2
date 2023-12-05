@@ -98,5 +98,13 @@ namespace QuanLyDaoTao_Nhom2
             form2.ShowDialog();
             this.Close();
         }
+
+        private void btThoat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TrangChu form = new TrangChu(username);
+            form.ShowDialog();
+            this.Close();
+        }
     }
 }
