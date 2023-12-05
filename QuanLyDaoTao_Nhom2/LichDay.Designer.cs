@@ -29,86 +29,102 @@ namespace QuanLyDaoTao_Nhom2
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LichDay));
             this.lblLichDay = new System.Windows.Forms.Label();
             this.dvThongTin = new System.Windows.Forms.DataGridView();
-            this.txtTimKiem = new System.Windows.Forms.TextBox();
-            this.btnTimKiem = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.quảnLýToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.LenDiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DSSVToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.LichDayToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.đổiMậtKhẩuToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblLichDay
             // 
             this.lblLichDay.Font = new System.Drawing.Font("Times New Roman", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLichDay.Location = new System.Drawing.Point(434, 62);
+            this.lblLichDay.Location = new System.Drawing.Point(297, 50);
+            this.lblLichDay.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLichDay.Name = "lblLichDay";
-            this.lblLichDay.Size = new System.Drawing.Size(306, 64);
+            this.lblLichDay.Size = new System.Drawing.Size(230, 52);
             this.lblLichDay.TabIndex = 20;
             this.lblLichDay.Text = "LỊCH DẠY";
             // 
             // dvThongTin
             // 
             this.dvThongTin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvThongTin.Location = new System.Drawing.Point(12, 219);
-            this.dvThongTin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dvThongTin.Location = new System.Drawing.Point(9, 144);
+            this.dvThongTin.Margin = new System.Windows.Forms.Padding(2);
             this.dvThongTin.Name = "dvThongTin";
             this.dvThongTin.RowHeadersWidth = 62;
             this.dvThongTin.RowTemplate.Height = 28;
-            this.dvThongTin.Size = new System.Drawing.Size(1036, 245);
+            this.dvThongTin.Size = new System.Drawing.Size(777, 246);
             this.dvThongTin.TabIndex = 19;
             // 
-            // txtTimKiem
+            // menuStrip1
             // 
-            this.txtTimKiem.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTimKiem.Location = new System.Drawing.Point(287, 178);
-            this.txtTimKiem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtTimKiem.Name = "txtTimKiem";
-            this.txtTimKiem.Size = new System.Drawing.Size(488, 30);
-            this.txtTimKiem.TabIndex = 17;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.quảnLýToolStripMenuItem1,
+            this.đổiMậtKhẩuToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(795, 24);
+            this.menuStrip1.TabIndex = 54;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // btnTimKiem
+            // quảnLýToolStripMenuItem1
             // 
-            this.btnTimKiem.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTimKiem.Image = ((System.Drawing.Image)(resources.GetObject("btnTimKiem.Image")));
-            this.btnTimKiem.Location = new System.Drawing.Point(798, 170);
-            this.btnTimKiem.Name = "btnTimKiem";
-            this.btnTimKiem.Size = new System.Drawing.Size(143, 44);
-            this.btnTimKiem.TabIndex = 30;
-            this.btnTimKiem.Text = "Tìm kiếm";
-            this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnTimKiem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnTimKiem.UseVisualStyleBackColor = true;
-            this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            this.quảnLýToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LenDiemToolStripMenuItem,
+            this.DSSVToolStripMenuItem1,
+            this.LichDayToolStripMenuItem1});
+            this.quảnLýToolStripMenuItem1.Name = "quảnLýToolStripMenuItem1";
+            this.quảnLýToolStripMenuItem1.Size = new System.Drawing.Size(62, 20);
+            this.quảnLýToolStripMenuItem1.Text = "Quản Lý";
             // 
-            // pictureBox1
+            // LenDiemToolStripMenuItem
             // 
-            this.pictureBox1.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.FPT_Polytechnic1;
-            this.pictureBox1.Location = new System.Drawing.Point(11, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(292, 92);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 16;
-            this.pictureBox1.TabStop = false;
+            this.LenDiemToolStripMenuItem.Name = "LenDiemToolStripMenuItem";
+            this.LenDiemToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.LenDiemToolStripMenuItem.Text = "Lên Điểm";
+            this.LenDiemToolStripMenuItem.Click += new System.EventHandler(this.LenDiemToolStripMenuItem_Click);
+            // 
+            // DSSVToolStripMenuItem1
+            // 
+            this.DSSVToolStripMenuItem1.Name = "DSSVToolStripMenuItem1";
+            this.DSSVToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
+            this.DSSVToolStripMenuItem1.Text = "Danh Sách Sinh Viên";
+            this.DSSVToolStripMenuItem1.Click += new System.EventHandler(this.DSSVToolStripMenuItem1_Click);
+            // 
+            // LichDayToolStripMenuItem1
+            // 
+            this.LichDayToolStripMenuItem1.Name = "LichDayToolStripMenuItem1";
+            this.LichDayToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
+            this.LichDayToolStripMenuItem1.Text = "Lịch Dạy";
+            this.LichDayToolStripMenuItem1.Click += new System.EventHandler(this.LichDayToolStripMenuItem1_Click);
+            // 
+            // đổiMậtKhẩuToolStripMenuItem1
+            // 
+            this.đổiMậtKhẩuToolStripMenuItem1.Name = "đổiMậtKhẩuToolStripMenuItem1";
+            this.đổiMậtKhẩuToolStripMenuItem1.Size = new System.Drawing.Size(91, 20);
+            this.đổiMậtKhẩuToolStripMenuItem1.Text = "Đổi Mật Khẩu";
             // 
             // LichDay
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1060, 662);
-            this.Controls.Add(this.btnTimKiem);
+            this.ClientSize = new System.Drawing.Size(795, 538);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.lblLichDay);
             this.Controls.Add(this.dvThongTin);
-            this.Controls.Add(this.txtTimKiem);
-            this.Controls.Add(this.pictureBox1);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LichDay";
-            this.Text = "S";
+            this.Text = "Lịch Dạy";
             this.Load += new System.EventHandler(this.LichDay_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -117,8 +133,11 @@ namespace QuanLyDaoTao_Nhom2
         #endregion
         private System.Windows.Forms.Label lblLichDay;
         private System.Windows.Forms.DataGridView dvThongTin;
-        private System.Windows.Forms.TextBox txtTimKiem;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnTimKiem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem quảnLýToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem LenDiemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DSSVToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem LichDayToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem đổiMậtKhẩuToolStripMenuItem1;
     }
 }

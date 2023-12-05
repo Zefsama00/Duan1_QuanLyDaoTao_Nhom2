@@ -19,16 +19,28 @@ namespace QuanLyDaoTao_Nhom2
         SqlConnection KetNoi;
         SqlCommand ThucHien;
         SqlDataReader DuLieu;
-        public Diem()
+        string username;
+        public Diem(String nametk)
         {
+            username = nametk;
             InitializeComponent();
+            QLUser sv = db.QLUsers.FirstOrDefault(x => x.TaiKhoan.Contains(username));
+            if (sv.VaiTro == "ADMIN")
+            {
+                menuStrip1.Visible = true; menuStrip2.Visible = false;
+            }
+            else
+            {
+                menuStrip1.Visible = false; menuStrip2.Visible = true;
+                btnSua.Visible = false;
+                btnXoa.Visible = false;
+            }
         }
 
         void LoadData()
         {
 
             var sql = (from c in db.QLDiems
-
                        select new
                        {
                            ID = c.MaDiem,
@@ -39,7 +51,9 @@ namespace QuanLyDaoTao_Nhom2
                            DiemTongKet = (c.DiemLab + c.DiemThi * 2) / 3,
                        });
             dvThongTin.DataSource = sql.ToList();
-
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
 
         string lenhsv;
@@ -87,11 +101,11 @@ namespace QuanLyDaoTao_Nhom2
                 double lab = double.Parse(txtDiemLAB.Text);
                 double thi = double.Parse(txtDiemThi.Text);
                 double diemTB = (lab + thi * 2) / 3;
-                txtDiemTongKet.Text = diemTB.ToString("F2");
+                lblDiemTongKet.Text = diemTB.ToString("F2");
             }
             else
             {
-                txtDiemTongKet.Text = "0.0";
+                lblDiemTongKet.Text = "0.0";
             }
         }
 
@@ -105,6 +119,7 @@ namespace QuanLyDaoTao_Nhom2
                 qld.MaMonHoc = cbbMamon.Text;
                 qld.DiemLab = double.Parse(txtDiemLAB.Text);
                 qld.DiemThi = double.Parse(txtDiemThi.Text);
+                qld.DiemTongKet = (((double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemThi.Text)) * 2)/3);
                 db.QLDiems.Add(qld);
                 int result = db.SaveChanges();
                 if (result > 0)
@@ -187,7 +202,7 @@ namespace QuanLyDaoTao_Nhom2
                     MaMonHoc = cbbMamon.Text,
                     DiemLab = double.Parse(txtDiemLAB.Text),
                     DiemThi = double.Parse(txtDiemThi.Text),
-                    DiemTongKet = Convert.ToInt32(txtDiemLAB.Text + txtDiemThi.Text),
+                    DiemTongKet = (((double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemThi.Text) * 2) ) / 3),
                 });
 
                 db.SaveChanges();
@@ -205,13 +220,8 @@ namespace QuanLyDaoTao_Nhom2
         {
             try
             {
-                if (db.QLDiems.Any(diem => diem.MaDiem == txtMaDiem.Text))
-                {
-                    MessageBox.Show("ID đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
 
-                else if (txtMaDiem.Text == "")
+                if (txtMaDiem.Text == "")
                 {
                     MessageBox.Show("ID không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -241,7 +251,7 @@ namespace QuanLyDaoTao_Nhom2
                     return;
                 }
 
-                else if (txtDiemTongKet.Text == "")
+                else if (lblDiemTongKet.Text == "")
                 {
                     MessageBox.Show("Điểm tổng kết không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -259,7 +269,7 @@ namespace QuanLyDaoTao_Nhom2
                 sv.MaMonHoc = cbbMamon.Text;
                 sv.DiemLab = double.Parse(txtDiemLAB.Text);
                 sv.DiemThi = double.Parse(txtDiemThi.Text);
-
+                sv.DiemTongKet = (((double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemThi.Text) * 2) ) / 3);
                 db.SaveChanges();
                 MessageBox.Show("Đã sửa thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
@@ -286,7 +296,10 @@ namespace QuanLyDaoTao_Nhom2
             cbbMamon.Text = "";
             txtDiemLAB.Text = "";
             txtDiemThi.Text = "";
-            txtDiemTongKet.Text = "0.0";
+            lblDiemTongKet.Text = "0.0";
+            txtMaDiem.Enabled = true;
+            cbbMaSV.Enabled = true;
+            LoadData();
         }
 
         private void txtDiemThi_TextChanged(object sender, EventArgs e)
@@ -296,6 +309,13 @@ namespace QuanLyDaoTao_Nhom2
 
         private void dvThongTin_DoubleClick(object sender, EventArgs e)
         {
+            QLUser sv = db.QLUsers.FirstOrDefault(x => x.TaiKhoan.Contains(username));
+            if (sv.VaiTro == "ADMIN")
+            {
+                btnThem.Enabled = false;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+            }
             int lst = dvThongTin.CurrentRow.Index;
             btnThem.Enabled = true;
             txtMaDiem.Enabled = false;
@@ -315,8 +335,124 @@ namespace QuanLyDaoTao_Nhom2
 
         private void Diem_Load(object sender, EventArgs e)
         {
+            LoadData();
             LoadMaSV();
             LoadMaMonhoc();
+        }
+
+        private void btThoat_Click(object sender, EventArgs e)
+        {
+            QLUser sv = db.QLUsers.FirstOrDefault(x => x.TaiKhoan.Contains(username));
+            if (sv.VaiTro == "ADMIN")
+            {
+                this.Hide();
+                TrangChu form = new TrangChu(username);
+                form.ShowDialog();
+                this.Close();
+            }
+            else
+            {
+                this.Hide();
+                GiangVien form = new GiangVien(username);
+                form.ShowDialog();
+                this.Close();
+            }
+        }
+
+        private void sinhViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLySinhVien form2 = new QuanLySinhVien(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void giảngViênToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyGiangVien form2 = new QuanLyGiangVien(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void điểmToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Diem form2 = new Diem(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void lớpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyLop form2 = new QuanLyLop(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void mônHọcToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MonHoc form2 = new MonHoc(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void họcKỳToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyHocKy form2 = new QuanLyHocKy(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void lịchToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyLich form2 = new QuanLyLich(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void ngànhToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Nganh form2 = new Nganh(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void chuyênNgànhToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ChuyenNganh form2 = new ChuyenNganh(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void lớpMônToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyLopMon form2 = new QuanLyLopMon(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Diem formLuuDiem = new Diem(username);
+            formLuuDiem.ShowDialog();
+            this.Close();
+        }
+
+        private void toolStripMenuItem4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LichDay form2 = new LichDay(username);
+            form2.ShowDialog();
+            this.Close();
         }
     }
 }

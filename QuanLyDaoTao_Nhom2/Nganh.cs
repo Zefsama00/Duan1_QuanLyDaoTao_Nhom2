@@ -12,9 +12,11 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class Nganh : Form
     {
-        NHOM2_QUANLY_DAOTAOEntities db = new NHOM2_QUANLY_DAOTAOEntities();
-        public Nganh()
+        QLDTEntities db = new QLDTEntities();
+        string username;
+        public Nganh(String nametk)
         {
+            username = nametk;
             InitializeComponent();
             LoadData();
             btnSua.Enabled = false;
@@ -22,7 +24,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
-            using (var context = new NHOM2_QUANLY_DAOTAOEntities())
+            using (var context = new QLDTEntities())
             {
                 var result = (from c in context.QLNganhs
                               select new
@@ -86,7 +88,7 @@ namespace QuanLyDaoTao_Nhom2
             {
                 try
                 {
-                    using (var context = new NHOM2_QUANLY_DAOTAOEntities())
+                    using (var context = new QLDTEntities())
                     {
 
                         QLNganh nganh = new QLNganh()
@@ -130,7 +132,7 @@ namespace QuanLyDaoTao_Nhom2
             {
                 try
                 {
-                    using (var context = new NHOM2_QUANLY_DAOTAOEntities())
+                    using (var context = new QLDTEntities())
                     {
                         string selectedMaNganh = dvThongTin.CurrentRow.Cells["MaNganh"].Value.ToString();
                         QLNganh nganh = context.QLNganhs.Where(n => n.MaNganh == selectedMaNganh).FirstOrDefault();
@@ -194,7 +196,7 @@ namespace QuanLyDaoTao_Nhom2
         {
             string timKiem = txtTimKiem.Text.Trim();
 
-            using (var context = new NHOM2_QUANLY_DAOTAOEntities())
+            using (var context = new QLDTEntities())
             {
                 if (string.IsNullOrWhiteSpace(timKiem))
                 {
@@ -214,6 +216,86 @@ namespace QuanLyDaoTao_Nhom2
                     dvThongTin.DataSource = null;
                 }
             }
+        }
+
+        private void lớpMônToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyLopMon form2 = new QuanLyLopMon(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void chuyênNgànhToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ChuyenNganh form2 = new ChuyenNganh(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void ngànhToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Nganh form2 = new Nganh(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void lịchToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyLich form2 = new QuanLyLich(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void họcKỳToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyHocKy form2 = new QuanLyHocKy(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void mônHọcToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MonHoc form2 = new MonHoc(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void lớpToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyLop form2 = new QuanLyLop(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void điểmToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Diem form2 = new Diem(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void giảngViênToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLyGiangVien form2 = new QuanLyGiangVien(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void sinhViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            QuanLySinhVien form2 = new QuanLySinhVien(username);
+            form2.ShowDialog();
+            this.Close();
         }
     }
 }

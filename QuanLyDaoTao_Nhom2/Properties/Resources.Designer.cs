@@ -309,5 +309,15 @@ namespace QuanLyDaoTao_Nhom2.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap yeti4 {
+            get {
+                object obj = ResourceManager.GetObject("yeti4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

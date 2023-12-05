@@ -7,14 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace QuanLyDaoTao_Nhom2
 {
     public partial class LichDay : Form
     {
         QLDTEntities db = new QLDTEntities();
-        public LichDay()
+        string username;
+        public LichDay(String nametk)
         {
+            username = nametk;
             InitializeComponent();
             LoadData();
             
@@ -35,17 +38,31 @@ namespace QuanLyDaoTao_Nhom2
                                   MaHocKy = ld.MaHocKy,
                                   GioHoc = ld.GioHoc,
                                   NgayHoc = ld.NgayHoc,
-                                 
                               }).ToList();
                 dvThongTin.DataSource = result;
 
             }
         }
 
-        private void btnTimKiem_Click(object sender, EventArgs e)
+        private void LichDayToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string timCN = txtTimKiem.Text.Trim().ToLower();
-            dvThongTin.DataSource = db.QLLiches.Where(x => x.MaHocKy.ToLower().Contains(timCN)).ToList();
+            this.Hide();
+            LichDay form2 = new LichDay(username);
+            form2.ShowDialog();
+            this.Close();
+        }
+
+        private void LenDiemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Diem formLuuDiem = new Diem(username);
+            formLuuDiem.ShowDialog();
+            this.Close();
+        }
+
+        private void DSSVToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

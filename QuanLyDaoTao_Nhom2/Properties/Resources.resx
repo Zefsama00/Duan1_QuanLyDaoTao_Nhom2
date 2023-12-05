@@ -127,11 +127,14 @@
   <data name="LamMoi" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LamMoi.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="yeti3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yeti3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="yeti1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yeti.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hien" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\hien.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="yeti" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yeti.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -142,26 +145,23 @@
   <data name="if_quit_37278" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\if_quit_37278.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="ButtonTimKiem" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ButtonTimKiem.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Businessman_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Businessman_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="yeti21" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yeti2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Them" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Them.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="textbox_user_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\textbox_user_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ButtonTimKiem" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ButtonTimKiem.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Edit" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Edit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Forgot Password_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forgot Password_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="hien" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hien.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -172,8 +172,8 @@
   <data name="download" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Forgot Password_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Forgot Password_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yeti21" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yeti2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sua" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sua.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -187,10 +187,13 @@
   <data name="yeti2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\yeti2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="textbox_user_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\textbox_user_24.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="FPT_Polytechnic1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\FPT_Polytechnic1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="yeti3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\yeti3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="yeti4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\yeti1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

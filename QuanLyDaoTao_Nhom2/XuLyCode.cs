@@ -50,6 +50,15 @@ namespace QuanLyDaoTao_Nhom2
             }
             return dsLoai;
         }
+        public static List<QLSinhVien> GetListSV()
+        {
+            List<QLSinhVien> dsLoai = new List<QLSinhVien>();
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                dsLoai = csharpDB.QLSinhViens.ToList();
+            }
+            return dsLoai;
+        }
         public static List<QLLop> GetListLop()
         {
             List<QLLop> dsLoai = new List<QLLop>();
@@ -83,6 +92,15 @@ namespace QuanLyDaoTao_Nhom2
             using (QLDTEntities csharpDB = new QLDTEntities())
             {
                 dsLoai = csharpDB.QLLiches.ToList();
+            }
+            return dsLoai;
+        }
+        public static List<QLUser> GetLishUser()
+        {
+            List<QLUser> dsLoai = new List<QLUser>();
+            using (QLDTEntities csharpDB = new QLDTEntities())
+            {
+                dsLoai = csharpDB.QLUsers.ToList();
             }
             return dsLoai;
         }

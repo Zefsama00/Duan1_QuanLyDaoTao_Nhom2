@@ -137,7 +137,7 @@ namespace QuanLyDaoTao_Nhom2
             }
             else
             {
-                String role = XuLyCode.Login(txtTaiKhoan.Text, txtMatkhau.Text);
+                String role = XuLyCode.Login(txtTaiKhoan.Text, XuLyCode.Encrypt( txtMatkhau.Text));
                 
                 if (!String.IsNullOrEmpty(role))
                 {

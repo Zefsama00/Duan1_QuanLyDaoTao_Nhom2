@@ -13,8 +13,10 @@ namespace QuanLyDaoTao_Nhom2
     public partial class LichHoc : Form
     {
         QLDTEntities db = new QLDTEntities();
-        public LichHoc()
+        string username;
+        public LichHoc(String nametk)
         {
+            username = nametk;
             InitializeComponent();
             LoadData();
         }
@@ -25,15 +27,19 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
-            using (var context = new QLDTEntities())
+            using (QLDTEntities db = new QLDTEntities())
             {
-                var result = (from ld in context.QLLiches
+                var result = (from ld in db.QLLiches 
+                              join c in db.QLLopMons on ld.MaHocKy equals c.MaHocKy
+                              join giaovien in db.QLGiangViens on c.MaGV equals giaovien.MaGV
                               select new
                               {
                                   MaLichHoc = ld.MaLichHoc,
                                   MaHocKy = ld.MaHocKy,
                                   GioHoc = ld.GioHoc,
                                   NgayHoc = ld.NgayHoc,
+                                  HoTenGV = giaovien.HoTenGV
+
 
                               }).ToList();
                 dvThongTin.DataSource = result;
@@ -41,10 +47,28 @@ namespace QuanLyDaoTao_Nhom2
             }
         }
 
-        private void btnTimKiem_Click(object sender, EventArgs e)
+        private void LichHocToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string timCN = txtTimKiem.Text.Trim().ToLower();
-            dvThongTin.DataSource = db.QLLiches.Where(x => x.MaHocKy.ToLower().Contains(timCN)).ToList();
+            this.Hide();
+            LichHoc form = new LichHoc(username);
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void btThoat_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            SinhVien form = new SinhVien(username);
+            form.ShowDialog();
+            this.Close();
+        }
+
+        private void điểmToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            XemDiem form = new XemDiem(username);
+            form.ShowDialog();
+            this.Close();
         }
     }
 }
