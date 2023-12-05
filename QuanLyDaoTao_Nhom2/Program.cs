@@ -16,7 +16,7 @@ namespace QuanLyDaoTao_Nhom2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);      
-            Application.Run(new XemDSSV(""));
+            Application.Run(new TrangChu("nhanvien"));
         }
     }
 }
