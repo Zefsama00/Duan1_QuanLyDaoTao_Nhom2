@@ -31,19 +31,24 @@ namespace QuanLyDaoTao_Nhom2
         {
 
             var sql = (from c in db.QLDiems
+                       join b in db.QLSinhViens
+                       on c.MaSV equals b.MaSV
+                       join a in db.QLMonHocs
+                       on c.MaMonHoc equals a.MaMonHoc
                        select new
                        {
                            ID = c.MaDiem,
                            MaSV = c.MaSV,
+                           TenMonHoc = a.TenMonHoc,
+                           HoTenSV = b.HoTenSV,
                            MaMonHoc = c.MaMonHoc,
                            DiemLAB = c.DiemLab,
                            DiemThi = c.DiemThi,
                            DiemTongKet = (c.DiemLab + c.DiemThi * 2) / 3,
                        });
             dvThongTin.DataSource = sql.ToList();
-            btnThem.Enabled = true;
-            btnSua.Enabled = false;
-            btnXoa.Enabled = false;
+            txtMaSV.Enabled = false;
+            txtMaMonHoc.Enabled = false;
         }
 
         string lenhsv;
@@ -51,36 +56,94 @@ namespace QuanLyDaoTao_Nhom2
 
         void LoadMaSV()
         {
-            cbbMaSV.Items.Clear();
+            cboTenSV.Items.Clear();
             KetNoi = new SqlConnection(str);
-            lenhsv = @"SELECT MaSV From QLSinhVien";
+            lenhsv = @"SELECT HoTenSV From QLSinhVien";
             KetNoi.Open();
-            ThucHien = new SqlCommand(lenhsv, KetNoi);
-            DuLieu = ThucHien.ExecuteReader();
-            while (DuLieu.Read())
+            try
             {
-                cbbMaSV.Items.Add(DuLieu[0].ToString());
-
-
+                ThucHien = new SqlCommand(lenhsv, KetNoi);
+                DuLieu = ThucHien.ExecuteReader();
+                while (DuLieu.Read())
+                {
+                    cboTenSV.Items.Add(DuLieu[0].ToString());
+                }
             }
-            KetNoi.Close();
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                KetNoi.Close();
+            }
+            cboTenSV.SelectedIndexChanged += (s, e) =>
+            {
+                var maSV = cboTenSV.SelectedItem as string;
+                if (maSV != null)
+                {
+
+                    var lenhsv = @"SELECT MaSV From QLSinhVien Where HoTenSV = @HoTenSV";
+                    var thucHien = new SqlCommand(lenhsv, KetNoi);
+                    thucHien.Parameters.AddWithValue("@HoTenSV", maSV);
+                    KetNoi.Open();
+                    var duLieu = thucHien.ExecuteReader();
+                    if (duLieu.Read())
+                    {
+                        txtMaSV.Text = duLieu[0].ToString();
+                    }
+                    KetNoi.Close();
+                }
+            };
 
         }
 
         void LoadMaMonhoc()
         {
 
+            cboTenMonHoc.Items.Clear();
             KetNoi = new SqlConnection(str);
-            lenhmh = @"SELECT MaMonHoc From QLMonHoc";
+            lenhmh = @"SELECT TenMonHoc From QLMonHoc";
             KetNoi.Open();
-            ThucHien = new SqlCommand(lenhmh, KetNoi);
-            DuLieu = ThucHien.ExecuteReader();
-            while (DuLieu.Read())
+            try
             {
-                cbbMamon.Items.Add(DuLieu[0].ToString());
+                ThucHien = new SqlCommand(lenhmh, KetNoi);
+                DuLieu = ThucHien.ExecuteReader();
+                while (DuLieu.Read())
+                {
+                    cboTenMonHoc.Items.Add(DuLieu[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                KetNoi.Close();
             }
 
-            KetNoi.Close();
+
+            cboTenMonHoc.SelectedIndexChanged += (s, e) =>
+            {
+                var maMH = cboTenMonHoc.SelectedItem as string;
+                if (maMH != null)
+                {
+
+                    var lenhmh = @"SELECT MaMonHoc From QLMonHoc Where TenMonHoc = @TenMonHoc";
+                    var thucHienmh = new SqlCommand(lenhmh, KetNoi);
+                    thucHienmh.Parameters.AddWithValue("@TenMonHoc", maMH);
+                    KetNoi.Open();
+                    var duLieumh = thucHienmh.ExecuteReader();
+                    if (duLieumh.Read())
+                    {
+                        txtMaMonHoc.Text = duLieumh[0].ToString();
+                    }
+                    KetNoi.Close();
+                }
+            };
         }
 
         private void TinhDiemTB()
@@ -105,8 +168,8 @@ namespace QuanLyDaoTao_Nhom2
             if (queryTimBenSV != null)
             {
                 qld.MaDiem = txtMaDiem.Text;
-                qld.MaSV = cbbMaSV.Text;
-                qld.MaMonHoc = cbbMamon.Text;
+                qld.MaSV = cboTenSV.Text;
+                qld.MaMonHoc = cboTenMonHoc.Text;
                 qld.DiemLab = double.Parse(txtDiemLAB.Text);
                 qld.DiemThi = double.Parse(txtDiemThi.Text);
                 qld.DiemTongKet = (((double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemThi.Text)) * 2)/3);
@@ -146,13 +209,19 @@ namespace QuanLyDaoTao_Nhom2
                     return;
                 }
 
-                else if (cbbMaSV.Text == "")
+                else if (cboTenSV.Text == "")
                 {
                     MessageBox.Show("Mã sinh không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                else if (cbbMamon.Text == "")
+                else if (db.QLMonHocs.Any(mh => mh.MaMonHoc == txtMaMonHoc.Text))
+                {
+                    MessageBox.Show("Môn học sinh viên này đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                else if (cboTenMonHoc.Text == "")
                 {
                     MessageBox.Show("Mã môn học không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -164,7 +233,7 @@ namespace QuanLyDaoTao_Nhom2
                     return;
                 }
 
-                else if (Convert.ToInt32(txtDiemLAB.Text) <= 0 || Convert.ToInt32(txtDiemLAB.Text) >= 10)
+                else if (Convert.ToInt32(txtDiemLAB.Text) < 0 || Convert.ToInt32(txtDiemLAB.Text) > 10)
                 {
                     MessageBox.Show("Điểm LAB phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -175,29 +244,32 @@ namespace QuanLyDaoTao_Nhom2
                     MessageBox.Show("Điểm thi không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                else if (Convert.ToInt32(txtDiemThi.Text) <= 0 || Convert.ToInt32(txtDiemThi.Text) >= 10)
+                else if (Convert.ToInt32(txtDiemThi.Text) < 0 || Convert.ToInt32(txtDiemThi.Text) > 10)
                 {
                     MessageBox.Show("Điểm thi phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-
-
-
-                db.QLDiems.Add(new QLDiem()
+                else
                 {
+                    db.QLDiems.Add(new QLDiem()
+                    {
 
-                    MaDiem = txtMaDiem.Text,
-                    MaSV = cbbMaSV.Text,
-                    MaMonHoc = cbbMamon.Text,
-                    DiemLab = double.Parse(txtDiemLAB.Text),
-                    DiemThi = double.Parse(txtDiemThi.Text),
-                    DiemTongKet = (((double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemThi.Text) * 2) ) / 3),
-                });
+                        MaDiem = txtMaDiem.Text,
+                        MaSV = txtMaSV.Text,
+                        MaMonHoc = txtMaMonHoc.Text,
+                        DiemLab = double.Parse(txtDiemLAB.Text),
+                        DiemThi = double.Parse(txtDiemThi.Text),
+                        DiemTongKet = (double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemLAB.Text)*2)/3,
+                    });
 
-                db.SaveChanges();
-                MessageBox.Show("Điểm đã được thêm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadData();
+                    db.SaveChanges();
+                    MessageBox.Show("Điểm đã được thêm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                }
+
+
+
 
             }
             catch (Exception ex)
@@ -210,28 +282,15 @@ namespace QuanLyDaoTao_Nhom2
         {
             try
             {
-
-                if (txtMaDiem.Text == "")
-                {
-                    MessageBox.Show("ID không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                else if (cbbMaSV.Text == "")
-                {
-                    MessageBox.Show("Mã sinh không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                else if (cbbMamon.Text == "")
-                {
-                    MessageBox.Show("Mã môn học không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                else if (txtDiemLAB.Text == "")
+                if (txtDiemLAB.Text == "")
                 {
                     MessageBox.Show("Điểm LAB không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                else if (Convert.ToInt32(txtDiemLAB.Text) < 0 || Convert.ToInt32(txtDiemLAB.Text) > 10)
+                {
+                    MessageBox.Show("Điểm LAB phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -240,26 +299,18 @@ namespace QuanLyDaoTao_Nhom2
                     MessageBox.Show("Điểm thi không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                else if (lblDiemTongKet.Text == "")
+                else if (Convert.ToInt32(txtDiemThi.Text) < 0 || Convert.ToInt32(txtDiemThi.Text) > 10)
                 {
-                    MessageBox.Show("Điểm tổng kết không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Điểm thi phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                else if (Convert.ToInt32(txtDiemLAB.Text) <= 0 || Convert.ToInt32(txtDiemLAB.Text) >= 10)
-                {
-                    MessageBox.Show("Điểm LAB phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+
                 var sua = (dvThongTin.SelectedCells[0].OwningRow.Cells["ID"].Value.ToString());
                 QLDiem sv = db.QLDiems.Find(sua);
-                sv.MaDiem = txtMaDiem.Text;
-                sv.MaSV = cbbMaSV.Text;
-                sv.MaMonHoc = cbbMamon.Text;
                 sv.DiemLab = double.Parse(txtDiemLAB.Text);
                 sv.DiemThi = double.Parse(txtDiemThi.Text);
-                sv.DiemTongKet = (((double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemThi.Text) * 2) ) / 3);
+                sv.DiemTongKet = (double.Parse(txtDiemLAB.Text) + double.Parse(txtDiemLAB.Text) * 2) / 3;
                 db.SaveChanges();
                 MessageBox.Show("Đã sửa thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
@@ -273,7 +324,7 @@ namespace QuanLyDaoTao_Nhom2
         private void btnXoa_Click(object sender, EventArgs e)
         {
             var id = txtMaDiem.Text;
-            QLDiem dd = db.QLDiems.Where(p => p.MaDiem == id && p.MaSV == cbbMaSV.Text).FirstOrDefault();
+            QLDiem dd = db.QLDiems.Where(p => p.MaDiem == id && p.MaSV == cboTenSV.Text).FirstOrDefault();
             db.QLDiems.Remove(dd);
             db.SaveChanges();
             LoadData();
@@ -282,14 +333,13 @@ namespace QuanLyDaoTao_Nhom2
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             txtMaDiem.Text = "";
-            cbbMaSV.Text = "";
-            cbbMamon.Text = "";
+            cboTenSV.Text = "";
+            txtMaSV.Text = "";
+            txtMaMonHoc.Text = "";
+            cboTenMonHoc.Text = "";
             txtDiemLAB.Text = "";
             txtDiemThi.Text = "";
             lblDiemTongKet.Text = "0.0";
-            txtMaDiem.Enabled = true;
-            cbbMaSV.Enabled = true;
-            LoadData();
         }
 
         private void txtDiemThi_TextChanged(object sender, EventArgs e)
@@ -309,10 +359,10 @@ namespace QuanLyDaoTao_Nhom2
             int lst = dvThongTin.CurrentRow.Index;
             btnThem.Enabled = true;
             txtMaDiem.Enabled = false;
-            cbbMaSV.Enabled = false;
+            cboTenSV.Enabled = false;
             txtMaDiem.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
-            cbbMaSV.Text = dvThongTin.Rows[lst].Cells[1].Value.ToString();
-            cbbMamon.Text = dvThongTin.Rows[lst].Cells[2].Value.ToString();
+            cboTenSV.Text = dvThongTin.Rows[lst].Cells[1].Value.ToString();
+            cboTenMonHoc.Text = dvThongTin.Rows[lst].Cells[2].Value.ToString();
             txtDiemLAB.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
             txtDiemThi.Text = dvThongTin.Rows[lst].Cells[4].Value.ToString();
         }
@@ -454,6 +504,11 @@ namespace QuanLyDaoTao_Nhom2
             LichDay form2 = new LichDay(username);
             form2.ShowDialog();
             this.Close();
+        }
+
+        private void txtDiemLAB_TextChanged(object sender, EventArgs e)
+        {
+            TinhDiemTB();
         }
     }
 }
