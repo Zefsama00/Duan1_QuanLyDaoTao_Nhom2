@@ -18,6 +18,7 @@ namespace QuanLyDaoTao_Nhom2
         {
             username = nametk;
             InitializeComponent();
+            LoadData();
         }
         void LoadData()
         {

@@ -17,34 +17,40 @@ namespace QuanLyDaoTao_Nhom2
         public LichHoc(String nametk)
         {
             username = nametk;
-            InitializeComponent();
-            LoadData();
+            InitializeComponent(); 
         }
 
         private void LichHoc_Load(object sender, EventArgs e)
         {
-
+            LoadData();
         }
         void LoadData()
         {
-            using (QLDTEntities db = new QLDTEntities())
-            {
-                var result = (from ld in db.QLLiches 
-                              join c in db.QLLopMons on ld.MaHocKy equals c.MaHocKy
+            QLSinhVien sv = db.QLSinhViens.FirstOrDefault(x => x.EmailSV.Contains(username));
+            var result = (from  
+                              c in db.QLLopMons
+                              join hk in db.QLHocKies on c.MaHocKy equals hk.MaHocKy
+                              join lh in db.QLLiches on hk.MaHocKy equals lh.MaHocKy
                               join giaovien in db.QLGiangViens on c.MaGV equals giaovien.MaGV
+                              join lopmon in db.QLLopMons on giaovien.MaGV equals lopmon.MaGV
+                              join lop in db.QLLops on lopmon.MaLop equals lop.MaLop
+                              join nganh in db.QLNganhs on lop.MaLop equals nganh.MaLop
+                              join sinhvien in db.QLSinhViens on nganh.MaSV equals sinhvien.MaSV
+                              join phong in db.QLPhongs on c.MaPhong equals phong.MaPhong
+                              join mon in db.QLMonHocs on c.MaMonHoc equals mon.MaMonHoc
+                              where sinhvien.MaSV == sv.MaSV
                               select new
                               {
-                                  MaLichHoc = ld.MaLichHoc,
-                                  MaHocKy = ld.MaHocKy,
-                                  GioHoc = ld.GioHoc,
-                                  NgayHoc = ld.NgayHoc,
-                                  HoTenGV = giaovien.HoTenGV
-
-
-                              }).ToList();
-                dvThongTin.DataSource = result;
-
-            }
+                                  MaHocKy = c.MaHocKy,
+                                  GioHoc = lh.GioHoc,
+                                  NgayHoc = lh.NgayHoc,
+                                  HoTenGV = giaovien.HoTenGV,
+                                  TenPhong = phong.TenPhong,
+                                  TenLop = lop.TenLop,
+                                  TenMon = mon.TenMonHoc
+                              });
+                 result.Distinct().ToList().ForEach(x => dvThongTin.Rows.Add(x.MaHocKy, x.GioHoc, x.NgayHoc.Value.Date.ToString().Substring(0,10), x.HoTenGV, x.TenPhong, x.TenLop, x.TenMon));
+                 dvThongTin.Update();
         }
 
         private void LichHocToolStripMenuItem1_Click(object sender, EventArgs e)

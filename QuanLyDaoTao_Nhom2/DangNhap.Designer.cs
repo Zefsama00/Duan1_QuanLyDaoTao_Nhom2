@@ -30,7 +30,6 @@
         {
             this.cbghinho = new System.Windows.Forms.CheckBox();
             this.btDangNhap = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtMatkhau = new System.Windows.Forms.TextBox();
@@ -70,17 +69,6 @@
             this.btDangNhap.Text = "Đăng nhập";
             this.btDangNhap.UseVisualStyleBackColor = true;
             this.btDangNhap.Click += new System.EventHandler(this.btDangNhap_Click);
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.LinkColor = System.Drawing.Color.Crimson;
-            this.linkLabel1.Location = new System.Drawing.Point(306, 330);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(89, 13);
-            this.linkLabel1.TabIndex = 45;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Quên mật khẩu? ";
             // 
             // label2
             // 
@@ -210,7 +198,6 @@
             this.Controls.Add(this.Hienmatkhau);
             this.Controls.Add(this.Anmatkhau);
             this.Controls.Add(this.btThoat);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.avartaryetibox);
@@ -220,7 +207,7 @@
             this.Controls.Add(this.txtTaiKhoan);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DangNhap";
             this.Load += new System.EventHandler(this.DangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Hienmatkhau)).EndInit();
@@ -240,7 +227,6 @@
         private System.Windows.Forms.PictureBox Hienmatkhau;
         private System.Windows.Forms.PictureBox Anmatkhau;
         private System.Windows.Forms.Button btThoat;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox avartaryetibox;

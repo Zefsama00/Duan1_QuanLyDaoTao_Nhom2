@@ -13,7 +13,8 @@ namespace QuanLyDaoTao_Nhom2
     public partial class QuanLyGiangVien : Form
     {
         QLDTEntities db = new QLDTEntities();
-        string username;
+        string[] tk;
+        string mkran, username;
         public QuanLyGiangVien(String nametk)
         {
             username = nametk;
@@ -85,6 +86,17 @@ namespace QuanLyDaoTao_Nhom2
                         {
                             context.QLGiangViens.Add(gv);
                             context.SaveChanges();
+                            Random mkrandom = new Random();
+                            mkran = mkrandom.Next(1000, 9999).ToString();
+                            tk = txtEmail.Text.Split('@');
+                            string tkmoi = tk[0];
+                            QLUser useradd = new QLUser();
+                            useradd.TaiKhoan = tkmoi;
+                            useradd.MatKhau = XuLyCode.Encrypt(mkran);
+                            useradd.VaiTro = "GIANGVIEN";
+                            db.QLUsers.Add(useradd);
+                            db.SaveChanges();
+                            MessageBox.Show("Mật khẩu của giảng viên là :" + mkran);
                         }
 
                         MessageBox.Show("Thêm thành công", "Thông báo", MessageBoxButtons.OK);

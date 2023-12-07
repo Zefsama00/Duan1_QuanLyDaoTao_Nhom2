@@ -60,7 +60,7 @@ namespace QuanLyDaoTao_Nhom2
         private void btThoatGV_Click_1(object sender, EventArgs e)
         {
             this.Hide();
-            LichDay form2 = new LichDay(username);
+            DangNhap form2 = new DangNhap();
             form2.ShowDialog();
             this.Close();
         }

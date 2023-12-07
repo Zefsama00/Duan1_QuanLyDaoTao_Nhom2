@@ -478,6 +478,7 @@ namespace QuanLyDaoTao_Nhom2
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(182, 22);
             this.toolStripMenuItem3.Text = "Danh Sách Sinh Viên";
+            this.toolStripMenuItem3.Click += new System.EventHandler(this.toolStripMenuItem3_Click);
             // 
             // toolStripMenuItem4
             // 

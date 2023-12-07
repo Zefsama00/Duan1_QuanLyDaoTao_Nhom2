@@ -12,6 +12,7 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class QuanLyLopMon : Form
     {
+        QLDTEntities db = new QLDTEntities();
         List<QLLopMon> dsLopMon;
         List<QLPhong> dsPhong;
         List<QLGiangVien> dsGV;
@@ -87,30 +88,45 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            QLLopMon lmAdd = new QLLopMon();
-            lmAdd.MaLopMon = txtMaLopmon.Text;
-            lmAdd.MaPhong =  dsPhong.Find(loai => loai.TenPhong == cmxPhong.SelectedItem.ToString()).MaPhong;
-            lmAdd.MaGV = dsGV.Find(
-              loai => loai.HoTenGV == cmxGV.SelectedItem.ToString()).MaGV;
-            lmAdd.MaLop = dsLop.Find(
-               loai => loai.TenLop == cmxLop.SelectedItem.ToString()).MaLop;
-            lmAdd.MaMonHoc = dsMonHoc.Find(
-               loai => loai.TenMonHoc == cmxMonHoc.SelectedItem.ToString()).MaMonHoc;
-            lmAdd.MaHocKy = dsHocKy.Find(
-               loai => loai.TenHocKy == cmxHocKy.SelectedItem.ToString()).MaHocKy;
-            if (XuLyCode.addLopMon(lmAdd))
+            if (!string.IsNullOrEmpty(txtMaLopmon.Text))
             {
-                MessageBox.Show("Đã thêm thành công");
-                this.updateDataGridView();
+                var CheckID_MaLopMon = db.QLLopMons.Where(x => x.MaLopMon == txtMaLopmon.Text || x.MaLopMon == txtMaLopmon.Text).ToList().FirstOrDefault();
+                if (CheckID_MaLopMon != null)
+                {
+                    MessageBox.Show("Mã Lớp Môn đã tồn tại!","Lỗi",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
+                else 
+                {
+                    QLLopMon lmAdd = new QLLopMon();
+                    lmAdd.MaLopMon = txtMaLopmon.Text;
+                    lmAdd.MaPhong = dsPhong.Find(loai => loai.TenPhong == cmxPhong.SelectedItem.ToString()).MaPhong;
+                    lmAdd.MaGV = dsGV.Find(
+                      loai => loai.HoTenGV == cmxGV.SelectedItem.ToString()).MaGV;
+                    lmAdd.MaLop = dsLop.Find(
+                       loai => loai.TenLop == cmxLop.SelectedItem.ToString()).MaLop;
+                    lmAdd.MaMonHoc = dsMonHoc.Find(
+                       loai => loai.TenMonHoc == cmxMonHoc.SelectedItem.ToString()).MaMonHoc;
+                    lmAdd.MaHocKy = dsHocKy.Find(
+                       loai => loai.TenHocKy == cmxHocKy.SelectedItem.ToString()).MaHocKy;
+                    if (XuLyCode.addLopMon(lmAdd))
+                    {
+                        MessageBox.Show("Đã thêm thành công");
+                        this.updateDataGridView();
+                    }
+                    else
+                    {
+                        MessageBox.Show(
+                            "Thêm mới thất bại",
+                            "Lỗi",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error
+                        );
+                    }
+                }
             }
             else
             {
-                MessageBox.Show(
-                    "Thêm mới thất bại",
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("Dữ Liệu Không Được Để Trống!!!","Lỗi", MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
         }
 

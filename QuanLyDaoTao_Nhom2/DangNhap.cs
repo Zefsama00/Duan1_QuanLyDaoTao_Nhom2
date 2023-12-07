@@ -144,7 +144,7 @@ namespace QuanLyDaoTao_Nhom2
                     if (cbghinho.Checked)
                     {
                         Properties.Settings.Default.Username = txtTaiKhoan.Text;
-                        Properties.Settings.Default.Password = XuLyCode.Encrypt(txtMatkhau.Text);
+                        Properties.Settings.Default.Password = txtMatkhau.Text;
                     }
                     if (role.Equals("ADMIN"))
                     {

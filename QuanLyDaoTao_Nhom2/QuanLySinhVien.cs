@@ -133,7 +133,7 @@ namespace QuanLyDaoTao_Nhom2
         private void btnSua_Click(object sender, EventArgs e)
         {
             var CheckID_MaSV = db.QLSinhViens.Where(x => x.MaSV == txtMaSV.Text || x.MaSV == txtMaSV.Text).ToList().FirstOrDefault();
-            var Check_Email = db.QLSinhViens.Where(x => x.EmailSV == txtEmail.Text || x.EmailSV == txtEmail.Text).ToList().FirstOrDefault();
+            var checkEmail = db.QLSinhViens.Where(x => x.EmailSV == txtEmail.Text && x.MaSV != txtMaSV.Text).FirstOrDefault();
             var CheckSDT = db.QLSinhViens.Where(x => x.SoDienThoaiSV == txtSoDienThoai.Text).ToList().FirstOrDefault();
             string emailAddress = txtEmail.Text;
             int lengthSDT = Convert.ToInt32(txtSoDienThoai.TextLength);
@@ -152,7 +152,7 @@ namespace QuanLyDaoTao_Nhom2
             {
                 MessageBox.Show("Bạn chưa chọn giới tính");
             }
-            else if (Check_Email != null)
+            else if (checkEmail != null)
             {
                 MessageBox.Show("Email  trùng với một sinh viên khác");
                 return;
@@ -178,15 +178,6 @@ namespace QuanLyDaoTao_Nhom2
                 sv.SoDienThoaiSV = txtSoDienThoai.Text;
                 sv.EmailSV = txtEmail.Text;
                 db.SaveChanges();
-                tk = txtEmail.Text.Split('@');
-                string tkmoi = tk[0];
-                QLUser useradd = new QLUser();
-                useradd.TaiKhoan = tkmoi;
-                useradd.MatKhau = XuLyCode.Encrypt(mkran);
-                useradd.VaiTro = "SINHVIEN";
-                db.QLUsers.Add(useradd);
-                db.SaveChanges();
-                MessageBox.Show("Mật khẩu của sinh viên là :" + mkran);
                 LoadData();
             }
         }

@@ -34,14 +34,13 @@
             this.LichHocToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lblLichHoc = new System.Windows.Forms.Label();
             this.dvThongTin = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btThoat = new System.Windows.Forms.Button();
             this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiemLab = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiemThi = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DiemTongKet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btThoat = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +92,6 @@
             // 
             this.dvThongTin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvThongTin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ID,
             this.MaSV,
             this.TenSV,
             this.TenMon,
@@ -108,10 +106,18 @@
             this.dvThongTin.Size = new System.Drawing.Size(777, 247);
             this.dvThongTin.TabIndex = 55;
             // 
-            // ID
+            // btThoat
             // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
+            this.btThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btThoat.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.Exit;
+            this.btThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btThoat.Location = new System.Drawing.Point(690, 27);
+            this.btThoat.Name = "btThoat";
+            this.btThoat.Size = new System.Drawing.Size(98, 35);
+            this.btThoat.TabIndex = 58;
+            this.btThoat.Text = "Thoát";
+            this.btThoat.UseVisualStyleBackColor = true;
+            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
             // MaSV
             // 
@@ -122,11 +128,13 @@
             // 
             this.TenSV.HeaderText = "Tên Sinh Viên";
             this.TenSV.Name = "TenSV";
+            this.TenSV.Width = 150;
             // 
             // TenMon
             // 
             this.TenMon.HeaderText = "Tên Môn Học";
             this.TenMon.Name = "TenMon";
+            this.TenMon.Width = 150;
             // 
             // DiemLab
             // 
@@ -143,19 +151,6 @@
             this.DiemTongKet.HeaderText = "Điểm Trung Bình";
             this.DiemTongKet.Name = "DiemTongKet";
             this.DiemTongKet.Width = 120;
-            // 
-            // btThoat
-            // 
-            this.btThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btThoat.Image = global::QuanLyDaoTao_Nhom2.Properties.Resources.Exit;
-            this.btThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btThoat.Location = new System.Drawing.Point(690, 27);
-            this.btThoat.Name = "btThoat";
-            this.btThoat.Size = new System.Drawing.Size(98, 35);
-            this.btThoat.TabIndex = 58;
-            this.btThoat.Text = "Thoát";
-            this.btThoat.UseVisualStyleBackColor = true;
-            this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
             // XemDiem
             // 
@@ -186,7 +181,6 @@
         private System.Windows.Forms.Label lblLichHoc;
         private System.Windows.Forms.DataGridView dvThongTin;
         private System.Windows.Forms.Button btThoat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaSV;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenSV;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenMon;

@@ -50,16 +50,22 @@ namespace QuanLyDaoTao_Nhom2
         void LoadDiem()
         {
             QLSinhVien sv = db.QLSinhViens.FirstOrDefault(x => x.EmailSV.Contains(username));
-            QLDiem diem = db.QLDiems.FirstOrDefault(x => x.MaSV == sv.MaSV);
-            QLMonHoc mon = db.QLMonHocs.FirstOrDefault(x => x.MaMonHoc == diem.MaMonHoc);
-            dvThongTin.Rows.Add(
-                     diem.MaDiem,
-                     diem.MaSV,
-                     sv.HoTenSV,
-                     mon.TenMonHoc,
-                     diem.DiemLab,
-                     diem.DiemThi,
-                     ((double)diem.DiemTongKet));
+            dvThongTin.Rows.Clear();
+            var result = (from
+                          c in db.QLSinhViens
+                          join bdiem in db.QLDiems on c.MaSV equals bdiem.MaSV
+                          join bmon in db.QLMonHocs on bdiem.MaMonHoc equals bmon.MaMonHoc
+                          where c.MaSV == sv.MaSV
+                          select new
+                          {
+                              masv = c.MaSV,
+                              hoten = c.HoTenSV,
+                              monhoc = bmon.TenMonHoc,
+                              diemLab = bdiem.DiemLab,
+                              diemThi = bdiem.DiemThi,
+                              DiemTongKet = bdiem.DiemTongKet
+                          });
+            result.ToList().ForEach(x => dvThongTin.Rows.Add(x.masv, x.hoten, x.monhoc, x.diemLab, x.diemThi, x.DiemTongKet));
             dvThongTin.Update();
         }
         private void XemDiem_Load(object sender, EventArgs e)

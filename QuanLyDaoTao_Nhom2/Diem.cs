@@ -49,6 +49,8 @@ namespace QuanLyDaoTao_Nhom2
             dvThongTin.DataSource = sql.ToList();
             txtMaSV.Enabled = false;
             txtMaMonHoc.Enabled = false;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
 
         string lenhsv;
@@ -340,6 +342,12 @@ namespace QuanLyDaoTao_Nhom2
             txtDiemLAB.Text = "";
             txtDiemThi.Text = "";
             lblDiemTongKet.Text = "0.0";
+            btnThem.Enabled = true;
+            txtMaDiem.Enabled = true;
+            cboTenSV.Enabled = true;
+            cboTenMonHoc.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
         }
 
         private void txtDiemThi_TextChanged(object sender, EventArgs e)
@@ -355,16 +363,18 @@ namespace QuanLyDaoTao_Nhom2
                 btnThem.Enabled = false;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
+                cboTenMonHoc.Enabled = false;
             }
             int lst = dvThongTin.CurrentRow.Index;
-            btnThem.Enabled = true;
+            btnThem.Enabled = false;
             txtMaDiem.Enabled = false;
             cboTenSV.Enabled = false;
+            cboTenMonHoc.Enabled = false;
             txtMaDiem.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
-            cboTenSV.Text = dvThongTin.Rows[lst].Cells[1].Value.ToString();
+            cboTenSV.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
             cboTenMonHoc.Text = dvThongTin.Rows[lst].Cells[2].Value.ToString();
-            txtDiemLAB.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
-            txtDiemThi.Text = dvThongTin.Rows[lst].Cells[4].Value.ToString();
+            txtDiemLAB.Text = dvThongTin.Rows[lst].Cells[5].Value.ToString();
+            txtDiemThi.Text = dvThongTin.Rows[lst].Cells[6].Value.ToString();
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -509,6 +519,14 @@ namespace QuanLyDaoTao_Nhom2
         private void txtDiemLAB_TextChanged(object sender, EventArgs e)
         {
             TinhDiemTB();
+        }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            XemDSSV form = new XemDSSV(username);
+            form.ShowDialog();
+            this.Close();
         }
     }
 }

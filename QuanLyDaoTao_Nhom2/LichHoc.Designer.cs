@@ -36,6 +36,13 @@ namespace QuanLyDaoTao_Nhom2
             this.điểmToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.LichHocToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btThoat = new System.Windows.Forms.Button();
+            this.MaHocKy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GioHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HoTenGV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenMon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,12 +60,20 @@ namespace QuanLyDaoTao_Nhom2
             // dvThongTin
             // 
             this.dvThongTin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvThongTin.Location = new System.Drawing.Point(11, 194);
+            this.dvThongTin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaHocKy,
+            this.GioHoc,
+            this.NgayHoc,
+            this.HoTenGV,
+            this.TenPhong,
+            this.TenLop,
+            this.TenMon});
+            this.dvThongTin.Location = new System.Drawing.Point(21, 194);
             this.dvThongTin.Margin = new System.Windows.Forms.Padding(2);
             this.dvThongTin.Name = "dvThongTin";
             this.dvThongTin.RowHeadersWidth = 62;
             this.dvThongTin.RowTemplate.Height = 28;
-            this.dvThongTin.Size = new System.Drawing.Size(777, 247);
+            this.dvThongTin.Size = new System.Drawing.Size(754, 247);
             this.dvThongTin.TabIndex = 8;
             // 
             // menuStrip1
@@ -83,7 +98,7 @@ namespace QuanLyDaoTao_Nhom2
             // điểmToolStripMenuItem1
             // 
             this.điểmToolStripMenuItem1.Name = "điểmToolStripMenuItem1";
-            this.điểmToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.điểmToolStripMenuItem1.Size = new System.Drawing.Size(121, 22);
             this.điểmToolStripMenuItem1.Text = "Điểm";
             this.điểmToolStripMenuItem1.Click += new System.EventHandler(this.điểmToolStripMenuItem1_Click);
             // 
@@ -106,6 +121,41 @@ namespace QuanLyDaoTao_Nhom2
             this.btThoat.Text = "Thoát";
             this.btThoat.UseVisualStyleBackColor = true;
             this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
+            // 
+            // MaHocKy
+            // 
+            this.MaHocKy.HeaderText = "Mã Học Kỳ";
+            this.MaHocKy.Name = "MaHocKy";
+            // 
+            // GioHoc
+            // 
+            this.GioHoc.HeaderText = "Giờ Học";
+            this.GioHoc.Name = "GioHoc";
+            // 
+            // NgayHoc
+            // 
+            this.NgayHoc.HeaderText = "Ngày Học";
+            this.NgayHoc.Name = "NgayHoc";
+            // 
+            // HoTenGV
+            // 
+            this.HoTenGV.HeaderText = "Tên Giảng Viên";
+            this.HoTenGV.Name = "HoTenGV";
+            // 
+            // TenPhong
+            // 
+            this.TenPhong.HeaderText = "Tên Phòng";
+            this.TenPhong.Name = "TenPhong";
+            // 
+            // TenLop
+            // 
+            this.TenLop.HeaderText = "Tên Lớp";
+            this.TenLop.Name = "TenLop";
+            // 
+            // TenMon
+            // 
+            this.TenMon.HeaderText = "Tên Môn";
+            this.TenMon.Name = "TenMon";
             // 
             // LichHoc
             // 
@@ -137,5 +187,12 @@ namespace QuanLyDaoTao_Nhom2
         private System.Windows.Forms.ToolStripMenuItem điểmToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem LichHocToolStripMenuItem1;
         private System.Windows.Forms.Button btThoat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaHocKy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GioHoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayHoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HoTenGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenPhong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenLop;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenMon;
     }
 }

@@ -158,11 +158,11 @@ namespace QuanLyDaoTao_Nhom2
                 try
                 {
                     QLLopMon found = csharpDB.QLLopMons
-                        .FirstOrDefault(sp => sp.MaLopMon == pm.MaLop);
+                        .FirstOrDefault(sp => sp.MaLopMon == pm.MaLopMon);
                     found.MaPhong = pm.MaPhong;
                     found.MaGV = pm.MaGV;
                     found.MaLop = pm.MaLop;
-                    found.MaMonHoc = pm.MaLop;
+                    found.MaMonHoc = pm.MaMonHoc;
                     found.MaHocKy = pm.MaHocKy;
                     csharpDB.SaveChanges();
                     return true;
@@ -193,15 +193,15 @@ namespace QuanLyDaoTao_Nhom2
                 }
             }
         }
-        public static bool deleteLopMon(String malich)
+        public static bool deleteLopMon(String malopmon)
         {
             using (QLDTEntities csharpDB = new QLDTEntities())
             {
                 try
                 {
-                    QLLich found = csharpDB.QLLiches
-                        .FirstOrDefault(sp => sp.MaLichHoc == malich);
-                    csharpDB.QLLiches.Remove(found);
+                    QLLopMon found = csharpDB.QLLopMons
+                        .FirstOrDefault(sp => sp.MaLopMon == malopmon);
+                    csharpDB.QLLopMons.Remove(found);
                     csharpDB.SaveChanges();
                     return true;
                 }

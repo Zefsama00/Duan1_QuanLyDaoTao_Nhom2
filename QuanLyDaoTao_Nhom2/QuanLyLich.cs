@@ -12,6 +12,7 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class QuanLyLich : Form
     {
+        QLDTEntities db = new QLDTEntities();
         List<QLLich> dsLich;
         List<QLHocKy> dsHocKy;
         string username;
@@ -35,25 +36,45 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            QLLich lichAdd = new QLLich();
-            lichAdd.MaLichHoc = txtMaLichhoc.Text;
-            lichAdd.MaHocKy = dsHocKy.Find(
-                loai => loai.TenHocKy == cmxHocKy.SelectedItem.ToString()).MaHocKy;
-            lichAdd.GioHoc = int.Parse(txtGioHoc.Text);
-            lichAdd.NgayHoc = datetimeNgayHoc.Value;
-            if (XuLyCode.addLich(lichAdd))
-            {
-                MessageBox.Show("Đã thêm thành công");
-                this.updateDataGridView();
+            var CheckID_MaLich= db.QLLiches.Where(x => x.MaLichHoc == txtMaLichhoc.Text || x.MaLichHoc == txtMaLichhoc.Text).ToList().FirstOrDefault();
+            if (!string.IsNullOrEmpty(txtMaLichhoc.Text) &&
+               !string.IsNullOrEmpty(txtGioHoc.Text))    
+            { 
+                if (CheckID_MaLich != null)
+                {
+                    MessageBox.Show("Mã Lịch Học Bị Trùng!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else 
+                {
+                    try { 
+                    
+                        QLLich lichAdd = new QLLich();
+                        lichAdd.MaLichHoc = txtMaLichhoc.Text;
+                        lichAdd.MaHocKy = dsHocKy.Find(
+                        loai => loai.TenHocKy == cmxHocKy.SelectedItem.ToString()).MaHocKy;
+                        lichAdd.GioHoc = int.Parse(txtGioHoc.Text);
+                        lichAdd.NgayHoc = datetimeNgayHoc.Value;
+                        if (XuLyCode.addLich(lichAdd))
+                        {
+                            MessageBox.Show("Đã thêm thành công");
+                            this.updateDataGridView();
+                        }
+                        else
+                        {
+                            MessageBox.Show(
+                                "Thêm mới thất bại",
+                                "Lỗi",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                        }
+                    }
+                    catch (Exception ex) { MessageBox.Show("Giờ học phải là số nguyên!!!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+                }
             }
             else
             {
-                MessageBox.Show(
-                    "Thêm mới thất bại",
-                    "Lỗi",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
+                MessageBox.Show("Vui Lòng Không Để Trống Thông Tin","Lỗi",MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
