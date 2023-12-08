@@ -121,6 +121,7 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
+            txtMaCN.Enabled = true;
             txtTenCN.Text = "";
             txtMaCN.Text = "";
         }

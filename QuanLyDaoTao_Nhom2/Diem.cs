@@ -216,13 +216,6 @@ namespace QuanLyDaoTao_Nhom2
                     MessageBox.Show("Mã sinh không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                else if (db.QLMonHocs.Any(mh => mh.MaMonHoc == txtMaMonHoc.Text))
-                {
-                    MessageBox.Show("Môn học sinh viên này đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 else if (cboTenMonHoc.Text == "")
                 {
                     MessageBox.Show("Mã môn học không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -326,7 +319,7 @@ namespace QuanLyDaoTao_Nhom2
         private void btnXoa_Click(object sender, EventArgs e)
         {
             var id = txtMaDiem.Text;
-            QLDiem dd = db.QLDiems.Where(p => p.MaDiem == id && p.MaSV == cboTenSV.Text).FirstOrDefault();
+            QLDiem dd = db.QLDiems.Where(p => p.MaDiem == id).FirstOrDefault();
             db.QLDiems.Remove(dd);
             db.SaveChanges();
             LoadData();
