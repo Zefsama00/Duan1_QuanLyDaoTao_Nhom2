@@ -13,10 +13,10 @@ namespace QuanLyDaoTao_Nhom2
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class QLDTEntities : DbContext
+    public partial class NHOM2_QUANLY_DAOTAOEntities : DbContext
     {
-        public QLDTEntities()
-            : base("name=QLDTEntities")
+        public NHOM2_QUANLY_DAOTAOEntities()
+            : base("name=NHOM2_QUANLY_DAOTAOEntities")
         {
         }
     

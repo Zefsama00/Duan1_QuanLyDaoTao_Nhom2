@@ -12,7 +12,7 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class QuanLyHocKy : Form
     {
-        QLDTEntities db = new QLDTEntities();
+        NHOM2_QUANLY_DAOTAOEntities db = new NHOM2_QUANLY_DAOTAOEntities();
         public QuanLyHocKy()
         {
             InitializeComponent();
@@ -101,7 +101,7 @@ namespace QuanLyDaoTao_Nhom2
             {
                 try
                 {
-                    using (var context = new QLDTEntities())
+                    using (var context = new NHOM2_QUANLY_DAOTAOEntities())
                     {
                         string hk = dvThongTin.CurrentRow.Cells["MaHocKy"].Value.ToString();
                         QLHocKy HocKy = context.QLHocKies.Where(n => n.MaHocKy == hk).FirstOrDefault();

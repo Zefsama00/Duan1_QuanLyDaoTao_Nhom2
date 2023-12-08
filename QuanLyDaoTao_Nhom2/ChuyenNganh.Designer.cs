@@ -138,7 +138,7 @@
             // 
             this.btnLamMoi.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLamMoi.Image = ((System.Drawing.Image)(resources.GetObject("btnLamMoi.Image")));
-            this.btnLamMoi.Location = new System.Drawing.Point(771, 814);
+            this.btnLamMoi.Location = new System.Drawing.Point(815, 814);
             this.btnLamMoi.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLamMoi.Name = "btnLamMoi";
             this.btnLamMoi.Size = new System.Drawing.Size(175, 52);
@@ -153,7 +153,7 @@
             this.btnXoa.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.Image")));
             this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(529, 814);
+            this.btnXoa.Location = new System.Drawing.Point(576, 814);
             this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(120, 52);
@@ -167,7 +167,7 @@
             this.btnSua.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSua.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.Image")));
             this.btnSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSua.Location = new System.Drawing.Point(289, 814);
+            this.btnSua.Location = new System.Drawing.Point(324, 814);
             this.btnSua.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(121, 52);

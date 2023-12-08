@@ -12,7 +12,7 @@ namespace QuanLyDaoTao_Nhom2
     {
         public static String Login(String username, String password)
         {
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 QLUser found = csharpDB.QLUsers
                     .FirstOrDefault(row => row.TaiKhoan.Equals(username));
@@ -26,7 +26,7 @@ namespace QuanLyDaoTao_Nhom2
         public static List<QLLopMon> GetListLopMon()
         {
             List<QLLopMon> dsLoai = new List<QLLopMon>();
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using ( NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 dsLoai = csharpDB.QLLopMons.ToList();
             }
@@ -35,7 +35,7 @@ namespace QuanLyDaoTao_Nhom2
         public static List<QLPhong> GetListPhong()
         {
             List<QLPhong> dsLoai = new List<QLPhong>();
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 dsLoai = csharpDB.QLPhongs.ToList();
             }
@@ -44,7 +44,7 @@ namespace QuanLyDaoTao_Nhom2
         public static List<QLGiangVien> GetListGV()
         {
             List<QLGiangVien> dsLoai = new List<QLGiangVien>();
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new   NHOM2_QUANLY_DAOTAOEntities())
             {
                 dsLoai = csharpDB.QLGiangViens.ToList();
             }
@@ -53,7 +53,7 @@ namespace QuanLyDaoTao_Nhom2
         public static List<QLLop> GetListLop()
         {
             List<QLLop> dsLoai = new List<QLLop>();
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 dsLoai = csharpDB.QLLops.ToList();
             }
@@ -62,7 +62,7 @@ namespace QuanLyDaoTao_Nhom2
         public static List<QLMonHoc> GetListMonHoc()
         {
             List<QLMonHoc> dsLoai = new List<QLMonHoc>();
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 dsLoai = csharpDB.QLMonHocs.ToList();
             }
@@ -71,7 +71,7 @@ namespace QuanLyDaoTao_Nhom2
         public static List<QLHocKy> GetListHocKy()
         {
             List<QLHocKy> dsLoai = new List<QLHocKy>();
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 dsLoai = csharpDB.QLHocKies.ToList();
             }
@@ -80,7 +80,7 @@ namespace QuanLyDaoTao_Nhom2
         public static List<QLLich> GetListLich()
         {
             List<QLLich> dsLoai = new List<QLLich>();
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 dsLoai = csharpDB.QLLiches.ToList();
             }
@@ -88,7 +88,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         public static bool addLopMon(QLLopMon lmAdd)
         {
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 try
                 {
@@ -104,7 +104,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         public static bool addLich(QLLich lmAdd)
         {
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 try
                 {
@@ -135,7 +135,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         public static bool updateLopmon(QLLopMon pm)
         {
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 try
                 {
@@ -157,7 +157,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         public static bool updateLich(QLLich pm)
         {
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 try
                 {
@@ -177,7 +177,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         public static bool deleteLopMon(String malich)
         {
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 try
                 {
@@ -195,7 +195,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         public static bool deleteLich(String malich)
         {
-            using (QLDTEntities csharpDB = new QLDTEntities())
+            using (NHOM2_QUANLY_DAOTAOEntities csharpDB = new  NHOM2_QUANLY_DAOTAOEntities ())
             {
                 try
                 {

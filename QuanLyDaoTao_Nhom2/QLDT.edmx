@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLDTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NHOM2_QUANLY_DAOTAOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="QLChuyenNganh">
           <Key>
             <PropertyRef Name="MaCN" />
@@ -247,7 +247,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QLDTModelStoreContainer">
+        <EntityContainer Name="NHOM2_QUANLY_DAOTAOModelStoreContainer">
           <EntitySet Name="QLChuyenNganh" EntityType="Self.QLChuyenNganh" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QLDiem" EntityType="Self.QLDiem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QLGiangVien" EntityType="Self.QLGiangVien" Schema="dbo" store:Type="Tables" />
@@ -309,7 +309,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="QLDTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="NHOM2_QUANLY_DAOTAOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="QLChuyenNganh">
           <Key>
             <PropertyRef Name="MaCN" />
@@ -574,7 +574,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="QLDTEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NHOM2_QUANLY_DAOTAOEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="QLChuyenNganhs" EntityType="Self.QLChuyenNganh" />
           <EntitySet Name="QLDiems" EntityType="Self.QLDiem" />
           <EntitySet Name="QLGiangViens" EntityType="Self.QLGiangVien" />
@@ -637,9 +637,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="QLDTModelStoreContainer" CdmEntityContainer="QLDTEntities">
+        <EntityContainerMapping StorageEntityContainer="NHOM2_QUANLY_DAOTAOModelStoreContainer" CdmEntityContainer="NHOM2_QUANLY_DAOTAOEntities">
           <EntitySetMapping Name="QLChuyenNganhs">
-            <EntityTypeMapping TypeName="QLDTModel.QLChuyenNganh">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLChuyenNganh">
               <MappingFragment StoreEntitySet="QLChuyenNganh">
                 <ScalarProperty Name="MaCN" ColumnName="MaCN" />
                 <ScalarProperty Name="TenCN" ColumnName="TenCN" />
@@ -647,7 +647,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLDiems">
-            <EntityTypeMapping TypeName="QLDTModel.QLDiem">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLDiem">
               <MappingFragment StoreEntitySet="QLDiem">
                 <ScalarProperty Name="MaDiem" ColumnName="MaDiem" />
                 <ScalarProperty Name="DiemLab" ColumnName="DiemLab" />
@@ -659,7 +659,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLGiangViens">
-            <EntityTypeMapping TypeName="QLDTModel.QLGiangVien">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLGiangVien">
               <MappingFragment StoreEntitySet="QLGiangVien">
                 <ScalarProperty Name="MaGV" ColumnName="MaGV" />
                 <ScalarProperty Name="HoTenGV" ColumnName="HoTenGV" />
@@ -672,7 +672,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLHocKies">
-            <EntityTypeMapping TypeName="QLDTModel.QLHocKy">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLHocKy">
               <MappingFragment StoreEntitySet="QLHocKy">
                 <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
                 <ScalarProperty Name="TenHocKy" ColumnName="TenHocKy" />
@@ -682,7 +682,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLLiches">
-            <EntityTypeMapping TypeName="QLDTModel.QLLich">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLich">
               <MappingFragment StoreEntitySet="QLLich">
                 <ScalarProperty Name="MaLichHoc" ColumnName="MaLichHoc" />
                 <ScalarProperty Name="MaHocKy" ColumnName="MaHocKy" />
@@ -692,7 +692,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLLops">
-            <EntityTypeMapping TypeName="QLDTModel.QLLop">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLop">
               <MappingFragment StoreEntitySet="QLLop">
                 <ScalarProperty Name="MaLop" ColumnName="MaLop" />
                 <ScalarProperty Name="TenLop" ColumnName="TenLop" />
@@ -700,7 +700,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLLopMons">
-            <EntityTypeMapping TypeName="QLDTModel.QLLopMon">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLLopMon">
               <MappingFragment StoreEntitySet="QLLopMon">
                 <ScalarProperty Name="MaLopMon" ColumnName="MaLopMon" />
                 <ScalarProperty Name="MaGV" ColumnName="MaGV" />
@@ -712,7 +712,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLMonHocs">
-            <EntityTypeMapping TypeName="QLDTModel.QLMonHoc">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLMonHoc">
               <MappingFragment StoreEntitySet="QLMonHoc">
                 <ScalarProperty Name="MaMonHoc" ColumnName="MaMonHoc" />
                 <ScalarProperty Name="TenMonHoc" ColumnName="TenMonHoc" />
@@ -720,7 +720,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLNganhs">
-            <EntityTypeMapping TypeName="QLDTModel.QLNganh">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLNganh">
               <MappingFragment StoreEntitySet="QLNganh">
                 <ScalarProperty Name="MaNganh" ColumnName="MaNganh" />
                 <ScalarProperty Name="TenNganh" ColumnName="TenNganh" />
@@ -731,7 +731,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLPhongs">
-            <EntityTypeMapping TypeName="QLDTModel.QLPhong">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLPhong">
               <MappingFragment StoreEntitySet="QLPhong">
                 <ScalarProperty Name="MaPhong" ColumnName="MaPhong" />
                 <ScalarProperty Name="TenPhong" ColumnName="TenPhong" />
@@ -739,7 +739,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLSinhViens">
-            <EntityTypeMapping TypeName="QLDTModel.QLSinhVien">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLSinhVien">
               <MappingFragment StoreEntitySet="QLSinhVien">
                 <ScalarProperty Name="MaSV" ColumnName="MaSV" />
                 <ScalarProperty Name="HoTenSV" ColumnName="HoTenSV" />
@@ -752,7 +752,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QLUsers">
-            <EntityTypeMapping TypeName="QLDTModel.QLUser">
+            <EntityTypeMapping TypeName="NHOM2_QUANLY_DAOTAOModel.QLUser">
               <MappingFragment StoreEntitySet="QLUser">
                 <ScalarProperty Name="TaiKhoan" ColumnName="TaiKhoan" />
                 <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />

@@ -12,7 +12,7 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class LichDay : Form
     {
-        QLDTEntities db = new QLDTEntities();
+        NHOM2_QUANLY_DAOTAOEntities db = new NHOM2_QUANLY_DAOTAOEntities();
         public LichDay()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
-            using (var context = new QLDTEntities())
+            using (var context = new NHOM2_QUANLY_DAOTAOEntities())
             {
                 var result = (from ld in context.QLLiches
                               select new

@@ -1,45 +1,61 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 
 namespace QuanLyDaoTao_Nhom2
 {
     public partial class Diem : Form
     {
-        QLDTEntities db = new QLDTEntities();
+        NHOM2_QUANLY_DAOTAOEntities db = new NHOM2_QUANLY_DAOTAOEntities();
         QLDiem qld = new QLDiem();
-        string str = @"Data Source=ZEF\SQLEXPRESS;Initial Catalog=NHOM2_QUANLY_DAOTAO;Integrated Security=True;Encrypt=False";
+        QLSinhVien qlsv = new QLSinhVien();
+        QLMonHoc qlmh = new QLMonHoc();
+        private int selectedRowIndex;
+        DataGridViewRow selectedRow;
+        string str = @"Data Source=PHANHUUHIEU\SQLEXPRESS;Initial Catalog=NHOM2_QUANLY_DAOTAO;Integrated Security=True;Encrypt=False";
         SqlConnection KetNoi;
         SqlCommand ThucHien;
         SqlDataReader DuLieu;
         public Diem()
         {
             InitializeComponent();
+            LoadData();
         }
 
         void LoadData()
         {
 
             var sql = (from c in db.QLDiems
-
+                       join b in db.QLSinhViens
+                       on c.MaSV equals b.MaSV
+                       join a in db.QLMonHocs
+                       on c.MaMonHoc equals a.MaMonHoc
                        select new
                        {
                            ID = c.MaDiem,
                            MaSV = c.MaSV,
+                           TenMonHoc = a.TenMonHoc,
+                           HoTenSV = b.HoTenSV,
                            MaMonHoc = c.MaMonHoc,
                            DiemLAB = c.DiemLab,
                            DiemThi = c.DiemThi,
                            DiemTongKet = (c.DiemLab + c.DiemThi * 2) / 3,
                        });
             dvThongTin.DataSource = sql.ToList();
-
+            txtMaSV.Enabled = false;
+            txtMaMonHoc.Enabled = false;
         }
 
         string lenhsv;
@@ -47,36 +63,98 @@ namespace QuanLyDaoTao_Nhom2
 
         void LoadMaSV()
         {
-            cbbMaSV.Items.Clear();
+            cboTenSV.Items.Clear();
             KetNoi = new SqlConnection(str);
-            lenhsv = @"SELECT MaSV From QLSinhVien";
+            lenhsv = @"SELECT HoTenSV From QLSinhVien";
             KetNoi.Open();
-            ThucHien = new SqlCommand(lenhsv, KetNoi);
-            DuLieu = ThucHien.ExecuteReader();
-            while (DuLieu.Read())
+            try
             {
-                cbbMaSV.Items.Add(DuLieu[0].ToString());
-
-
+                ThucHien = new SqlCommand(lenhsv, KetNoi);
+                DuLieu = ThucHien.ExecuteReader();
+                while (DuLieu.Read())
+                {
+                    cboTenSV.Items.Add(DuLieu[0].ToString());
+                }
             }
-            KetNoi.Close();
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                KetNoi.Close();
+            }
+
+
+            cboTenSV.SelectedIndexChanged += (s, e) =>
+            {
+                var maSV = cboTenSV.SelectedItem as string;
+                if (maSV != null)
+                {
+
+                    var lenhsv = @"SELECT MaSV From QLSinhVien Where HoTenSV = @HoTenSV";
+                    var thucHien = new SqlCommand(lenhsv, KetNoi);
+                    thucHien.Parameters.AddWithValue("@HoTenSV", maSV);
+                    KetNoi.Open();
+                    var duLieu = thucHien.ExecuteReader();
+                    if (duLieu.Read())
+                    {
+                        txtMaSV.Text = duLieu[0].ToString();
+                    }
+                    KetNoi.Close();
+                }
+            };
 
         }
+
+
 
         void LoadMaMonhoc()
         {
 
+            cboTenMonHoc.Items.Clear();
             KetNoi = new SqlConnection(str);
-            lenhmh = @"SELECT MaMonHoc From QLMonHoc";
+            lenhmh = @"SELECT TenMonHoc From QLMonHoc";
             KetNoi.Open();
-            ThucHien = new SqlCommand(lenhmh, KetNoi);
-            DuLieu = ThucHien.ExecuteReader();
-            while (DuLieu.Read())
+            try
             {
-                cbbMamon.Items.Add(DuLieu[0].ToString());
+                ThucHien = new SqlCommand(lenhmh, KetNoi);
+                DuLieu = ThucHien.ExecuteReader();
+                while (DuLieu.Read())
+                {
+                    cboTenMonHoc.Items.Add(DuLieu[0].ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                KetNoi.Close();
             }
 
-            KetNoi.Close();
+
+            cboTenMonHoc.SelectedIndexChanged += (s, e) =>
+            {
+                var maMH = cboTenMonHoc.SelectedItem as string;
+                if (maMH != null)
+                {
+
+                    var lenhmh = @"SELECT MaMonHoc From QLMonHoc Where TenMonHoc = @TenMonHoc";
+                    var thucHienmh = new SqlCommand(lenhmh, KetNoi);
+                    thucHienmh.Parameters.AddWithValue("@TenMonHoc", maMH);
+                    KetNoi.Open();
+                    var duLieumh = thucHienmh.ExecuteReader();
+                    if (duLieumh.Read())
+                    {
+                        txtMaMonHoc.Text = duLieumh[0].ToString();
+                    }
+                    KetNoi.Close();
+                }
+            };
         }
 
         private void TinhDiemTB()
@@ -87,39 +165,11 @@ namespace QuanLyDaoTao_Nhom2
                 double lab = double.Parse(txtDiemLAB.Text);
                 double thi = double.Parse(txtDiemThi.Text);
                 double diemTB = (lab + thi * 2) / 3;
-                txtDiemTongKet.Text = diemTB.ToString("F2");
+                lblDiemTongKet.Text = diemTB.ToString("F2");
             }
             else
             {
-                txtDiemTongKet.Text = "0.0";
-            }
-        }
-
-        void SaveData()
-        {
-            var queryTimBenSV = db.QLDiems.Where(x => x.MaDiem.ToLower() == txtMaDiem.Text.ToLower()).FirstOrDefault();
-            if (queryTimBenSV != null)
-            {
-                qld.MaDiem = txtMaDiem.Text;
-                qld.MaSV = cbbMaSV.Text;
-                qld.MaMonHoc = cbbMamon.Text;
-                qld.DiemLab = double.Parse(txtDiemLAB.Text);
-                qld.DiemThi = double.Parse(txtDiemThi.Text);
-                db.QLDiems.Add(qld);
-                int result = db.SaveChanges();
-                if (result > 0)
-                {
-                    MessageBox.Show("Đã lưu thành công");
-                    LoadData();
-                }
-                else
-                {
-                    MessageBox.Show("Đã lưu thất bại");
-                }
-            }
-            else
-            {
-                MessageBox.Show("Không tìm thấy mã SV khớp với mã SV đã nhập!!!");
+                lblDiemTongKet.Text = "0.0";
             }
         }
 
@@ -127,6 +177,8 @@ namespace QuanLyDaoTao_Nhom2
         {
             try
             {
+                var CheckMH = db.QLDiems.Where(x => x.MaSV == txtMaSV.Text && x.MaMonHoc == txtMaMonHoc.Text).ToList().FirstOrDefault();
+
                 int lengthLab = Convert.ToInt32(txtDiemLAB.TextLength);
                 int lengthThi = Convert.ToInt32(txtDiemThi.TextLength);
                 if (db.QLDiems.Any(diem => diem.MaDiem == txtMaDiem.Text))
@@ -141,13 +193,19 @@ namespace QuanLyDaoTao_Nhom2
                     return;
                 }
 
-                else if (cbbMaSV.Text == "")
+                else if (cboTenSV.Text == "")
                 {
                     MessageBox.Show("Mã sinh không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                else if (cbbMamon.Text == "")
+                else if (CheckMH != null)
+                {
+                    MessageBox.Show("Mã môn học này đã được đăng ký cho sinh viên khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                else if (cboTenMonHoc.Text == "")
                 {
                     MessageBox.Show("Mã môn học không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -159,7 +217,7 @@ namespace QuanLyDaoTao_Nhom2
                     return;
                 }
 
-                else if (Convert.ToInt32(txtDiemLAB.Text) <= 0 || Convert.ToInt32(txtDiemLAB.Text) >= 10)
+                else if (Convert.ToInt32(txtDiemLAB.Text) < 0 || Convert.ToInt32(txtDiemLAB.Text) > 10)
                 {
                     MessageBox.Show("Điểm LAB phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -170,29 +228,32 @@ namespace QuanLyDaoTao_Nhom2
                     MessageBox.Show("Điểm thi không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                else if (Convert.ToInt32(txtDiemThi.Text) <= 0 || Convert.ToInt32(txtDiemThi.Text) >= 10)
+                else if (Convert.ToInt32(txtDiemThi.Text) < 0 || Convert.ToInt32(txtDiemThi.Text) > 10)
                 {
                     MessageBox.Show("Điểm thi phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-
-
-
-                db.QLDiems.Add(new QLDiem()
+                else
                 {
+                    db.QLDiems.Add(new QLDiem()
+                    {
 
-                    MaDiem = txtMaDiem.Text,
-                    MaSV = cbbMaSV.Text,
-                    MaMonHoc = cbbMamon.Text,
-                    DiemLab = double.Parse(txtDiemLAB.Text),
-                    DiemThi = double.Parse(txtDiemThi.Text),
-                    DiemTongKet = Convert.ToInt32(txtDiemLAB.Text + txtDiemThi.Text),
-                });
+                        MaDiem = txtMaDiem.Text,
+                        MaSV = txtMaSV.Text,
+                        MaMonHoc = txtMaMonHoc.Text,
+                        DiemLab = double.Parse(txtDiemLAB.Text),
+                        DiemThi = double.Parse(txtDiemThi.Text),
+                        DiemTongKet = Convert.ToInt32(txtDiemLAB.Text + txtDiemThi.Text),
+                    });
 
-                db.SaveChanges();
-                MessageBox.Show("Điểm đã được thêm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                LoadData();
+                    db.SaveChanges();
+                    MessageBox.Show("Điểm đã được thêm thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                }
+
+
+
 
             }
             catch (Exception ex)
@@ -205,33 +266,15 @@ namespace QuanLyDaoTao_Nhom2
         {
             try
             {
-                if (db.QLDiems.Any(diem => diem.MaDiem == txtMaDiem.Text))
-                {
-                    MessageBox.Show("ID đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                else if (txtMaDiem.Text == "")
-                {
-                    MessageBox.Show("ID không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                else if (cbbMaSV.Text == "")
-                {
-                    MessageBox.Show("Mã sinh không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                else if (cbbMamon.Text == "")
-                {
-                    MessageBox.Show("Mã môn học không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                else if (txtDiemLAB.Text == "")
+                if (txtDiemLAB.Text == "")
                 {
                     MessageBox.Show("Điểm LAB không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                else if (Convert.ToInt32(txtDiemLAB.Text) < 0 || Convert.ToInt32(txtDiemLAB.Text) > 10)
+                {
+                    MessageBox.Show("Điểm LAB phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -240,26 +283,18 @@ namespace QuanLyDaoTao_Nhom2
                     MessageBox.Show("Điểm thi không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-
-                else if (txtDiemTongKet.Text == "")
+                else if (Convert.ToInt32(txtDiemThi.Text) < 0 || Convert.ToInt32(txtDiemThi.Text) > 10)
                 {
-                    MessageBox.Show("Điểm tổng kết không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Điểm thi phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                else if (Convert.ToInt32(txtDiemLAB.Text) <= 0 || Convert.ToInt32(txtDiemLAB.Text) >= 10)
-                {
-                    MessageBox.Show("Điểm LAB phải nằm trong khoảng từ 0 đến 10.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+
                 var sua = (dvThongTin.SelectedCells[0].OwningRow.Cells["ID"].Value.ToString());
                 QLDiem sv = db.QLDiems.Find(sua);
-                sv.MaDiem = txtMaDiem.Text;
-                sv.MaSV = cbbMaSV.Text;
-                sv.MaMonHoc = cbbMamon.Text;
                 sv.DiemLab = double.Parse(txtDiemLAB.Text);
                 sv.DiemThi = double.Parse(txtDiemThi.Text);
-
+                sv.DiemTongKet = Convert.ToInt32(txtDiemLAB.Text + txtDiemThi.Text);
                 db.SaveChanges();
                 MessageBox.Show("Đã sửa thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadData();
@@ -273,7 +308,7 @@ namespace QuanLyDaoTao_Nhom2
         private void btnXoa_Click(object sender, EventArgs e)
         {
             var id = txtMaDiem.Text;
-            QLDiem dd = db.QLDiems.Where(p => p.MaDiem == id && p.MaSV == cbbMaSV.Text).FirstOrDefault();
+            QLDiem dd = db.QLDiems.Where(p => p.MaDiem == id).FirstOrDefault();
             db.QLDiems.Remove(dd);
             db.SaveChanges();
             LoadData();
@@ -282,11 +317,13 @@ namespace QuanLyDaoTao_Nhom2
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             txtMaDiem.Text = "";
-            cbbMaSV.Text = "";
-            cbbMamon.Text = "";
+            cboTenSV.Text = "";
+            txtMaSV.Text = "";
+            txtMaMonHoc.Text = "";
+            cboTenMonHoc.Text = "";
             txtDiemLAB.Text = "";
             txtDiemThi.Text = "";
-            txtDiemTongKet.Text = "0.0";
+            lblDiemTongKet.Text = "0.0";
         }
 
         private void txtDiemThi_TextChanged(object sender, EventArgs e)
@@ -294,18 +331,15 @@ namespace QuanLyDaoTao_Nhom2
             TinhDiemTB();
         }
 
-        private void dvThongTin_DoubleClick(object sender, EventArgs e)
-        {
-            int lst = dvThongTin.CurrentRow.Index;
-            btnThem.Enabled = true;
-            txtMaDiem.Enabled = false;
-            cbbMaSV.Enabled = false;
-            txtMaDiem.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
-            cbbMaSV.Text = dvThongTin.Rows[lst].Cells[1].Value.ToString();
-            cbbMamon.Text = dvThongTin.Rows[lst].Cells[2].Value.ToString();
-            txtDiemLAB.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
-            txtDiemThi.Text = dvThongTin.Rows[lst].Cells[4].Value.ToString();
-        }
+        private string MaDiem;
+        private string Masv;
+        private string HoTensv;
+        private string TenMonHocsv;
+        private string MaMonHocsv;
+        private string DiemLabsv;
+        private string DiemThisv;
+        private string DiemTongKetsv;
+     
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -317,6 +351,104 @@ namespace QuanLyDaoTao_Nhom2
         {
             LoadMaSV();
             LoadMaMonhoc();
+        }
+
+        private void dvThongTin_Click(object sender, EventArgs e)
+        {
+            int lst = dvThongTin.CurrentRow.Index;
+            btnThem.Enabled = false;
+            txtMaDiem.Enabled = false;
+            cboTenSV.Enabled = false;
+            cboTenMonHoc.Enabled = false;
+            txtMaDiem.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
+            cboTenSV.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
+            cboTenMonHoc.Text = dvThongTin.Rows[lst].Cells[2].Value.ToString();
+            txtDiemLAB.Text = dvThongTin.Rows[lst].Cells[5].Value.ToString();
+            txtDiemThi.Text = dvThongTin.Rows[lst].Cells[6].Value.ToString();
+        }
+
+        private DataGridView dataGrid;
+        string filePath;
+
+        private void btnIN_Click(object sender, EventArgs e)
+        {
+            if (selectedRow != null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+
+                    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+                    Workbook workbook = excelApp.Workbooks.Add();
+
+                    Worksheet worksheet = workbook.Sheets[1];
+                    int row = 1;
+                    for (int i = 0; i < dvThongTin.Columns.Count; i++)
+                    {
+                        worksheet.Cells[row, 1] = dvThongTin.Columns[i].HeaderText;
+                        worksheet.Cells[row, 2] = selectedRow.Cells[i].Value.ToString();
+                        row++;
+                    }
+
+                    workbook.SaveAs(filePath);
+                    excelApp.Quit();
+
+                    MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa chọn sinh viên nào để xuất!");
+            }
+        }
+
+        private void btnINDIEM_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                filePath = saveFileDialog.FileName;
+                Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+                Workbook workbook = excelApp.Workbooks.Add();
+                Worksheet worksheet = workbook.Sheets[1];
+                int row = 1;
+                for (int i = 0; i < dvThongTin.Columns.Count; i++)
+                {
+                    worksheet.Cells[row, i + 1] = dvThongTin.Columns[i].HeaderText;
+                }
+                row++;
+                for (int i = 0; i < dvThongTin.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dvThongTin.Columns.Count; j++)
+                    {
+                        worksheet.Cells[row, j + 1] = dvThongTin.Rows[i].Cells[j].Value.ToString();
+                    }
+                    row++;
+                }
+                workbook.SaveAs(filePath);
+                excelApp.Quit();
+                MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
+            }
+        }
+
+        private void dvThongTin_DoubleClick(object sender, EventArgs e)
+        {
+            selectedRowIndex = dvThongTin.CurrentCell.RowIndex;
+            selectedRow = dvThongTin.Rows[selectedRowIndex];
+            MessageBox.Show("Bạn đã chọn sinh viên ở dòng " + selectedRowIndex);
+            MaDiem = selectedRow.Cells[0].Value.ToString();
+            Masv = selectedRow.Cells[1].Value.ToString();
+            HoTensv = selectedRow.Cells[2].Value.ToString();
+            TenMonHocsv = selectedRow.Cells[3].Value.ToString();
+            MaMonHocsv = selectedRow.Cells[4].Value.ToString();
+            DiemLabsv = selectedRow.Cells[5].Value.ToString();
+            DiemThisv = selectedRow.Cells[6].Value.ToString();
+            DiemTongKetsv = selectedRow.Cells[7].Value.ToString();
         }
     }
 }
