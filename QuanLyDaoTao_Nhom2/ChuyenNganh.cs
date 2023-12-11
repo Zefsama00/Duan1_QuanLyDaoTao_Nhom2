@@ -21,5 +21,10 @@ namespace QuanLyDaoTao_Nhom2
         {
 
         }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

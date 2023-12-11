@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -339,7 +340,7 @@ namespace QuanLyDaoTao_Nhom2
         private string DiemLabsv;
         private string DiemThisv;
         private string DiemTongKetsv;
-     
+
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
@@ -367,74 +368,49 @@ namespace QuanLyDaoTao_Nhom2
             txtDiemThi.Text = dvThongTin.Rows[lst].Cells[6].Value.ToString();
         }
 
-        private DataGridView dataGrid;
-        string filePath;
 
         private void btnIN_Click(object sender, EventArgs e)
         {
-            if (selectedRow != null)
+            if (dvThongTin.SelectedRows.Count != 1)
             {
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+                MessageBox.Show("Vui lòng chọn 1 sinh viên để in!");
+                return;
+            }
+            DataGridViewRow selectedRow = dvThongTin.SelectedRows[0];
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook = excelApp.Workbooks.Add();
+            Worksheet worksheet = workbook.Sheets[1];
+            int row = 1;
+            for (int i = 0; i < dvThongTin.Columns.Count; i++)
+            {
+                worksheet.Cells[row, i + 1] = dvThongTin.Columns[i].HeaderText;
+            }
+            row++;
 
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            for (int i = 0; i < dvThongTin.Columns.Count; i++)
+            {
+                worksheet.Cells[row, i + 1] = selectedRow.Cells[i].Value.ToString();
+            }
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "DiemALL.xlsx");
+            if (File.Exists(filePath))
+            {
+                DialogResult overwriteResult = MessageBox.Show($"Bạn muốn in '{filePath}' sinh viên này?",
+                                                            "File Exists",
+                                                            MessageBoxButtons.YesNo);
+
+                if (overwriteResult != DialogResult.Yes)
                 {
-                    string filePath = saveFileDialog.FileName;
-
-
-                    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-                    Workbook workbook = excelApp.Workbooks.Add();
-
-                    Worksheet worksheet = workbook.Sheets[1];
-                    int row = 1;
-                    for (int i = 0; i < dvThongTin.Columns.Count; i++)
-                    {
-                        worksheet.Cells[row, 1] = dvThongTin.Columns[i].HeaderText;
-                        worksheet.Cells[row, 2] = selectedRow.Cells[i].Value.ToString();
-                        row++;
-                    }
-
-                    workbook.SaveAs(filePath);
-                    excelApp.Quit();
-
-                    MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
+                    return;
                 }
             }
-            else
-            {
-                MessageBox.Show("Bạn chưa chọn sinh viên nào để xuất!");
-            }
+            workbook.SaveAs(filePath);
+            excelApp.Quit();
+            MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
         }
 
-        private void btnINDIEM_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                filePath = saveFileDialog.FileName;
-                Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-                Workbook workbook = excelApp.Workbooks.Add();
-                Worksheet worksheet = workbook.Sheets[1];
-                int row = 1;
-                for (int i = 0; i < dvThongTin.Columns.Count; i++)
-                {
-                    worksheet.Cells[row, i + 1] = dvThongTin.Columns[i].HeaderText;
-                }
-                row++;
-                for (int i = 0; i < dvThongTin.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dvThongTin.Columns.Count; j++)
-                    {
-                        worksheet.Cells[row, j + 1] = dvThongTin.Rows[i].Cells[j].Value.ToString();
-                    }
-                    row++;
-                }
-                workbook.SaveAs(filePath);
-                excelApp.Quit();
-                MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
-            }
-        }
+
+
+
 
         private void dvThongTin_DoubleClick(object sender, EventArgs e)
         {
@@ -449,6 +425,46 @@ namespace QuanLyDaoTao_Nhom2
             DiemLabsv = selectedRow.Cells[5].Value.ToString();
             DiemThisv = selectedRow.Cells[6].Value.ToString();
             DiemTongKetsv = selectedRow.Cells[7].Value.ToString();
+        }
+        string filePath;
+        private void btnINDIEM_Click(object sender, EventArgs e)
+        {
+            string inDiem = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "INDiemALL.xlsx");
+            if (File.Exists(inDiem))
+            {
+               
+                DialogResult overwriteResult = MessageBox.Show($"Chắc chưa ? '{filePath}' muốn in phải không?",
+                                                                "File Exists",
+                                                                MessageBoxButtons.YesNo);
+
+                if (overwriteResult != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook = excelApp.Workbooks.Add();
+            Worksheet worksheet = workbook.Sheets[1];
+            int row = 1;
+
+            for (int i = 0; i < dvThongTin.Columns.Count; i++)
+            {
+                worksheet.Cells[row, i + 1] = dvThongTin.Columns[i].HeaderText;
+            }
+            row++;
+
+            for (int i = 0; i < dvThongTin.Rows.Count; i++)
+            {
+                for (int j = 0; j < dvThongTin.Columns.Count; j++)
+                {
+                    worksheet.Cells[row, j + 1] = dvThongTin.Rows[i].Cells[j].Value.ToString();
+                }
+                row++;
+            }
+            workbook.SaveAs(inDiem);
+            excelApp.Quit();
+            MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
+
         }
     }
 }
