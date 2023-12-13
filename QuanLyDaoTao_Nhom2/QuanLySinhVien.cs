@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -13,6 +15,7 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class QuanLySinhVien : Form
     {
+        string filePath;
         QLDTEntities db = new QLDTEntities();
         List<QLUser> dsuser;
         string[] tk;
@@ -169,6 +172,7 @@ namespace QuanLyDaoTao_Nhom2
             }
             else
             {
+                MessageBox.Show("Sửa Thành Công!");
                 var sua = (dvThongTin.SelectedCells[0].OwningRow.Cells["MaSV"].Value.ToString());
                 QLSinhVien sv = db.QLSinhViens.Find(sua);
                 sv.HoTenSV = txtTenSV.Text;
@@ -184,6 +188,7 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Xóa Thành Công!");
             var id = txtMaSV.Text;
             QLSinhVien sv = db.QLSinhViens.Where(P => P.MaSV == id && P.HoTenSV == txtTenSV.Text).FirstOrDefault();
             db.QLSinhViens.Remove(sv);
@@ -313,6 +318,45 @@ namespace QuanLyDaoTao_Nhom2
             QuanLyLopMon form2 = new QuanLyLopMon(username);
             form2.ShowDialog();
             this.Close();
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            string inSinhVien = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "DSSinhVien.xlsx");
+            if (File.Exists(inSinhVien))
+            {
+
+                DialogResult overwriteResult = MessageBox.Show($"Chắc chưa ? '{filePath}' muốn in phải không?",
+                                                                "File Exists",
+                                                                MessageBoxButtons.YesNo);
+
+                if (overwriteResult != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook = excelApp.Workbooks.Add();
+            Worksheet worksheet = workbook.Sheets[1];
+            int row = 1;
+
+            for (int i = 0; i < dvThongTin.Columns.Count; i++)
+            {
+                worksheet.Cells[row, i + 1] = dvThongTin.Columns[i].HeaderText;
+            }
+            row++;
+
+            for (int i = 0; i < dvThongTin.Rows.Count; i++)
+            {
+                for (int j = 0; j < dvThongTin.Columns.Count; j++)
+                {
+                    worksheet.Cells[row, j + 1] = dvThongTin.Rows[i].Cells[j].Value.ToString();
+                }
+                row++;
+            }
+            workbook.SaveAs(inSinhVien);
+            excelApp.Quit();
+            MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
         }
 
         private void btThoat_Click(object sender, EventArgs e)

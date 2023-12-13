@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +15,17 @@ namespace QuanLyDaoTao_Nhom2
 {
     public partial class Diem : Form
     {
+        private int selectedRowIndex;
+        DataGridViewRow selectedRow;
+        private string MaDiem;
+        private string Masv;
+        private string HoTensv;
+        private string TenMonHocsv;
+        private string MaMonHocsv;
+        private string DiemLabsv;
+        private string DiemThisv;
+        private string DiemTongKetsv;
+        string filePath;
         QLDTEntities db = new QLDTEntities();
         QLDiem qld = new QLDiem();
         string str = @"Data Source=ZEF\SQLEXPRESS;Initial Catalog=NHOM2_QUANLY_DAOTAO;Integrated Security=True;Encrypt=False";
@@ -358,16 +371,21 @@ namespace QuanLyDaoTao_Nhom2
                 btnXoa.Enabled = true;
                 cboTenMonHoc.Enabled = false;
             }
-            int lst = dvThongTin.CurrentRow.Index;
             btnThem.Enabled = false;
             txtMaDiem.Enabled = false;
             cboTenSV.Enabled = false;
             cboTenMonHoc.Enabled = false;
-            txtMaDiem.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
-            cboTenSV.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
-            cboTenMonHoc.Text = dvThongTin.Rows[lst].Cells[2].Value.ToString();
-            txtDiemLAB.Text = dvThongTin.Rows[lst].Cells[5].Value.ToString();
-            txtDiemThi.Text = dvThongTin.Rows[lst].Cells[6].Value.ToString();
+            selectedRowIndex = dvThongTin.CurrentCell.RowIndex;
+            selectedRow = dvThongTin.Rows[selectedRowIndex];
+            MessageBox.Show("Bạn đã chọn sinh viên ở dòng " + selectedRowIndex);
+            MaDiem = selectedRow.Cells[0].Value.ToString();
+            Masv = selectedRow.Cells[1].Value.ToString();
+            HoTensv = selectedRow.Cells[2].Value.ToString();
+            TenMonHocsv = selectedRow.Cells[3].Value.ToString();
+            MaMonHocsv = selectedRow.Cells[4].Value.ToString();
+            DiemLabsv = selectedRow.Cells[5].Value.ToString();
+            DiemThisv = selectedRow.Cells[6].Value.ToString();
+            DiemTongKetsv = selectedRow.Cells[7].Value.ToString();
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -520,6 +538,98 @@ namespace QuanLyDaoTao_Nhom2
             XemDSSV form = new XemDSSV(username);
             form.ShowDialog();
             this.Close();
+        }
+
+        private void dvThongTin_Click(object sender, EventArgs e)
+        {
+            int lst = dvThongTin.CurrentRow.Index;
+            btnThem.Enabled = false;
+            txtMaDiem.Enabled = false;
+            cboTenSV.Enabled = false;
+            cboTenMonHoc.Enabled = false;
+            txtMaDiem.Text = dvThongTin.Rows[lst].Cells[0].Value.ToString();
+            cboTenSV.Text = dvThongTin.Rows[lst].Cells[3].Value.ToString();
+            cboTenMonHoc.Text = dvThongTin.Rows[lst].Cells[2].Value.ToString();
+            txtDiemLAB.Text = dvThongTin.Rows[lst].Cells[5].Value.ToString();
+            txtDiemThi.Text = dvThongTin.Rows[lst].Cells[6].Value.ToString();
+        }
+
+        private void btInALL_Click(object sender, EventArgs e)
+        {
+            string inDiem = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "INDiemALL.xlsx");
+            if (File.Exists(inDiem))
+            {
+
+                DialogResult overwriteResult = MessageBox.Show($"Chắc chưa ? '{filePath}' muốn in phải không?",
+                                                                "File Exists",
+                                                                MessageBoxButtons.YesNo);
+
+                if (overwriteResult != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook = excelApp.Workbooks.Add();
+            Worksheet worksheet = workbook.Sheets[1];
+            int row = 1;
+
+            for (int i = 0; i < dvThongTin.Columns.Count; i++)
+            {
+                worksheet.Cells[row, i + 1] = dvThongTin.Columns[i].HeaderText;
+            }
+            row++;
+
+            for (int i = 0; i < dvThongTin.Rows.Count; i++)
+            {
+                for (int j = 0; j < dvThongTin.Columns.Count; j++)
+                {
+                    worksheet.Cells[row, j + 1] = dvThongTin.Rows[i].Cells[j].Value.ToString();
+                }
+                row++;
+            }
+            workbook.SaveAs(inDiem);
+            excelApp.Quit();
+            MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
+        }
+
+        private void btIn_Click(object sender, EventArgs e)
+        {
+            if (dvThongTin.SelectedRows.Count != 1)
+            {
+                MessageBox.Show("Vui lòng chọn 1 sinh viên để in!");
+                return;
+            }
+            DataGridViewRow selectedRow = dvThongTin.SelectedRows[0];
+            Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Workbook workbook = excelApp.Workbooks.Add();
+            Worksheet worksheet = workbook.Sheets[1];
+            int row = 1;
+            for (int i = 0; i < dvThongTin.Columns.Count; i++)
+            {
+                worksheet.Cells[row, i + 1] = dvThongTin.Columns[i].HeaderText;
+            }
+            row++;
+
+            for (int i = 0; i < dvThongTin.Columns.Count; i++)
+            {
+                worksheet.Cells[row, i + 1] = selectedRow.Cells[i].Value.ToString();
+            }
+            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "DiemSVDC.xlsx");
+            if (File.Exists(filePath))
+            {
+                DialogResult overwriteResult = MessageBox.Show($"Bạn muốn in '{filePath}' sinh viên này?",
+                                                            "File Exists",
+                                                            MessageBoxButtons.YesNo);
+
+                if (overwriteResult != DialogResult.Yes)
+                {
+                    return;
+                }
+            }
+            workbook.SaveAs(filePath);
+            excelApp.Quit();
+            MessageBox.Show("Dữ liệu đã được xuất ra file Excel thành công!");
         }
     }
 }

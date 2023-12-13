@@ -67,6 +67,7 @@ namespace QuanLyDaoTao_Nhom2
             this.ngànhToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.chuyênNgànhToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lớpMônToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnIn = new System.Windows.Forms.Button();
             this.grbThongTin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -165,6 +166,7 @@ namespace QuanLyDaoTao_Nhom2
             // 
             // grbThongTin
             // 
+            this.grbThongTin.Controls.Add(this.btnIn);
             this.grbThongTin.Controls.Add(this.dtNgaySinh);
             this.grbThongTin.Controls.Add(this.radNu);
             this.grbThongTin.Controls.Add(this.radNam);
@@ -468,6 +470,16 @@ namespace QuanLyDaoTao_Nhom2
             this.lớpMônToolStripMenuItem.Text = "Lớp Môn";
             this.lớpMônToolStripMenuItem.Click += new System.EventHandler(this.lớpMônToolStripMenuItem_Click);
             // 
+            // btnIn
+            // 
+            this.btnIn.Location = new System.Drawing.Point(580, 126);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(158, 23);
+            this.btnIn.TabIndex = 54;
+            this.btnIn.Text = "In danh sách sinh viên";
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
             // QuanLySinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -537,5 +549,6 @@ namespace QuanLyDaoTao_Nhom2
         private System.Windows.Forms.ToolStripMenuItem ngànhToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem chuyênNgànhToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem lớpMônToolStripMenuItem;
+        private System.Windows.Forms.Button btnIn;
     }
 }
