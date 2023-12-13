@@ -35,7 +35,7 @@ namespace QuanLyDaoTao_Nhom2
                                   MaCn = c.MaCN,
                                   Malop = c.MaLop,
                               }).ToList();
-                dvThongTin.DataSource = result;
+                result.Distinct().ToList().ForEach(x => dvThongTin.Rows.Add(x.Manganh, x.Tennganh,x.Masv,x.MaCn,x.Malop));
                 cmbChuyenNganh.DataSource = context.QLChuyenNganhs.Select(cn => cn.MaCN).ToList();
                 cmbMaLop.DataSource = context.QLLops.Select(l => l.MaLop).ToList();
                 cmbMaSV.DataSource = context.QLSinhViens.Select(sv => sv.MaSV).ToList();

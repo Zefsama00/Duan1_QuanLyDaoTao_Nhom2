@@ -27,6 +27,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
+            dvThongTin.Rows.Clear();
             var result = from st in db.QLHocKies
                         
                          select new
@@ -37,9 +38,9 @@ namespace QuanLyDaoTao_Nhom2
                              NgayKetThuc = st.NgayKetThuc,
 
                          };
-                         
-            
-            dvThongTin.DataSource = result.ToList();
+
+            result.ToList().ForEach(x => dvThongTin.Rows.Add(x.MaHocKy, x.TenHocKy, x.NgayBatDau, x.NgayKetThuc));
+            dvThongTin.Update();
         }
         void ClearFields()
         {

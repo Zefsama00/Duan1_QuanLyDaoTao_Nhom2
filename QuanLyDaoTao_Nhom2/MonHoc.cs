@@ -14,6 +14,7 @@ namespace QuanLyDaoTao_Nhom2
     public partial class MonHoc : Form
     {
         string username;
+        QLDTEntities db = new QLDTEntities();
         DataSet ds = new DataSet();
         SqlConnection conn;
         SqlCommand cmd;
@@ -116,12 +117,20 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
-            cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT MaMonHoc as [Ma Mon], TenMonHoc as [Ten Mon] FROM QLMonHoc";
-            adapter.SelectCommand = cmd;
-            originalData = new DataTable();
-            adapter.Fill(originalData);
-            dataGridView1.DataSource = originalData;
+            button2.Enabled = true;
+            button3.Enabled = false;
+            button4.Enabled = false;
+            dataGridView1.Rows.Clear();
+            var result = (from
+                              c in db.QLMonHocs
+                          select new
+                          {
+                              MaMonHoc = c.MaMonHoc,
+                              TenMonHoc = c.TenMonHoc
+                            
+                          });
+            result.Distinct().ToList().ForEach(x => dataGridView1.Rows.Add(x.MaMonHoc,x.TenMonHoc));
+            dataGridView1.Update();
             txtMaMonhoc.Text = "";
             txtTenMonhoc.Text = "";
 
@@ -137,6 +146,9 @@ namespace QuanLyDaoTao_Nhom2
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            button2.Enabled = false;
+            button3.Enabled = true;
+            button4.Enabled = true;
             int list = dataGridView1.CurrentRow.Index;
             txtMaMonhoc.Text = dataGridView1.Rows[list].Cells[0].Value.ToString();
             txtTenMonhoc.Text = dataGridView1.Rows[list].Cells[1].Value.ToString();

@@ -42,5 +42,25 @@ namespace QuanLyDaoTao_Nhom2
                 this.Close();
             }
         }
+
+        private void DoiMatKhau_Load(object sender, EventArgs e)
+        {
+            txtmkMoi.PasswordChar = '*';
+            txtXacNhanMK.PasswordChar = '*';
+        }
+
+        private void cbHienMatKhau_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbHienMatKhau.Checked)
+            {
+                txtmkMoi.PasswordChar = (char)0;
+                txtXacNhanMK.PasswordChar = (char)0;
+            }
+            else
+            {
+                txtmkMoi.PasswordChar = '*';
+                txtXacNhanMK.PasswordChar = '*';
+            }
+        }
     }
 }

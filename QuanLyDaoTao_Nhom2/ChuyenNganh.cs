@@ -22,6 +22,9 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
             var sql = from b in db.QLChuyenNganhs
                       select new
                       {
@@ -29,8 +32,10 @@ namespace QuanLyDaoTao_Nhom2
                           TenChuyenNganh = b.TenCN,
                       };
 
-            dvthongtin.DataSource = sql.ToList();
-
+            sql.Distinct().ToList().ForEach(x => dvthongtin.Rows.Add(x.MaChuyenNganh, x.TenChuyenNganh));
+            dvthongtin.Update();
+            txtMaCN.Text = "";
+            txtTenCN.Text = "";
         }
 
 
@@ -122,6 +127,9 @@ namespace QuanLyDaoTao_Nhom2
         private void btnLamMoi_Click(object sender, EventArgs e)
         {
             txtMaCN.Enabled = true;
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
             txtTenCN.Text = "";
             txtMaCN.Text = "";
         }
@@ -141,7 +149,9 @@ namespace QuanLyDaoTao_Nhom2
         private void dvthongtin_DoubleClick(object sender, EventArgs e)
         {
             int lst = dvthongtin.CurrentRow.Index;
-            btnThem.Enabled = true;
+            btnThem.Enabled = false;
+            btnSua.Enabled = true;
+            btnXoa.Enabled = true;
             txtMaCN.Enabled = false;
             txtMaCN.Text = dvthongtin.Rows[lst].Cells[0].Value.ToString();
             txtTenCN.Text = dvthongtin.Rows[lst].Cells[1].Value.ToString();

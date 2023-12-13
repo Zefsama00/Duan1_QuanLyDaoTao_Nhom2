@@ -55,6 +55,8 @@
             this.btnThem = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.btThoat = new System.Windows.Forms.Button();
+            this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -120,6 +122,9 @@
             // dvThongTin
             // 
             this.dvThongTin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvThongTin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaLop,
+            this.TenLop});
             this.dvThongTin.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dvThongTin.Location = new System.Drawing.Point(2, 205);
             this.dvThongTin.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -335,6 +340,18 @@
             this.btThoat.UseVisualStyleBackColor = true;
             this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
+            // MaLop
+            // 
+            this.MaLop.HeaderText = "Mã Lớp";
+            this.MaLop.Name = "MaLop";
+            this.MaLop.Width = 250;
+            // 
+            // TenLop
+            // 
+            this.TenLop.HeaderText = "Tên Lớp Học";
+            this.TenLop.Name = "TenLop";
+            this.TenLop.Width = 450;
+            // 
             // QuanLyLop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,5 +410,7 @@
         private System.Windows.Forms.ToolStripMenuItem chuyênNgànhToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem lớpMônToolStripMenuItem;
         private System.Windows.Forms.Button btThoat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaLop;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenLop;
     }
 }

@@ -61,6 +61,11 @@
             this.chuyênNgànhToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.lớpMônToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btThoat = new System.Windows.Forms.Button();
+            this.MaNganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaSV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaCN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dvThongTin)).BeginInit();
             this.grbThongTin.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -158,6 +163,12 @@
             // dvThongTin
             // 
             this.dvThongTin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dvThongTin.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaNganh,
+            this.TenNganh,
+            this.MaSV,
+            this.MaCN,
+            this.MaLop});
             this.dvThongTin.Location = new System.Drawing.Point(4, 205);
             this.dvThongTin.Margin = new System.Windows.Forms.Padding(2);
             this.dvThongTin.Name = "dvThongTin";
@@ -404,6 +415,36 @@
             this.btThoat.UseVisualStyleBackColor = true;
             this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
+            // MaNganh
+            // 
+            this.MaNganh.HeaderText = "Mã Ngành";
+            this.MaNganh.Name = "MaNganh";
+            this.MaNganh.Width = 120;
+            // 
+            // TenNganh
+            // 
+            this.TenNganh.HeaderText = "Tên Ngành";
+            this.TenNganh.Name = "TenNganh";
+            this.TenNganh.Width = 220;
+            // 
+            // MaSV
+            // 
+            this.MaSV.HeaderText = "Mã Sinh Viên";
+            this.MaSV.Name = "MaSV";
+            this.MaSV.Width = 150;
+            // 
+            // MaCN
+            // 
+            this.MaCN.HeaderText = "Mã Chuyên Ngành";
+            this.MaCN.Name = "MaCN";
+            this.MaCN.Width = 120;
+            // 
+            // MaLop
+            // 
+            this.MaLop.HeaderText = "Mã Lớp Học";
+            this.MaLop.Name = "MaLop";
+            this.MaLop.Width = 120;
+            // 
             // Nganh
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,5 +508,10 @@
         private System.Windows.Forms.ToolStripMenuItem chuyênNgànhToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem lớpMônToolStripMenuItem;
         private System.Windows.Forms.Button btThoat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaNganh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNganh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaSV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaCN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaLop;
     }
 }

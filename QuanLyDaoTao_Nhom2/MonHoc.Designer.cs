@@ -55,6 +55,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.btnTimKiem = new System.Windows.Forms.Button();
             this.btThoat = new System.Windows.Forms.Button();
+            this.MaMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenMonHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -120,6 +122,9 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.MaMonHoc,
+            this.TenMonHoc});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dataGridView1.Location = new System.Drawing.Point(1, 203);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -335,6 +340,18 @@
             this.btThoat.UseVisualStyleBackColor = true;
             this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
+            // MaMonHoc
+            // 
+            this.MaMonHoc.HeaderText = "Mã Môn Học";
+            this.MaMonHoc.Name = "MaMonHoc";
+            this.MaMonHoc.Width = 250;
+            // 
+            // TenMonHoc
+            // 
+            this.TenMonHoc.HeaderText = "Tên Môn Học";
+            this.TenMonHoc.Name = "TenMonHoc";
+            this.TenMonHoc.Width = 450;
+            // 
             // MonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -393,5 +410,7 @@
         private System.Windows.Forms.ToolStripMenuItem chuyênNgànhToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem lớpMônToolStripMenuItem;
         private System.Windows.Forms.Button btThoat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaMonHoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenMonHoc;
     }
 }

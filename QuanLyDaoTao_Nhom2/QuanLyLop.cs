@@ -14,6 +14,7 @@ namespace QuanLyDaoTao_Nhom2
     public partial class QuanLyLop : Form
     {
         string username;
+        QLDTEntities db = new QLDTEntities();
         DataSet ds = new DataSet();
         SqlConnection conn;
         SqlCommand cmd;
@@ -124,12 +125,20 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
-            cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT MaLop as [Ma Lop], TenLop as [Ten Lop] FROM QLLop";
-            adapter.SelectCommand = cmd;
-            originalData = new DataTable();
-            adapter.Fill(originalData);
-            dvThongTin.DataSource = originalData;
+            btnThem.Enabled = true;
+            btnSua.Enabled = false;
+            btnXoa.Enabled = false;
+            dvThongTin.Rows.Clear();
+            var result = (from
+                              c in db.QLLops
+                          select new
+                          {
+                              MaLop = c.MaLop,
+                              TenLop = c.TenLop
+
+                          });
+            result.Distinct().ToList().ForEach(x => dvThongTin.Rows.Add(x.MaLop, x.TenLop));
+            dvThongTin.Update();
             txtMaLop.Text = "";
             txtTenLop.Text = "";
             txtTimKiem.Text = "";
@@ -269,6 +278,9 @@ namespace QuanLyDaoTao_Nhom2
 
         private void dvThongTin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            btnThem.Enabled = false;
+            btnSua.Enabled = true;
+            btnXoa.Enabled = true;
             int list = dvThongTin.CurrentRow.Index;
             txtMaLop.Text = dvThongTin.Rows[list].Cells[0].Value.ToString();
             txtTenLop.Text = dvThongTin.Rows[list].Cells[1].Value.ToString();
