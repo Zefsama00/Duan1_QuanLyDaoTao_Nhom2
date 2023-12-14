@@ -126,7 +126,7 @@ namespace QuanLyDaoTao_Nhom2
                loai => loai.TenHocKy == cmxHocKy.SelectedItem.ToString()).MaHocKy;
             if (XuLyCode.updateLich(selectedSP))
             {
-                MessageBox.Show("Đã cập nhật");
+                MessageBox.Show("Đã cập nhật thành công");
                 this.updateDataGridView();
             }
             else
@@ -150,7 +150,7 @@ namespace QuanLyDaoTao_Nhom2
             {
                 if (XuLyCode.deleteLich(txtMaLichhoc.Text))
                 {
-                    MessageBox.Show("Đã xóa sản phẩm");
+                    MessageBox.Show("Đã xóa thành công");
                     this.updateDataGridView();
                 }
                 else

@@ -163,18 +163,33 @@ namespace QuanLyDaoTao_Nhom2
 
         private void TinhDiemTB()
         {
-            if (!string.IsNullOrWhiteSpace(txtDiemLAB.Text) &&
-                !string.IsNullOrWhiteSpace(txtDiemThi.Text))
-            {
-                double lab = double.Parse(txtDiemLAB.Text);
-                double thi = double.Parse(txtDiemThi.Text);
-                double diemTB = (lab + thi * 2) / 3;
-                lblDiemTongKet.Text = diemTB.ToString("F2");
+            try 
+            { 
+                if (!string.IsNullOrWhiteSpace(txtDiemLAB.Text) &&
+                    !string.IsNullOrWhiteSpace(txtDiemThi.Text))
+                {
+                    if(double.Parse(txtDiemLAB.Text) > 0 && double.Parse(txtDiemLAB.Text) > 0)
+                    {
+                        if(double.Parse(txtDiemLAB.Text) > 10 || double.Parse(txtDiemLAB.Text) > 10)
+                        {
+                            MessageBox.Show("Điểm Lab và Điểm thi tối đa là 10","Lỗi",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            double lab = double.Parse(txtDiemLAB.Text);
+                            double thi = double.Parse(txtDiemThi.Text);
+                            double diemTB = (lab + thi * 2) / 3;
+                            lblDiemTongKet.Text = diemTB.ToString("F2");
+                        }              
+                    }
+               
+                }
+                else
+                {
+                    lblDiemTongKet.Text = "0.0";
+                }
             }
-            else
-            {
-                lblDiemTongKet.Text = "0.0";
-            }
+            catch { MessageBox.Show("Điểm Lab và Điểm thi phải là số dương", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error); }
         }
 
         void SaveData()

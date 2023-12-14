@@ -88,7 +88,12 @@ namespace QuanLyDaoTao_Nhom2
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txtMaLopmon.Text))
+            if (!string.IsNullOrEmpty(txtMaLopmon.Text) 
+                && !string.IsNullOrEmpty(cmxGV.Text) 
+                && !string.IsNullOrEmpty(cmxHocKy.Text) 
+                && !string.IsNullOrEmpty(cmxLop.Text) 
+                && !string.IsNullOrEmpty(cmxMonHoc.Text)
+                && !string.IsNullOrEmpty(cmxPhong.Text))
             {
                 var CheckID_MaLopMon = db.QLLopMons.Where(x => x.MaLopMon == txtMaLopmon.Text || x.MaLopMon == txtMaLopmon.Text).ToList().FirstOrDefault();
                 if (CheckID_MaLopMon != null)

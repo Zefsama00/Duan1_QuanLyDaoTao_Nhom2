@@ -125,6 +125,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
+            txtMaLop.Enabled = true;
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
@@ -278,6 +279,7 @@ namespace QuanLyDaoTao_Nhom2
 
         private void dvThongTin_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            txtMaLop.Enabled = false;
             btnThem.Enabled = false;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;

@@ -22,6 +22,7 @@ namespace QuanLyDaoTao_Nhom2
         }
         void LoadData()
         {
+            dvthongtin.Rows.Clear();
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
@@ -107,10 +108,10 @@ namespace QuanLyDaoTao_Nhom2
                 MessageBox.Show("Tên chuyên ngành này đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            var sua = (dvthongtin.SelectedCells[0].OwningRow.Cells["MaChuyenNganh"].Value.ToString());
+            var sua = (dvthongtin.SelectedCells[0].OwningRow.Cells[0].Value.ToString());
             QLChuyenNganh sv = db.QLChuyenNganhs.Find(sua);
             sv.TenCN = txtTenCN.Text;
-
+            MessageBox.Show("Đã cập nhật thành công");
             db.SaveChanges();
             LoadData();
         }
@@ -120,6 +121,7 @@ namespace QuanLyDaoTao_Nhom2
             var CN = txtMaCN.Text;
             QLChuyenNganh sv = db.QLChuyenNganhs.Where(P => P.MaCN == CN && P.TenCN == txtTenCN.Text).FirstOrDefault();
             db.QLChuyenNganhs.Remove(sv);
+            MessageBox.Show("Đã xóa thành công");
             db.SaveChanges();
             LoadData();
         }
@@ -132,6 +134,7 @@ namespace QuanLyDaoTao_Nhom2
             btnXoa.Enabled = false;
             txtTenCN.Text = "";
             txtMaCN.Text = "";
+            LoadData();
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)

@@ -26,6 +26,7 @@ namespace QuanLyDaoTao_Nhom2
         {
             using (var context = new QLDTEntities())
             {
+                dvThongTin.Rows.Clear();
                 var result = (from c in context.QLNganhs
                               select new
                               {

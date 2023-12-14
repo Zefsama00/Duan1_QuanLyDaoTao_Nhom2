@@ -207,6 +207,8 @@ namespace QuanLyDaoTao_Nhom2
             txtDiaChi.Text = "";
             txtSoDienThoai.Text = "";
             txtEmail.Text = "";
+            LoadData();
+            txtTimKiem.Text = "";
         }
 
         private void dvThongTin_DoubleClick(object sender, EventArgs e)
